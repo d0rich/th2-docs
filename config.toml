@@ -2,3 +2,6 @@ baseURL = "https://d0rich.github.io/th2-docs/"
 languageCode = "en-us"
 title = "th2 documentation"
 theme = "learn"
+
+[params]
+landingPageURL = "https://d0rich.github.io/th2-docs/"
