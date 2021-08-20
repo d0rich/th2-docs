@@ -1,9 +1,9 @@
 :root{
     --MAIN-TEXT-color:#323232; /* Color of text by default */
     --MAIN-TITLES-TEXT-color: #5e5e5e; /* Color of titles h2-h3-h4-h5 */
-    --MAIN-LINK-color:var(--EXACTPRO-MAIN-TURQUOISE-70); /* Color of links */
-    --MAIN-LINK-HOVER-color:var(--EXACTPRO-MAIN-TURQUOISE); /* Color of hovered links */
-    --MAIN-ANCHOR-color: #1C90F3; /* color of anchors on titles */
+    --MAIN-LINK-color: var(--EXACTPRO-MAIN-TURQUOISE-70); /* Color of links */
+    --MAIN-LINK-HOVER-color: var(--EXACTPRO-MAIN-TURQUOISE); /* Color of hovered links */
+    --MAIN-ANCHOR-color: var(--EXACTPRO-MAIN-TURQUOISE); /* color of anchors on titles */
 
     --MENU-HOME-LINK-color: #323232; /* Color of the home button text */
     --MENU-HOME-LINK-HOVER-color: #5e5e5e; /* Color of the hovered home button text */
@@ -134,3 +134,4 @@ a:hover {
 #homelinks a:hover {
   color: var(--MENU-HOME-LINK-HOVERED-color);
 }
+
