@@ -1,5 +1,5 @@
 ---
-title: Install demo
+title: Install demo example
 weight: 15
 pre: "<b>1.3 </b>"
 chapter: true
