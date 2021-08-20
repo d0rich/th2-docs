@@ -20,7 +20,7 @@ chapter: true
    - [Creating cluster](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
    - Installing Flannel CNI:  
      Execute following command in the terminal
-     ```
+     ```shell
      kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
      ```
 
