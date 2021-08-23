@@ -1,9 +1,10 @@
 ---
 title: Install required software
-weight: 15
+weight: 5
 pre: "<b>1.3.1 </b>"
 chapter: true
 ---
+### Step 1
 
 # Required software installation
 
