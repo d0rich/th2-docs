@@ -8,6 +8,11 @@ chapter: true
 
 # DOWNLOAD th2 DEMO EXAMPLE TO YOUR GIT REPOSITORY
 
+{{% hl pink %}}
+Get [th2-infra-schema](https://github.com/th2-net/th2-infra-demo-configuration) for custom components and copy or fork to your GIT repository.
+{{% /hl %}}
+
+{{% hl greenyellow %}}
 ## Download th2
 
 Скачайте необходимую ветку [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master) 
@@ -41,3 +46,5 @@ git init
 Опубликуйте репозиторий на github, либо выполните любые другие действия, 
 чтобы th2-infra-schema была доступна по ssh. В будущем th2 будет читать 
 th2-infra-schema по ssh ссылке.
+
+{{% /hl %}}
