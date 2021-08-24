@@ -7,7 +7,20 @@ chapter: true
 
 # Software requirements
 
+{{< hl orange >}}
+Список требований на этой странице был пересобран из 
+https://github.com/th2-net/th2-documentation/wiki/Technical-Requirements#software-requirements
+{{< /hl >}}
+
+{{< hl greenyellow >}}
+> One machine can combine several types listed here.
+{{< /hl >}}
+
 ## th2 node
+
+{{< hl greenyellow >}}
+th2 node is a device where your th2 system will be executed fully or partially.
+{{< /hl >}}
 
 1. Docker CE v19+  
    Container runtime Docker CE installed.
@@ -26,6 +39,10 @@ chapter: true
 
 ## Operator box
 
+{{< hl greenyellow >}}
+Specialist will monitor and control th2 through the operator box.
+{{< /hl >}}
+
 1. GIT - [Installation guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 2. Kubectl - [Installation guide](https://kubernetes.io/docs/tasks/tools/)
 3. Helm 3+ - [Installation guide](https://helm.sh/docs/intro/install/)
@@ -33,6 +50,10 @@ chapter: true
 
 
 ## Apache Cassandra node
+
+{{< hl greenyellow >}}
+Apache Cassandra node is a device where Cassandra database for your th2 system will be executed.
+{{< /hl >}}
 
 1. JAVA 8 - [Installation guide](https://www.java.com/en/download/help/download_options.html)
 2. Python 3.7+ (for cqlsh) - [Installation guide](https://wiki.python.org/moin/BeginnersGuide/Download)
