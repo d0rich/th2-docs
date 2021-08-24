@@ -9,35 +9,49 @@ chapter: true
 
 # Deploy monitoring tools
 
-> Be sure you are located in the `th2-infra/example-values` directory.
+{{% notice note %}}
+Be sure you are located in the `th2-infra/example-values` directory.
+{{% /notice %}}
 
 ## Install Kubernetes Dashboard
 
+{{% hl greenyellow %}}
 Download [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) repository locally
+{{% /hl %}}
 ```shell
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 ```
+{{% hl greenyellow %}}
 Install Kubernetes Dashboard
+{{% /hl %}}
 ```shell
 helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -f ./dashboard.values.yaml
 ```
 
 ## Install Grafana
+{{% hl greenyellow %}}
 Download Grafana repository locally
+{{% /hl %}}
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
+{{% hl greenyellow %}}
 Install Grafana
+{{% /hl %}}
 ```shell
 helm install --version=0.40.1 loki -n monitoring grafana/loki-stack -f ./loki.values.yaml
 ```
 
 ## Install Prometheus
+{{% hl greenyellow %}}
 Download Prometheus repository locally
+{{% /hl %}}
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
+{{% hl greenyellow %}}
 Install Prometheus
+{{% /hl %}}
 ```shell
 helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
 ```
@@ -61,6 +75,10 @@ prometheus-prometheus-prometheus-oper-prometheus-0       3/3     Running   1    
 ........
 ```
 ### Access from browser
+
+{{% hl pink %}}
+Add loki Datasource as http://loki:3100 and import Dashboard from components-logs.json and RabbitMQ Overview from here: https://grafana.com/grafana/dashboards/10991
+{{% /hl %}}
 
 Check access to Grafana (default user/password: admin/prom-operator. Must be changed):  
 `http://your-host:30000/grafana/login`
