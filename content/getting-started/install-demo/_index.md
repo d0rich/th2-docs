@@ -5,8 +5,18 @@ pre: "<b>1.3 </b>"
 chapter: true
 ---
 
-### Chapter 1
+### Part 3
 
-# Basics
+# Install demo example
 
-Discover what this Hugo theme is all about and the core-concepts behind it.
+{{< hl greenyellow >}}
+In this instruction you will know how to quickly download and install th2 and try it.
+{{< /hl >}}
+
+## Contents
+1. [Install required software](prerequirements)
+2. [Download th2](download-th2-infra)
+3. [Download th2 demo example](get-th2-infra-schema-demo)
+4. [Set up cluster](set-up-cluster)
+5. [Create th2 environment](create-env)
+6. [Get and run demo script](demo-script)
