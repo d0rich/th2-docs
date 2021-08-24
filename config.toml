@@ -10,4 +10,4 @@ showVisitedLinks = true
 disableBreadcrumb = false
 disableNextPrev = false
 disableLandingPageButton = true
-disableMermaid = false
+
