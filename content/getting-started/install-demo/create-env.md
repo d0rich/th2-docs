@@ -22,10 +22,10 @@ the [infra: Theory of Pins and Links](https://github.com/th2-net/th2-documentati
 
 Go to the Infra Editor (`http://your-host:30000/editor/`). And create schema.
 
-![Create schema](/th2-docs/getting-started/install-demo/images/create-schema-1.png)
+![Create schema](../images/create-schema-1.png)
 
 You need to create a name for this. 
 
-![Name for schema](/th2-docs/getting-started/install-demo/images/create-schema-2.png)
+![Name for schema](../images/create-schema-2.png)
 
 After submitting infra-mgr will create th2-<new_schema_name> namespace and install all needed components.
