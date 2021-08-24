@@ -7,14 +7,14 @@ draft: true
 # th2
 
 {{< youtube 1W2IJBNa9WU >}}      
-{{< hl pink >}}
+{{% hl pink %}}
 Это для удаленных фрагментов
-{{< /hl >}}
+{{% /hl %}}
 
-{{< hl orange >}}
+{{% hl orange %}}
 Это для измененных фрагментов
-{{< /hl >}}
+{{% /hl %}}
 
-{{< hl greenyellow >}}
+{{% hl greenyellow %}}
 Это для добавленных фрагментов
-{{< /hl >}}
+{{% /hl %}}

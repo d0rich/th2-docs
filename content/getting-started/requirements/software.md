@@ -7,14 +7,14 @@ chapter: true
 
 # Software requirements
 
-{{< hl orange >}}
+{{% hl orange %}}
 Список требований на этой странице был пересобран из 
 https://github.com/th2-net/th2-documentation/wiki/Technical-Requirements#software-requirements
-{{< /hl >}}
+{{% /hl %}}
 
-{{< hl greenyellow >}}
+{{% hl greenyellow %}}
 > One machine can combine several types listed here.
-{{< /hl >}}
+{{% /hl %}}
 
 ## th2 node
 
