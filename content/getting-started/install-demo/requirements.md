@@ -8,6 +8,10 @@ chapter: true
 
 # Required software installation
 
+{{% hl greenyellow %}}
+Весь контент на странице полностью новый.
+{{% /hl %}}
+
 Install required software to the test-box and operator-box.
 
 ## Test box (th2 node)

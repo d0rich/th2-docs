@@ -14,7 +14,7 @@ In this instruction you will know how to quickly download and install th2 and tr
 {{< /hl >}}
 
 ## Contents
-1. [Install required software](prerequirements)
+1. [Install required software](requirements)
 2. [Download th2](download-th2-infra)
 3. [Download th2 demo example](get-th2-infra-schema-demo)
 4. [Set up cluster](set-up-cluster)
