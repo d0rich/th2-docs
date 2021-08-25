@@ -7,7 +7,7 @@ chapter: true
 
 # Troubleshooting
 
-В этом разделе блаблабла
+
 
 ## General issues
 
