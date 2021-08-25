@@ -2,18 +2,16 @@
 title: Download th2 demo example
 weight: 15
 pre: "<b>1.3.3 </b>"
-chapter: true
+chapter: false
 ---
-### Step 3
-
-# DOWNLOAD th2 DEMO EXAMPLE TO YOUR GIT REPOSITORY
 
 {{% hl pink %}}
 Get [th2-infra-schema](https://github.com/th2-net/th2-infra-demo-configuration) for custom components and copy or fork to your GIT repository.
 {{% /hl %}}
 
-{{% hl greenyellow %}}
 ## Download th2
+
+{{% hl greenyellow %}}
 
 Скачайте необходимую ветку [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master) 
 (в каждой ветке данного резитория хранится конкретная версия th2-infra-schema). 
@@ -34,8 +32,11 @@ metadata:
 spec:
   k8s-propagation: off # replace with sync
 ```
+{{% /hl %}}
 
 ## Create git repository
+
+{{% hl greenyellow %}}
 
 Инициализируйте в th2-infra-schema новый репозиторий.  
 Находясь в корне нового репозитория, выполните:

@@ -2,12 +2,8 @@
 title: Install required software
 weight: 5
 pre: "<b>1.3.1 </b>"
-chapter: true
+chapter: false
 ---
-### Step 1
-
-# Required software installation
-
 {{% hl greenyellow %}}
 Весь контент на странице полностью новый.
 {{% /hl %}}

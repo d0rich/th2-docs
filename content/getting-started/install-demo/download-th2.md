@@ -2,12 +2,8 @@
 title: Download th2
 weight: 10
 pre: "<b>1.3.2 </b>"
-chapter: true
+chapter: false
 ---
-### Step 2
-
-# Download th2 to your GIT repository
-
 {{% hl pink %}}
 th2 components should be copied to your Git repository if
 you would like to try th2 custom componets, modify them based

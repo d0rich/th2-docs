@@ -2,11 +2,8 @@
 title: Create th2 environment
 weight: 25
 pre: "<b>1.3.5 </b>"
-chapter: true
+chapter: false
 ---
-### Step 5
-
-# CREATE YOUR FIRST th2 CUSTOM ENVIRONMENT
 
 In th2, environment is called `infractructure schema` or just `schema`, it's created by the 
 dedicated [infra-mgr](https://github.com/th2-net/th2-infra-mgr) 
