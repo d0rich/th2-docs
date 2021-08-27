@@ -15,6 +15,37 @@ chapter: true
 4) Сведения о пути, который нужно открыть в терминале, чтобы команда была исполнена корректно
 5) Ожидаемый вывод в терминале
 
+1. При упоминании переменной в тексте выделить её курсивом при помощи \_  
+_variable_
+```md
+_variable_
+```
+2. Необходимости указать на расположение переменной в файле использовать [highlight](https://gohugo.io/content-management/syntax-highlighting/)
+   {{< highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
+   // GetTitleFunc returns a func that can be used to transform a string to
+   // title case.
+   //
+   // The supported styles are
+   //
+   // - "Go" (strings.Title)
+   // - "AP" (see https://www.apstylebook.com/)
+   // - "Chicago" (see https://www.chicagomanualofstyle.org/home.html)
+   //
+   // If an unknown or empty style is provided, AP style is what you get.
+   func GetTitleFunc(style string) func(s string) string {
+   switch strings.ToLower(style) {
+   case "go":
+   return strings.Title
+   case "chicago":
+   return transform.NewTitleConverter(transform.ChicagoStyle)
+   default:
+   return transform.NewTitleConverter(transform.APStyle)
+   }
+   }
+   {{< / highlight >}}
+3. При выводе кода указать используемый синтаксис для корректной подсветки
+   1. _shell_ - для командной строки
+   2. _yaml_ - для .yaml файлов
 #   Page code example
 
 ```shell

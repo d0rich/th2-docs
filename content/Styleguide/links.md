@@ -15,7 +15,7 @@ chapter: true
 
 #   Page code example
 
-```shell
+```md
 Specialist will monitor and control th2 through the operator box.
 
 1. GIT - [Installation guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
