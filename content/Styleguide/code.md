@@ -33,14 +33,14 @@ _variable_
    //
    // If an unknown or empty style is provided, AP style is what you get.
    func GetTitleFunc(style string) func(s string) string {
-   switch strings.ToLower(style) {
-   case "go":
-   return strings.Title
-   case "chicago":
-   return transform.NewTitleConverter(transform.ChicagoStyle)
-   default:
-   return transform.NewTitleConverter(transform.APStyle)
-   }
+     switch strings.ToLower(style) {
+       case "go":
+       return strings.Title
+       case "chicago":
+       return transform.NewTitleConverter(transform.ChicagoStyle)
+       default:
+       return transform.NewTitleConverter(transform.APStyle)
+     }
    }
    {{< / highlight >}}
 3. При выводе кода указать используемый синтаксис для корректной подсветки
