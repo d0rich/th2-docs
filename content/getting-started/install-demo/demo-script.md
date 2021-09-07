@@ -26,38 +26,95 @@ here: https://pip.pypa.io/en/stable/user_guide/#requirements-files
 ## 4. Set up configs
 Set up configs from directory configs (mq.json, rabbit.json, grpc.json) according to your components.
 
+{{% notice note %}}
+Words inside _${value}_ in JSON examples and in dashboard config maps are names of the values, that depends on your cluster.
+You must find it by the following instructions.
+{{% /notice %}}
+
 ### grpc.json
 
-Get nodePort of act service in th2-infra-schema/boxes/act-fix.yaml 
+Fill host and port fields in grpc.json
 
-{{< highlight yml "linenos=table,hl_lines=8,linenostart=30" >}}
-extended-settings:
-  service:
-    enabled: true
-    type: NodePort
-    endpoints:
-      - name: 'grpc'
-        targetPort: 8080
-        nodePort: 31178
-{{< / highlight >}}
+```json
 
-Get nodePort of check1 service in th2-infra-schema/boxes/check1.yaml
+{
+  "services": {
+    "Act": {
+      "service-class": "ActService",
+      "endpoints": {
+        "act": {
+          "host": "${NODE_IP}",
+          "port": "${ACT_PORT}"
+        }
+      },
+      "strategy": {
+        "name": "robin",
+        "endpoints": ["act"]
+      }
+    },
+    "Check1": {
+      "service-class": "Check1Service",
+      "endpoints": {
+        "check1": {
+          "host": "${NODE_IP}",
+          "port": "${CHECK1_PORT}"
+        }
+      },
+      "strategy": {
+        "name": "robin",
+        "endpoints": ["check1"]
+      }
+    }
+  }
+}
+```
 
-{{< highlight yml "linenos=table,hl_lines=8,linenostart=24" >}}
-extended-settings:
-  service:
-    enabled: true
-    type: NodePort
-    endpoints:
-      - name: grpc
-        targetPort: 8080
-        nodePort: 31179
-{{< / highlight >}}
+_NODE_IP_ is IP address of a cluster node.
 
-Fill host and port fields in grpc.json  
-Host is IP address of a cluster node.
+You can find _CHECK1_PORT_ and _ACT_PORT_ by executing following command.  
+{{% notice note %}}
+Some ports are written in the following style: \<ClusterPort\>:\<NodePort\>/\<Protocol\>.  
+For configuration you will need NodePort of appropriate service.
+{{% /notice %}}
+```shell
+kubectl get service -n <th2-schema-namespace> 
+```
 
-{{< highlight json "linenos=table,hl_lines=7 8 20 21,linenostart=1" >}}
+Output example:
+```shell
+$ kubectl describe service -n th2-1-5-
+NAME                        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
+act-fix                     NodePort    10.104.237.158   <none>        8080:31178/TCP,9752:32434/TCP   19d
+act-ui                      NodePort    10.99.109.111    <none>        8080:31356/TCP,9752:30284/TCP   19d
+act-ui-backend              NodePort    10.107.95.164    <none>        8080:31357/TCP,9752:31848/TCP   18d
+check1                      NodePort    10.111.68.46     <none>        8080:31179/TCP,9752:31099/TCP   19d
+codec-csv                   ClusterIP   10.97.221.246    <none>        8080/TCP,9752/TCP               18d
+codec-fix                   ClusterIP   10.98.114.46     <none>        8080/TCP,9752/TCP               18d
+codec-sim-fix               ClusterIP   10.107.218.9     <none>        8080/TCP,9752/TCP               18d
+cradle-viewer-entry-point   ClusterIP   10.107.155.186   <none>        8080/TCP,9752/TCP               18d
+dc-demo-server1             ClusterIP   10.102.226.175   <none>        8080/TCP,9752/TCP               19d
+dc-demo-server2             ClusterIP   10.97.161.160    <none>        8080/TCP,9752/TCP               19d
+demo-conn1                  ClusterIP   10.100.159.11    <none>        8080/TCP,9752/TCP               19d
+demo-conn2                  ClusterIP   10.101.142.37    <none>        8080/TCP,9752/TCP               19d
+demo-dc1                    ClusterIP   10.107.6.171     <none>        8080/TCP,9752/TCP               19d
+demo-dc2                    ClusterIP   10.102.204.13    <none>        8080/TCP,9752/TCP               19d
+estore                      ClusterIP   10.104.40.90     <none>        8080/TCP,9752/TCP               18d
+fix-demo-server1            ClusterIP   10.108.129.43    <none>        8080/TCP,9752/TCP               19d
+fix-demo-server2            ClusterIP   10.96.186.94     <none>        8080/TCP,9752/TCP               19d
+mstore                      ClusterIP   10.101.186.188   <none>        8080/TCP,9752/TCP               18d
+read-csv                    ClusterIP   10.97.137.185    <none>        8080/TCP                        18d
+read-log                    ClusterIP   10.110.251.144   <none>        8080/TCP                        18d
+recon                       ClusterIP   10.111.111.113   <none>        8080/TCP,9752/TCP               18d
+rpt-data-provider           NodePort    10.96.79.173     <none>        8080:30789/TCP,9752:31960/TCP   18d
+rpt-data-viewer             ClusterIP   10.103.86.37     <none>        8080/TCP,9752/TCP               19d
+script-entry-point          ClusterIP   10.104.28.114    <none>        8080/TCP,9752/TCP               18d
+sim-demo                    ClusterIP   10.107.154.135   <none>        8080/TCP                        18d
+util                        ClusterIP   10.99.186.65     <none>        8080/TCP,9752/TCP               18d
+
+```
+
+#### Example of **grpc.json**:
+```json
 {
   "services": {
     "Act": {
@@ -88,7 +145,7 @@ Host is IP address of a cluster node.
     }
   }
 }
-{{< / highlight >}}
+```
 
 ### rabbit.json
 
