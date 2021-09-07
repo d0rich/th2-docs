@@ -17,6 +17,10 @@ Get [th2-infra-schema](https://github.com/th2-net/th2-infra-demo-configuration) 
 (в каждой ветке данного резитория хранится конкретная версия th2-infra-schema). 
 На момент написания инструкций актуальна ветка [ver-1.5.4-main_scenario](https://github.com/th2-net/th2-infra-schema-demo/tree/ver-1.5.4-main_scenario).
 
+```shell
+git clone -b <branch_name> --single-branch https://github.com/th2-net/th2-infra-schema-demo.git
+```
+
 th2-infra-schema хранит в себе конкретную конфигурацию модулей и связей между ними, 
 которая может быть изменена в будущем.
 
@@ -34,15 +38,9 @@ spec:
 ```
 {{% /hl %}}
 
-## Create git repository
+## Publish git repository
 
 {{% hl greenyellow %}}
-
-Инициализируйте в th2-infra-schema новый репозиторий.  
-Находясь в корне нового репозитория, выполните:
-```shell
-git init
-```
 
 Опубликуйте репозиторий на github, либо выполните любые другие действия, 
 чтобы th2-infra-schema была доступна по ssh. В будущем th2 будет читать 
