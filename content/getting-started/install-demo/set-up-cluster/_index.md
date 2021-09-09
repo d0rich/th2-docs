@@ -26,18 +26,18 @@ Content was reorganized
 ## Step 1. Create namespaces
 
 {{% hl greenyellow %}}
-Create namespace for monitoring tools
+Create namespaces for monitoring and th2 serving tools
 {{% /hl %}}
 
 ```shell
 kubectl create namespace monitoring
+kubectl create namespace service
 ```
 
-{{% hl greenyellow %}}
-Create namespace for th2 serving tools
-{{% /hl %}}
+Output example:
 ```shell
-kubectl create namespace service
+namespace/monitoring created
+namespace/service created
 ```
 
 ## Step 2. Data persistence
@@ -51,18 +51,24 @@ Examples below use HostPath type of
 Please read the documentation to choose an appropriate PV type for your environment.
 {{% /notice %}}
 
-- the following command can require root permissions, create directory on th2 node:
+The following command can require root permissions, create directory on th2 node:
 ```shell
 mkdir /opt/grafana /opt/prometheus /opt/loki /opt/rabbitmq
 ```
 
-- set node name in `pvs.yaml`
-- create PVs and PVCs:
+Set node name in `pvs.yaml` (replace **\<node-name\>**)  
+
+{{% notice warning %}}
+Be sure you are located in the `th2-infra/example-values` directory.
+{{% /notice %}}
+
+Create PVs and PVCs:
 
 ```shell
 kubectl apply -f ./pvs.yaml
 kubectl apply -f ./pvcs.yaml
 ```
+
 
 {{% hl pink %}}
 If you would like to include th2 read components into your configuration, you also have to set up a dedicated PersistentVolume for th2-read log directory. You should add PersistentVolume mapped to /opt/components directory and then create PersistentVolumeClaim once a schema namespace installed. PV and PVC examples can be found here persistence/
@@ -81,16 +87,18 @@ Details for th2-read-log README.md
 Once all of the required software is installed on your test-box and operator-box and
 th2-infra repositories are ready you can start configuring the cluster.
 
-- Switch namespace to service:
+Switch namespace to service:
 ```shell
 kubectl config set-context --current --namespace=service
 ```
 
 ### Access for infra-mgr th2 schema git repository:
 
-`ssh` access with write permissions is required by th2-infra-mgr component
+`Ssh` access with write permissions is required by th2-infra-mgr component
 
-> Be sure you are located in the `th2-infra/example-values` directory.
+{{% notice warning %}}
+Be sure you are located in the `th2-infra/example-values` directory.
+{{% /notice %}}
 
 Generate keys without passphrase
 ```shell
@@ -105,9 +113,9 @@ kubectl -n service create secret generic infra-mgr --from-file=infra-mgr=./infra
 
 ### Set the repository with schema configuration
 
-set `infraMgr.git.repository` value in the
-[service.values.yaml](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)
-file to ssh link of your schema repository, e.g:
+Set _infraMgr.git.repository_ value in the
+`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml))
+to ssh link of your schema repository, e.g:
 
 ```yaml
 infraMgr:
@@ -117,7 +125,7 @@ infraMgr:
 
 ### Define cassandra host name
 
-set `cassandra.host` value for cassandra in the [service.values.yaml](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml) file.
+Set _cassandra.host_ value for cassandra in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
 ```yaml
 cassandra:
   internal: false
@@ -126,13 +134,19 @@ cassandra:
 
 ### Define th2 ingress hostname
 
-Add `ingress.hostname` value if required into
-[service.values.yaml](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)
-file otherwise th2 http services will be available on node IP address
+Add _ingress.hostname_ value if required into
+`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml))
+otherwise th2 http services will be available on node IP address
 
 ### Create secret with th2 credentials
 
-Create secrets.yaml in `th2-infra` folder (do not commit into git). Example:
+Create `secrets.yaml` in `th2-infra` folder.
+
+{{% notice warning %}}
+Do not commit `secrets.yaml` into git.
+{{% /notice %}}
+
+Example:
 ```yaml
 # reguired only for images from a private registry, will be attached as the first PullSecret to deployments
 #productRegistry:
@@ -168,7 +182,9 @@ rabbitmq:
 
 ## Step 4. Deploy th2 services
 
-> Be sure you are located in the `th2-infra/example-values` directory.
+{{% notice warning %}}
+Be sure you are located in the `th2-infra/example-values` directory.
+{{% /notice %}}
 
 ### Install helm-operator
 {{% hl greenyellow %}}
@@ -199,7 +215,10 @@ helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f 
 ```
 Check:
 ```shell
-$ kubectl get pods
+kubectl get pods
+```
+Output example:
+```shell
 NAME                                                READY   STATUS    RESTARTS   AGE
 ........
 ingress-ingress-nginx-controller-7979dcdd85-mw42w   1/1     Running   0          30s
@@ -227,13 +246,34 @@ helm install -n service --version=<version> th2-infra th2/th2 -f ./service.value
 Wait for all pods in service namespace are up and running, once completed proceed with [schema configuration](https://github.com/th2-net/th2-infra-schema-demo/blob/master/README.md) to deploy th2 namespaces.
 {{% /hl %}}
 
+### Check result
+
+Check running pods:
+```shell
+kubectl get pods -n service
+```
+
+Output example:
+```shell
+NAME                                               READY   STATUS    RESTARTS   AGE
+helm-operator-79fc58f746-q8qwd                     1/1     Running   0          21d
+infra-editor-7cd68c8587-q5tfp                      1/1     Running   0          20d
+infra-mgr-67b65f4bb-gb4cc                          1/1     Running   0          20d
+infra-operator-6b7987b55-zxxdt                     1/1     Running   0          20d
+infra-repo-9c77fd6f7-xj9wf                         1/1     Running   0          20d
+ingress-ingress-nginx-controller-b556b7cb5-gfrhl   1/1     Running   0          22d
+rabbitmq-0                                         1/1     Running   0          21d
+
+```
+
+
 ## Step 5. Configure monitoring tools
 
 Switch namespace to monitoring
 ```shell
 kubectl config set-context --current --namespace=monitoring
 ```
-{{% notice note %}}
+{{% notice warning %}}
 Be sure you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
@@ -244,14 +284,14 @@ Be sure you are located in the `th2-infra/example-values` directory.
 Host name must be resolved from QA boxes
 {{% /notice %}}
 
-Define Dashboard host name in the [dashboard.values.yaml](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml):
+Define Dashboard host name in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 
 ```yaml
 ingress:
   hosts:
     - <th2_host_name>
 ```
-Define Grafana host names in the [prometheus-operator.values.yaml](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml):
+Define Grafana host names in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 ```yaml
 grafana:
   ingress:
@@ -264,7 +304,7 @@ grafana:
 
 ## Step 6. Deploy monitoring tools
 
-{{% notice note %}}
+{{% notice warning %}}
 Be sure you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
