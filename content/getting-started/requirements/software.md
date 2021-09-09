@@ -12,9 +12,9 @@ chapter: true
 https://github.com/th2-net/th2-documentation/wiki/Technical-Requirements#software-requirements
 {{% /hl %}}
 
-{{% hl greenyellow %}}
-> One machine can combine several types listed here.
-{{% /hl %}}
+{{% notice info %}}
+One machine can combine several types listed here.
+{{% /notice %}}
 
 ## th2 node
 
