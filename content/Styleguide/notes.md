@@ -1,7 +1,7 @@
 ---
 title: "Notes"
-weight: 40
-pre: "<b>4.7 </b>"
+weight: 35
+pre: "<b>4.6 </b>"
 chapter: true
 ---
 
