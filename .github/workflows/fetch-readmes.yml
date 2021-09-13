@@ -1,0 +1,22 @@
+name: fetch readmes
+
+on: workflow_dispatch
+
+jobs:
+  fetch-readmes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set env
+        run: README_PATH=content/readmes
+      - name: Fetch th2-infra
+        uses: gautemo/fetch-api-data-action@1.0.2
+        with:
+          url: 'https://raw.githubusercontent.com/th2-net/th2-infra/master/README.md'
+          file: "${README_PATH}/th2-infra.md"
+      - name: Add and commit
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: '.'
+          message: "Automatic fetch README's $(date +'%Y.%m.%d.%H.%m.%S')"
