@@ -11,7 +11,7 @@ jobs:
       - name: Set env
         run: README_PATH=content/readmes
       - name: Fetch th2-infra
-        run: wget https://raw.githubusercontent.com/th2-net/th2-infra/master/README.md -O "${README_PATH}/th2-infra.md"
+        run: sudo wget https://raw.githubusercontent.com/th2-net/th2-infra/master/README.md -O "${README_PATH}/th2-infra.md"
       - name: Add and commit
         uses: EndBug/add-and-commit@v7
         with:
