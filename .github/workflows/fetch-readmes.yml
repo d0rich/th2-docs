@@ -13,6 +13,6 @@ jobs:
       - name: Add and commit
         uses: EndBug/add-and-commit@v7
         with:
-          message: "Automatic fetch README's" ${{ date +'%Y.%m.%d.%H.%m.%S' }}
+          message: "Automatic fetch README's ${{ date +'%Y.%m.%d.%H.%m.%S' }}"
           push: true
 
