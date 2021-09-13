@@ -8,11 +8,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Get env
+        run: |
+          echo "TODAY=$(date +'%Y.%m.%d.%H.%m.%S')" >> GITHUB_ENV
+          echo "READMES_PATH=content/readmes" >> GITHUB_ENV
+
       - name: Fetch th2-infra
-        run: sudo wget https://raw.githubusercontent.com/th2-net/th2-infra/master/README.md -O "./content/readmes/th2-infra.md"
+        run: sudo wget https://raw.githubusercontent.com/th2-net/th2-infra/master/README.md -O "./${{ env.READMES_PATH }}/th2-infra.md"
+
       - name: Add and commit
         uses: EndBug/add-and-commit@v7
         with:
-          message: "Automatic fetch README's ${{ $(date +'%Y.%m.%d.%H.%m.%S') }}"
+          message: "Automatic fetch README's ${{ env.TODAY }}"
           push: true
 
