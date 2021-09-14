@@ -1,4 +1,4 @@
-name: fetch readmes
+name: fetch readmes static
 
 on: workflow_dispatch
 
@@ -19,7 +19,7 @@ jobs:
 
       - name: Make content pages
         run: |
-          sudo cat ./readmes/th2-infra.md ./readmes/temp/th2-infra.md > ./content/readmes/th2-infra.md
+          sudo cat ./readmes/headers/th2-infra.md ./readmes/temp/th2-infra.md > ./content/readmes/th2-infra.md
 
       - name: Add and commit
         uses: EndBug/add-and-commit@v7
