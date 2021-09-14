@@ -1,0 +1,26 @@
+name: fetch readmes dynamic
+
+on: workflow_dispatch
+
+jobs:
+  fetch-readmes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+#      - name: Get env
+#        run: |
+#          echo "TODAY=$(date +'%Y.%m.%d.%H.%m.%S')" >> GITHUB_ENV
+#          echo "READMES_PATH=content/readmes" >> GITHUB_ENV
+
+      - name: Fetch README's and make content pages
+        run: sudo cat ./readmes/headers/th2-infra.md ./readmes/temp/th2-infra.md > ./content/readmes/th2-infra.md
+
+      - name: Add and commit
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: './content/'
+          message: "Automatic fetch README's ${{ env.TODAY }}"
+          push: true
+
