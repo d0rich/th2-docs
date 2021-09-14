@@ -4,6 +4,42 @@ weight: 30
 pre: "<b>1.3.6 </b>"
 chapter: false
 ---
+## 0. Get and run simulator boxes
+
+### Clone simulator boxes
+
+```shell
+git clone -b demo-ver-1.5.4-local --single-branch https://github.com/th2-net/th2-sim-template.git
+```
+
+```shell
+git clone -b demo-ver-1.5.4-local --single-branch https://github.com/th2-net/th2-read-log.git
+```
+
+```shell
+git clone -b demo-ver-1.5.4-local --single-branch https://github.com/th2-net/th2-read-csv.git
+```
+
+### Change rabbitMQ configmap
+
+```shell
+KUBE_EDITOR="nano" kubectl edit configmap -n th2-1-5-4 rabbit-mq-external-app-config -o yaml
+```
+
+### Run simulator boxes
+
+```shell
+gradle run --args='--namespace th2-1-5-4 --boxName read-csv --contextName doc'
+```
+
+```shell
+gradle run --args='--namespace th2-1-5-4 --boxName read-log --contextName doc'
+```
+
+```shell
+gradle run --args='--namespace th2-1-5-4 --boxName sim-demo --contextName doc'
+```
+
 ## 1. Clone the script.
 
 Clone needed branch from the [demo script repository](https://github.com/th2-net/th2-demo-script).  
