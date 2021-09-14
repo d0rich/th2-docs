@@ -15,11 +15,16 @@ jobs:
 #          echo "READMES_PATH=content/readmes" >> GITHUB_ENV
 
       - name: Fetch th2-infra
-        run: sudo wget https://raw.githubusercontent.com/th2-net/th2-infra/master/README.md -O "./content/readmes/th2-infra.md"
+        run: sudo wget https://raw.githubusercontent.com/th2-net/th2-infra/master/README.md -O "./readmes/temp/th2-infra.md"
+
+      - name: Make content pages
+        run: |
+          sudo cat ./readmes/th2-infra.md ./readmes/temp/th2-infra.md > ./content/readmes/th2-infra.md
 
       - name: Add and commit
         uses: EndBug/add-and-commit@v7
         with:
+          add: './content/'
           message: "Automatic fetch README's ${{ env.TODAY }}"
           push: true
 
