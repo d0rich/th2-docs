@@ -15,7 +15,9 @@ jobs:
 #          echo "READMES_PATH=content/readmes" >> GITHUB_ENV
 
       - name: Fetch README's and make content pages
-        run: sudo .github/scripts/fetch-readmes-dynamic.sh
+        run: |
+          chmod +x "${GITHUB_WORKSPACE}/.github/scripts/fetch-readmes-dynamic.sh"
+          sudo "${GITHUB_WORKSPACE}/.github/scripts/fetch-readmes-dynamic.sh"
 
       - name: Add and commit
         uses: EndBug/add-and-commit@v7
