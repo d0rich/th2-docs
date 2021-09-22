@@ -22,6 +22,10 @@ git clone -b demo-ver-1.5.4-local --single-branch https://github.com/th2-net/th2
 
 ### Change rabbitMQ configmap
 
+{{% hl greenyellow %}}
+Через родной конфигмап нет доступа к rabbitMQ.
+{{% /hl %}}
+
 ```shell
 KUBE_EDITOR="nano" kubectl edit configmap -n th2-1-5-4 rabbit-mq-external-app-config -o yaml
 ```
@@ -217,3 +221,25 @@ script-entry-point-app-config.
 }
 ```
 
+## 5. Run demo script
+
+Finally run demo script.
+
+```shell
+sudo python run.py
+```
+
+Output example:
+
+```shell
+Using th2-common==3.3.6
+2021-09-22 16:03:58,632 - asyncio - DEBUG - Using selector: SelectSelector
+2021-09-22 16:04:03,336 - root - INFO - Connection established.
+2021-09-22 16:04:03,343 - root - INFO - Storing event [TS_1]Aggressive IOC vs two orders: second order's price is lower than first...
+.....
+2021-09-22 16:04:03,346 - root - INFO - Storing event Case[TC_1.1]: Trader DEMO-CONN1 vs trader DEMO-CONN2 for instrument INSTR1...
+.....
+2021-09-22 16:04:03,348 - root - INFO - Sending request to act...
+description: "STEP1: Trader \"DEMO-CONN1\" sends request to create passive Order."
+.....
+```
