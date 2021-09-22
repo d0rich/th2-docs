@@ -46,6 +46,40 @@ In the diagram below flow is described in static way.
 
 ![Demo script flow](images/Demo_script_flow-separated_conns.drawio.png)
 
+## th2 reports
+
+There is a web application that can display reports about th2 work.
+
+It can be reached with the URI _http://\<hostname\>:30000/\<schema-namespace\>/_
+
+![th2 reports GUI](images/th2-reports.png)
+
+## Demo script steps
+
+Demo script runs 6 times - with 6 different instruments.
+
+![](images/6-runs.png)
+
+Each run except 6th has 7 steps inside.
+
+![](images/7-steps-in-run.png)
+
+First run will be commented there.
+
+### STEPS 1, 2
+
+First image contains events within steps 1 and 2 from th2 reports.
+
+Second image is the modified flow diagram with marks of creating events.
+
+![](images/steps-1-2-report.png)
+
+![](images/Demo_script_flow-Step1-2.drawio.png)
+
+### STEPS 3, 4
+
+### STEPS 5, 6, 7
+
 ## Compare results
 
 {{< youtube mQa8c-OZZhU >}} 
