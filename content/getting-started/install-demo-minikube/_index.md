@@ -1,5 +1,5 @@
 ---
-title: Install demo example
+title: Install demo example (Minikube)
 weight: 20
 pre: "<b>1.4 </b>"
 chapter: true
