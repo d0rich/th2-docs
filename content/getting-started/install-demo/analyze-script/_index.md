@@ -68,17 +68,62 @@ First run will be commented there.
 
 ### STEPS 1, 2
 
+#### Scenario
+
+In the **step 1** _script_ sends request to create passive buy order by user _DEMO-CONN1_.
+Order has next parameters:
+- Size (_OrderQty_) = 30
+- Price = 55 (_x_ | _x_ depends on instrument)
+
+To the end of the **step 1** response message about successfully created order is expected.
+
+In the **step 2** _script_ sends instructions for checking response to the _check1_.
+
+To the end of the **step 2** response be successfully checked by sent instructions is expected.
+
+#### Actual work
+
 First image contains events within steps 1 and 2 from th2 reports.
 
 Second image is the modified flow diagram with marks of creating events.
 
 ![](images/steps-1-2-report.png)
 
+_"Received 'ExecutionReport' response message"_ in **step 1** is an expected output.
+
+Green _"Check messages"_ in **step 2** is an expected output.
+
 ![](images/Demo_script_flow-Step1-2.drawio.png)
+
+
+There is a possibility to check messages details. It can be very useful.  
+For example, details of  _ExecutionReport_ from **step 1**.
+Fields _Price_, _OrderQty_ (Size), _Text_ (Comment) can be found here.
+
+![](images/step1-exec-report-details.png)
+
+_Text_ contains information that this report is about placing order.
+
 
 ### STEPS 3, 4
 
+First image contains events within steps 3 and 4 from th2 reports.
+
+Second image is the modified flow diagram with marks of creating events.
+
+![](images/steps-3-4-report.png)
+
+![](images/Demo_script_flow-Step3-4.drawio.png)
+
 ### STEPS 5, 6, 7
+
+First image contains events within steps 5, 6 and 7 from th2 reports.
+
+Second image is the modified flow diagram with marks of creating events.
+
+![](images/steps-5-6-7-report.png)
+
+![](images/Demo_script_flow-Step5-6-7.drawio.png)
 
 ## Compare results
 
