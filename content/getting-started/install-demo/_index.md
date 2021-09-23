@@ -10,7 +10,7 @@ chapter: true
 # Install demo example
 
 {{< hl greenyellow >}}
-In this instruction you will know how to quickly download and install th2 and try it.
+You will know how to install th2.
 {{< /hl >}}
 
 ## Contents

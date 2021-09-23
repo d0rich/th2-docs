@@ -7,7 +7,7 @@ chapter: false
 
 In th2, environment is called `infractructure schema` or just `schema`, it's created by the 
 dedicated [infra-mgr](https://github.com/th2-net/th2-infra-mgr) 
-component that watches for changes in the repositories and rolling out schemas from git repository to kubernetes.
+component that monitors for changes in the repositories and rolling out schemas from git repository to kubernetes.
 
 {{% notice note %}}
 You already configured th2-infra-schema 

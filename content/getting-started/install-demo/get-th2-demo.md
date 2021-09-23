@@ -13,21 +13,19 @@ Get [th2-infra-schema](https://github.com/th2-net/th2-infra-demo-configuration) 
 
 {{% hl greenyellow %}}
 
-Скачайте необходимую ветку [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master) 
-(в каждой ветке данного резитория хранится конкретная версия th2-infra-schema). 
-На момент написания инструкций актуальна ветка [ver-1.5.4-main_scenario](https://github.com/th2-net/th2-infra-schema-demo/tree/ver-1.5.4-main_scenario).
+Clone needed branch of [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master) 
+(each branch of the git repository contains a version of th2-infra-schema). 
+Now [ver-1.5.4-main_scenario](https://github.com/th2-net/th2-infra-schema-demo/tree/ver-1.5.4-main_scenario) is the newest.
 
 ```shell
 git clone -b <branch_name> --single-branch https://github.com/th2-net/th2-infra-schema-demo.git
 ```
 
-th2-infra-schema хранит в себе конкретную конфигурацию модулей и связей между ними, 
-которая может быть изменена в будущем.
+th2-infra-schema contains modules and connections configuration that is customizable.
 
-Для удобства можете разместить th2-infra-schema в репозитории th2, 
-однако расположение не так важно.
+th2-infra-schema should be placed in th2 repository.
 
-Откройте файл `infra-mgr-config.yml` и поменяйте параметр spec.k8s-propagation с off на sync. Это позволит в будущем th2 автоматически построить все зависимости, указанные в th2-infra-schema.
+Open `infra-mgr-config.yml` file. Variable 'spec.k8s-propagation' should be configured 'sync' instead of 'off' to automatically apply all dependencies from th2-infra-schema.
 
 ```yml
 kind: SettingsFile
@@ -42,8 +40,7 @@ spec:
 
 {{% hl greenyellow %}}
 
-Опубликуйте репозиторий на github, либо выполните любые другие действия, 
-чтобы th2-infra-schema была доступна по ssh. В будущем th2 будет читать 
-th2-infra-schema по ssh ссылке.
+Publish your repository on github, or use another approach to get ssh access to th2-infra-schema. th2 will sync 
+with th2-infra-schema using ssh.
 
 {{% /hl %}}

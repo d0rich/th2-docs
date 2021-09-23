@@ -5,7 +5,7 @@ pre: "<b>1.3.1 </b>"
 chapter: false
 ---
 {{% hl greenyellow %}}
-Весь контент на странице полностью новый.
+The entire page is new.
 {{% /hl %}}
 
 Install required software to the test-box and operator-box.
@@ -43,7 +43,7 @@ The th2 modules will run on the kubernetes cluster. Use the official [guide](htt
 
 ### 4. Flannel CNI
 
-Flannel is an add-on for kubernetes that addresses some of the networking [issues](https://kubernetes.io/docs/concepts/cluster-administration/networking/).
+Flannel is an add-on for kubernetes that addresses networking [issues](https://kubernetes.io/docs/concepts/cluster-administration/networking/).
 
 To install, you need to run the following command
 
@@ -69,7 +69,7 @@ Installation instructions are given on the [kubernetes website](https://kubernet
 
 Helm is a package manager for kubernetes. With it, you can very quickly install the required module into the kubernetes cluster.
 
-Read the [official guide](https://helm.sh/docs/intro/install/) for installation.
+[Official installation guide](https://helm.sh/docs/intro/install/).
 
 ### 4. Chrome 75 or newer
 

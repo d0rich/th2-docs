@@ -8,7 +8,7 @@ chapter: true
 # Software requirements
 
 {{% hl orange %}}
-Список требований на этой странице был пересобран из 
+Requirements list was reorganized from
 https://github.com/th2-net/th2-documentation/wiki/Technical-Requirements#software-requirements
 {{% /hl %}}
 

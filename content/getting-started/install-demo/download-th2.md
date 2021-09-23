@@ -22,8 +22,8 @@ You would need the following:
       {{% /hl %}}
 
 {{% hl greenyellow %}}
-Создайте локально пустой репозиторий для th2.
-Находясь в корне нового репозитория, скачайте [th2-infra](https://github.com/th2-net/th2-infra). В этом репозитории содержится ядро платформы.
+Create empty Git repository for th2 on your machine.
+At the root of the repository, clone [th2-infra](https://github.com/th2-net/th2-infra).
 {{% /hl %}}
 
 ```shell
