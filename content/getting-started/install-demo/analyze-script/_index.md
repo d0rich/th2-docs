@@ -143,7 +143,8 @@ Order has next parameters:
 - Size (_OrderQty_) = 100
 - Price = 54 (_x-1_ | _x_ depends on instrument)
 
-To the end of the **step 5** response message about successfully trades or cancelling order, because IOC
+To the end of the **step 5** response message about successfully trades or 
+cancelling order expected, because IOC
 cannot be just placed.
 
 There are **2 buy orders** with overall size (30 + 10) not bigger 
