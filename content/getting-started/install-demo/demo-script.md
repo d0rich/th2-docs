@@ -22,7 +22,7 @@ git clone -b demo-ver-1.5.4-local --single-branch https://github.com/th2-net/th2
 
 ### Change rabbitMQ configmap
 
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Через родной конфигмап нет доступа к rabbitMQ.
 {{% /hl %}}
 

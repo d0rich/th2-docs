@@ -7,7 +7,7 @@ chapter: true
 
 # Software requirements
 
-{{% hl orange %}}
+{{% hl "#FFDCB3" %}}
 Requirements list was reorganized from
 https://github.com/th2-net/th2-documentation/wiki/Technical-Requirements#software-requirements
 {{% /hl %}}
@@ -18,7 +18,7 @@ One machine can combine several types listed here.
 
 ## th2 node
 
-{{< hl greenyellow >}}
+{{< hl "#B5B8B1" >}}
 th2 node is a device where your th2 system will be executed fully or partially.
 {{< /hl >}}
 
@@ -39,7 +39,7 @@ th2 node is a device where your th2 system will be executed fully or partially.
 
 ## Operator box
 
-{{< hl greenyellow >}}
+{{< hl "#B5B8B1" >}}
 Specialist will monitor and control th2 through the operator box.
 {{< /hl >}}
 
@@ -51,7 +51,7 @@ Specialist will monitor and control th2 through the operator box.
 
 ## Apache Cassandra node
 
-{{< hl greenyellow >}}
+{{< hl "#B5B8B1" >}}
 Apache Cassandra node is a device where Cassandra database for your th2 system will be executed.
 {{< /hl >}}
 

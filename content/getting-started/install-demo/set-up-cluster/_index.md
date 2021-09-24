@@ -7,7 +7,7 @@ chapter: false
 
 ## Contents
 
-{{% hl orange %}}
+{{% hl "#FFDCB3" %}}
 
 Content was reorganized
 1. Create namespaces
@@ -18,14 +18,14 @@ Content was reorganized
 6. Deploy monitoring tools
 7. Check up
 {{% /hl %}}
-{{% hl pink %}}
+{{% hl "#E8988C" %}}
 - [Upgrade th2-infra](https://github.com/th2-net/th2-infra#upgrade-th2-infra)
 - [Re-adding persistence for components in th2 namespaces](https://github.com/th2-net/th2-infra#re-adding-persistence-for-components-in-th2-namespaces)
 {{% /hl %}}
 
 ## Step 1. Create namespaces
 
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Create namespaces for monitoring and th2 serving tools
 {{% /hl %}}
 
@@ -70,7 +70,7 @@ kubectl apply -f ./pvcs.yaml
 ```
 
 
-{{% hl pink %}}
+{{% hl "#E8988C" %}}
 If you would like to include th2 read components into your configuration, you also have to set up a dedicated PersistentVolume for th2-read log directory. You should add PersistentVolume mapped to /opt/components directory and then create PersistentVolumeClaim once a schema namespace installed. PV and PVC examples can be found here persistence/
 
 $ mkdir /opt/components  
@@ -187,13 +187,13 @@ Be sure you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
 ### Install helm-operator
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Download helm-operator repository locally
 {{% /hl %}}
 ```shell
 helm repo add fluxcd https://charts.fluxcd.io
 ```
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Install helm-operator
 {{% /hl %}}
 ```shell
@@ -201,13 +201,13 @@ helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./
 ```
 
 ### Install NGINX Ingress Controller
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Download NGINX Ingress Controller repository locally
 {{% /hl %}}
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 ```
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Install NGINX Ingress Controller
 {{% /hl %}}
 ```shell
@@ -226,13 +226,13 @@ ingress-ingress-nginx-controller-7979dcdd85-mw42w   1/1     Running   0         
 ```
 
 ### Install th2-infra components in the service namespace
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Download th2 repository locally
 {{% /hl %}}
 ```shell
 helm repo add th2 https://th2-net.github.io
 ```
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Install th2
 {{% /hl %}}
 {{% notice note %}}
@@ -242,7 +242,7 @@ Replace with th2-infra release version you need, please follow to https://github
 helm install -n service --version=<version> th2-infra th2/th2 -f ./service.values.yaml -f ./secrets.yaml
 ```
 
-{{% hl pink %}}
+{{% hl "#E8988C" %}}
 Wait for all pods in service namespace are up and running, once completed proceed with [schema configuration](https://github.com/th2-net/th2-infra-schema-demo/blob/master/README.md) to deploy th2 namespaces.
 {{% /hl %}}
 
@@ -277,7 +277,7 @@ kubectl config set-context --current --namespace=monitoring
 Be sure you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
-{{% hl orange %}}
+{{% hl "#FFDCB3" %}}
 ### Define Grafana and Dashboard host names
 
 {{% notice note %}}
@@ -310,13 +310,13 @@ Be sure you are located in the `th2-infra/example-values` directory.
 
 ### Install Kubernetes Dashboard
 
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Download [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) repository locally
 {{% /hl %}}
 ```shell
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 ```
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Install Kubernetes Dashboard
 {{% /hl %}}
 ```shell
@@ -324,13 +324,13 @@ helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -
 ```
 
 ### Install Grafana
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Download Grafana repository locally
 {{% /hl %}}
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Install Grafana
 {{% /hl %}}
 ```shell
@@ -338,13 +338,13 @@ helm install --version=0.40.1 loki -n monitoring grafana/loki-stack -f ./loki.va
 ```
 
 ### Install Prometheus
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Download Prometheus repository locally
 {{% /hl %}}
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Install Prometheus
 {{% /hl %}}
 ```shell
@@ -371,7 +371,7 @@ prometheus-prometheus-prometheus-oper-prometheus-0       3/3     Running   1    
 ```
 #### Access from browser
 
-{{% hl pink %}}
+{{% hl "#E8988C" %}}
 Add loki Datasource as http://loki:3100 and import Dashboard from components-logs.json and RabbitMQ Overview from here: https://grafana.com/grafana/dashboards/10991
 {{% /hl %}}
 

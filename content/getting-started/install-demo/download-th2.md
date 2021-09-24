@@ -4,7 +4,7 @@ weight: 10
 pre: "<b>1.3.2 </b>"
 chapter: false
 ---
-{{% hl pink %}}
+{{% hl "#E8988C" %}}
 th2 components should be copied to your Git repository if
 you would like to try th2 custom componets, modify them based
 on your business logic or evaluate th2 onboarding process.
@@ -21,7 +21,7 @@ You would need the following:
     - th2-act-template
       {{% /hl %}}
 
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Create empty Git repository for th2 on your machine.
 At the root of the repository, clone [th2-infra](https://github.com/th2-net/th2-infra).
 {{% /hl %}}

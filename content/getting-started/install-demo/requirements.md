@@ -4,7 +4,7 @@ weight: 5
 pre: "<b>1.3.1 </b>"
 chapter: false
 ---
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 The entire page is new.
 {{% /hl %}}
 

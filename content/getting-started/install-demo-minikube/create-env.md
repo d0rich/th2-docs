@@ -19,7 +19,7 @@ in the [infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo) rep
 components. Additional information on th2-infra configuration can be also found on 
 the [infra: Theory of Pins and Links](https://github.com/th2-net/th2-documentation/wiki/infra:-Theory-of-Pins-and-Links) wiki page.
 
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 Go to the Infra Editor (`http://your-host:30000/editor/`). And create schema.
 
 ![Create schema](../images/create-schema-1.png)
