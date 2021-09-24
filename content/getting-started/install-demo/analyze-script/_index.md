@@ -187,6 +187,47 @@ exceptions with the specific instruments from the _script_.
 _INSTR1_, _INSTR2_, _INSTR3_ work normally. Exceptions from other 
 instruments will be described below.
 
+### INSTR4
+
+As described in the _Demo script steps_ section,
+there should be 3 messages for the seller _DEMO-CONN2_ in the **step 7** of the demo script.
+
+![](images/instr4-step7-report.png)
+
+In fact, there are 4 messages. 
+Simulator box sent redundant execution report message to call an exception.
+
+This information is displayed in the check sequence event details.
+
+![img.png](images/instr4-step7-check-details.png)
+
+In the details of one of filtered messages  
+comment about exception can be found.
+
+![img.png](images/instr4-step7-extra-m-details.png)
+
+### INSTR5
+
+Simulator box sends one message with incorrect values at **step 7** within this run.
+
+![img.png](images/instr5-verification-events.png)
+
+Pay attention, that some expected and actual values are not the same. 
+That is why exception appears.
+
+### INSTR6
+
+Script sends message with unknown _security ID_ in **step 1** within this run.
+So exception appears for security reasons.
+
+Message structure:
+
+![img_1.png](images/instr6-step1-message-details.png)
+
+Exception details:
+
+![img.png](images/instr6-exception-details.png)
+
 ## Compare results
 
 {{< youtube mQa8c-OZZhU >}} 
