@@ -9,7 +9,7 @@ chapter: true
 
 # Install demo example
 
-{{< hl greenyellow >}}
+{{< hl "#B5B8B1" >}}
 You will know how to install th2.
 {{< /hl >}}
 

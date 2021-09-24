@@ -5,13 +5,13 @@ pre: "<b>1.3.3 </b>"
 chapter: false
 ---
 
-{{% hl pink %}}
+{{% hl "#E8988C" %}}
 Get [th2-infra-schema](https://github.com/th2-net/th2-infra-demo-configuration) for custom components and copy or fork to your GIT repository.
 {{% /hl %}}
 
 ## Download th2
 
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 
 Clone needed branch of [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master) 
 (each branch of the git repository contains a version of th2-infra-schema). 
@@ -38,7 +38,7 @@ spec:
 
 ## Publish git repository
 
-{{% hl greenyellow %}}
+{{% hl "#B5B8B1" %}}
 
 Publish your repository on github, or use another approach to get ssh access to th2-infra-schema. th2 will sync 
 with th2-infra-schema using ssh.

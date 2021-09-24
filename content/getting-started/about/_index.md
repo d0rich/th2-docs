@@ -7,6 +7,6 @@ chapter: true
 
 
 
-# Something about what is th2 and what id does
+# Something about what is th2 and what it does
 
 

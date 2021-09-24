@@ -18,15 +18,15 @@ chapter: true
 #   Page code example
 
 ```shell
-{{< hl greenyellow >}}
+{{< hl "#B5B8B1" >}}
 Добавленный контент
 {{< /hl >}}
 
-{{< hl orange >}}
+{{< hl "#FFDCB3" >}}
 Изменённый контент
 {{< /hl >}}
 
-{{< hl pink >}}
+{{< hl "#E8988C" >}}
 Это для удаленных фрагментов
 {{< /hl >}}
 
@@ -34,14 +34,14 @@ chapter: true
 
 #   Page will look like
 
-{{< hl greenyellow >}}
+{{< hl "#B5B8B1" >}}
 Добавленный контент
 {{< /hl >}}
 
-{{< hl orange >}}
+{{< hl "#FFDCB3" >}}
 Изменённый контент
 {{< /hl >}}
 
-{{< hl pink >}}
+{{< hl "#E8988C" >}}
 Это для удаленных фрагментов
 {{< /hl >}}
