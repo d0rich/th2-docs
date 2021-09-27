@@ -6,7 +6,7 @@ theme = "learn"
 [params]
 landingPageURL = "https://d0rich.github.io/th2-docs/"
 titleSeparator = "|"
-showVisitedLinks = true
+showVisitedLinks = false
 disableBreadcrumb = false
 disableNextPrev = false
 disableLandingPageButton = true
