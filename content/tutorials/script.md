@@ -1,7 +1,6 @@
 ---
 title: "Script: basic actions"
 weight: 10
-pre: "<b>2.1 </b>"
 chapter: true
 ---
 

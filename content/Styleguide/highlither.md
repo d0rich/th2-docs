@@ -1,7 +1,6 @@
 ---
 title: "Highlighter"
 weight: 25
-pre: "<b>4.4 </b>"
 chapter: true
 ---
 

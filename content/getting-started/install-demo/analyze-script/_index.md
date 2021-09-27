@@ -1,7 +1,6 @@
 ---
 title: Demo script analysis
 weight: 35
-pre: "<b>1.3.7 </b>"
 chapter: false
 ---
 ## Demo script scenario

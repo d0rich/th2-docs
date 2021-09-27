@@ -1,7 +1,6 @@
 ---
 title: Software Requirements
 weight: 10
-pre: "<b>1.2.2 </b>"
 chapter: true
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Set up cluster and install th2
 weight: 20
-pre: "<b>1.3.4 </b>"
 chapter: false
 ---
 

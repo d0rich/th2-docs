@@ -1,7 +1,6 @@
 ---
 title: Hardware Requirements
 weight: 5
-pre: "<b>1.2.1 </b>"
 chapter: true
 ---
 

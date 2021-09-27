@@ -1,7 +1,6 @@
 ---
 title: Download th2 demo example
 weight: 15
-pre: "<b>1.3.3 </b>"
 chapter: false
 ---
 

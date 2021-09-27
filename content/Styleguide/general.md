@@ -1,7 +1,6 @@
 ---
 title: "General recommendations"
 weight: 40
-pre: "<b>4.7 </b>"
 chapter: true
 ---
 

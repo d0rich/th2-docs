@@ -1,7 +1,6 @@
 ---
 title: "Page template"
 weight: 10
-pre: "<b>4.1 </b>"
 chapter: true
 ---
 

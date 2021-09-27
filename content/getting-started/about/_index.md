@@ -1,7 +1,6 @@
 ---
 title: About th2
 weight: 5
-pre: "<b>1.1 </b>"
 chapter: true
 ---
 

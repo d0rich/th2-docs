@@ -1,7 +1,6 @@
 ---
 title: "Code"
 weight: 15
-pre: "<b>4.2 </b>"
 chapter: true
 ---
 

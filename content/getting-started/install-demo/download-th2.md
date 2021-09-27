@@ -1,7 +1,6 @@
 ---
 title: Download th2
 weight: 10
-pre: "<b>1.3.2 </b>"
 chapter: false
 ---
 {{% hl "#E8988C" %}}

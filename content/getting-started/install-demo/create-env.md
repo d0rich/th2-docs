@@ -1,7 +1,6 @@
 ---
 title: Create th2 environment
 weight: 25
-pre: "<b>1.3.5 </b>"
 chapter: false
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Install required software
 weight: 5
-pre: "<b>1.4.1 </b>"
 chapter: false
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Download th2
 weight: 10
-pre: "<b>1.4.2 </b>"
 chapter: false
 ---
 
