@@ -39,6 +39,23 @@ namespace/monitoring created
 namespace/service created
 ```
 
+{{% spoiler "Check if required namespaces are existing." %}}
+Get namespaces list:
+```shell
+kubectl get namespaces
+```
+Output example:
+```shell
+NAME              STATUS   AGE
+default           Active   41d
+kube-node-lease   Active   41d
+kube-public       Active   41d
+kube-system       Active   41d
+monitoring        Active   41d
+service           Active   41d
+```
+{{% /spoiler %}}
+
 ## Step 2. Data persistence
 
 Data persistence is required for the following components: Grafana, Prometheus,
@@ -68,6 +85,34 @@ kubectl apply -f ./pvs.yaml
 kubectl apply -f ./pvcs.yaml
 ```
 
+{{% spoiler "Check if required pv's and pvc's are existing." %}}
+Get list of pv's:
+```shell
+kubectl get persistentvolumes
+```
+Output example:
+```shell
+NAME                 CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                                                                                                               STORAGECLASS    REASON   AGE
+components-storage   10Gi       RWX            Retain           Released   schema/components                                                                                                   local-storage            41d
+storage-grafana      1Gi        RWO            Retain           Bound      monitoring/grafana                                                                                                  local-storage            41d
+storage-loki         5Gi        RWO            Retain           Bound      monitoring/loki                                                                                                     local-storage            41d
+storage-prometheus   5Gi        RWO            Retain           Bound      monitoring/prometheus-prometheus-kube-prometheus-prometheus-db-prometheus-prometheus-kube-prometheus-prometheus-0                            41d
+storage-rabbitmq     10Gi       RWO            Retain           Bound      service/data-rabbitmq-0                                                                                             local-storage            41d
+```
+
+Get list of pvc's:
+```shell
+kubectl get persistentvolumeclaims --all-namespaces
+```
+Output example:
+```shell
+NAMESPACE    NAME                                                                                                     STATUS   VOLUME               CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+monitoring   grafana                                                                                                  Bound    storage-grafana      1Gi        RWO            local-storage   41d
+monitoring   loki                                                                                                     Bound    storage-loki         5Gi        RWO            local-storage   41d
+monitoring   prometheus-prometheus-kube-prometheus-prometheus-db-prometheus-prometheus-kube-prometheus-prometheus-0   Bound    storage-prometheus   5Gi        RWO                            41d
+service      data-rabbitmq-0                                                                                          Bound    storage-rabbitmq     10Gi       RWO            local-storage   41d
+```
+{{% /spoiler %}}
 
 {{% hl "#E8988C" %}}
 If you would like to include th2 read components into your configuration, you also have to set up a dedicated PersistentVolume for th2-read log directory. You should add PersistentVolume mapped to /opt/components directory and then create PersistentVolumeClaim once a schema namespace installed. PV and PVC examples can be found here persistence/
@@ -199,6 +244,18 @@ Install helm-operator
 helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./helm-operator.values.yaml
 ```
 
+{{% spoiler "Check if helm operator is running." %}}
+Get helm operator deployment:
+```shell
+kubectl get deployment -n service -l app=helm-operator
+```
+Output example:
+```shell
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+helm-operator   1/1     1            1           40d
+```
+{{% /spoiler %}}
+
 ### Install NGINX Ingress Controller
 {{% hl "#B5B8B1" %}}
 Download NGINX Ingress Controller repository locally
@@ -212,6 +269,8 @@ Install NGINX Ingress Controller
 ```shell
 helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f ./ingress.values.yaml
 ```
+
+{{% hl "#E8988C" %}}
 Check:
 ```shell
 kubectl get pods
@@ -223,7 +282,19 @@ NAME                                                READY   STATUS    RESTARTS  
 ingress-ingress-nginx-controller-7979dcdd85-mw42w   1/1     Running   0          30s
 ........
 ```
+{{% /hl %}}
 
+{{% spoiler "Check if nginx ingress controller is running." %}}
+Get helm operator deployment:
+```shell
+kubectl get deployment -n service -l app.kubernetes.io/name=ingress-nginx
+```
+Output example:
+```shell
+NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
+ingress-ingress-nginx-controller   1/1     1            1           41d
+```
+{{% /spoiler %}}
 ### Install th2-infra components in the service namespace
 {{% hl "#B5B8B1" %}}
 Download th2 repository locally
@@ -234,6 +305,7 @@ helm repo add th2 https://th2-net.github.io
 {{% hl "#B5B8B1" %}}
 Install th2
 {{% /hl %}}
+
 {{% notice note %}}
 Replace with th2-infra release version you need, please follow to https://github.com/th2-net/th2-infra/releases
 {{% /notice %}}
@@ -322,6 +394,18 @@ Install Kubernetes Dashboard
 helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -f ./dashboard.values.yaml
 ```
 
+{{% spoiler "Check if dashboard is running." %}}
+Get dashboard pod:
+```shell
+kubectl get pod -n monitoring -l app.kubernetes.io/name=kubernetes-dashboard
+```
+Output example:
+```shell
+NAME                                              READY   STATUS    RESTARTS   AGE
+dashboard-kubernetes-dashboard-567678889f-2snh7   1/1     Running   0          40d
+```
+{{% /spoiler %}}
+
 ### Install Grafana
 {{% hl "#B5B8B1" %}}
 Download Grafana repository locally
@@ -336,6 +420,18 @@ Install Grafana
 helm install --version=0.40.1 loki -n monitoring grafana/loki-stack -f ./loki.values.yaml
 ```
 
+{{% spoiler "Check if dashboard is running." %}}
+Get dashboard pod:
+```shell
+kubectl get pod -n monitoring -l app.kubernetes.io/name=grafana
+```
+Output example:
+```shell
+NAME                                  READY   STATUS    RESTARTS   AGE
+prometheus-grafana-74ff7fcbd4-h2r8t   2/2     Running   0          41d
+```
+{{% /spoiler %}}
+
 ### Install Prometheus
 {{% hl "#B5B8B1" %}}
 Download Prometheus repository locally
@@ -349,6 +445,18 @@ Install Prometheus
 ```shell
 helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
 ```
+
+{{% spoiler "Check if dashboard is running." %}}
+Get dashboard pod:
+```shell
+kubectl get pod -n monitoring -l app=kube-prometheus-stack-operator
+```
+Output example:
+```shell
+NAME                                                   READY   STATUS    RESTARTS   AGE
+prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0          41d
+```
+{{% /spoiler %}}
 
 ### Check result
 #### Pods

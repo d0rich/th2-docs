@@ -9,4 +9,4 @@ chapter: true
 
 # Install th2 and find out functionalities
 
-version test
+

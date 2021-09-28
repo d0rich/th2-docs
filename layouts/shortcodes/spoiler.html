@@ -1,0 +1,11 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<div style="border: #212121 solid 3px; border-radius: 5px; padding: .5rem;">
+    <details>
+        <summary style="cursor: pointer">
+            <i class="fas fa-caret-down"></i>
+            {{index .Params 0}}
+        </summary>
+        {{ .Inner }}
+    </details>
+</div>
+
