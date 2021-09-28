@@ -2,7 +2,6 @@ baseURL = "https://d0rich.github.io/th2-docs/"
 languageCode = "en-us"
 title = "th2 documentation"
 theme = "learn"
-defaultContentLanguage = "v1-5-4"
 
 [params]
 landingPageURL = "https://d0rich.github.io/th2-docs/"
@@ -11,18 +10,4 @@ showVisitedLinks = false
 disableBreadcrumb = false
 disableNextPrev = false
 disableLandingPageButton = true
-disableLanguageSwitchingButton = false
-
-[Languages]
-[Languages.v-test]
-title = "th2 test documentation"
-weight = 1
-languageName = "test"
-landingPageURL = "/v-test"
-
-[Languages.v1-5-4]
-title = "th2 1.5.4 documentation"
-weight = 1
-languageName = "v1.5.4"
-landingPageURL = "/v1-5-4"
 
