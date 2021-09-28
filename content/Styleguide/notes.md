@@ -10,7 +10,7 @@ chapter: true
 
 #   Structure
 
-Инструкция по использованию заметок (notes)
+Guide how to use notes
 
 
 

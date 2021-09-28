@@ -9,10 +9,10 @@ chapter: true
 
 # Basics
 
-Зачем - весь раздел.
+This section improves system documentation process, making all the documentation pages clear and template-supplied 
 
-Инструкция по созданию страниц раздела
+How to create pages of this section:
 
-1) Что описано
-2) Как выглядит в коде
-3) Как выглядит на странице
+1) What is described?
+2) How it looks in code?
+3) How it looks on the page?

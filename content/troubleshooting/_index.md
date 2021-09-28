@@ -11,51 +11,50 @@ chapter: true
 
 ## General issues
 
-### Сбрасывается кластер kubernetes при перезапуске машины (в т.ч. виртуальной)
+### Kubernetes cluster reset when rebooting (including virtual machine)
 
 #### Issue:
 
-Сброс кластера при перезапуске виртуальной машины (сервис kubectl запускается с ошибкой) + Проблема с kube-apiserver
+Kubernetes cluster is being reset when rebooting machine (kubectl service starts with error) + kube-apiserver trouble
 
 #### Way to resolve: 
 
-"посмотреть, не изменился ли IP-адрес
-Настройка kubeconfig - проверить, как ведётся подключение. Там должен быть тот же адрес, что используется для подключения к VPN"
+"IP check if changed
+kubeconfig - how connection is configured. We should use IP from VPN config"
 
 #### Note:
 
-- Машина, на которой работает Control plane выдает сертификаты, связанные с определенными IP-адресами
-- kubectl cluster info - можно в числе прочего увидеть адрес
-- утилита kubectl общается непосредственно с сервером
-- Kube-apiserver - публичный API (с авторизацией) для взаимодействия с kubectl и с сервисами внутри и снаружи кластера"
-
+- Control plane node certifies connections to determined IP`s
+- kubectl cluster info - a way to check IP
+- kubectl connects directly to server
+- Kube-apiserver - public API (authorisation-protected) to provide interaction between environment and kubernetes cluster (include kubectl)
 ## Node issues
 
 ### Kubernetes node is not ready
 
 #### Issue:
 
-При исполнении команды
+While executing:
 
 ```shell
 kubectl get nodes
 ```
 
-В колонке STATUS у kubernetes node статус NotReady
+In STATUS column kubernetes node status is NotReady
 
 #### Way to resolve:
 
-Получить информацию о ноде исполнив команду
+Get more information about node by executing
 
 ```shell
 kubectl describe node
 ```
 
-Изучить вывод команды (особое внимание следует обратить на разделы events, conditions), использовать полученные сведения для определения основной причины этого состояния
+Check events and conditions sections
 
 #### Note:
 
-Одной из причин может быть пробелма с Docker, для решения предлагается использовать [инструкцию](https://stackoverflow.com/questions/49112336/container-runtime-network-not-ready-cni-config-uninitialized). 
+If it`s Docker-related issue, use [manual](https://stackoverflow.com/questions/49112336/container-runtime-network-not-ready-cni-config-uninitialized). 
 
 ## Pod issues
 
@@ -63,23 +62,23 @@ kubectl describe node
 
 #### Issue:
 
-При исполнении команды
+While executing:
 
 ```shell
 kubectl get pods --all-namespaces
 ```
 
-не наблюдается постоянной готовности подов в полном составе, при применении команды через несколько минут наблюдается увеличение числа рестартов подов
+Pods are not stable in READY state, restart numbers increase
 
 
 #### Way to resolve:
 
-- Решить проблему "Flannel некорректно установлен"
-- Выполнить kubectl taint nodes  <node_name> node-role.kubernetes.io/master-
+- Resolve "incorrect Flannel installation"
+- Execute kubectl taint nodes  <node_name> node-role.kubernetes.io/master-
 
 #### Note:
 
-При исполнении команды 
+While executing:
 
 
 ```shell
@@ -87,7 +86,9 @@ kubectl get pods --all-namespaces
 kubectl describe pod <pod_name>
 ```
 
-указав в качестве <pod_name> один из незапустившихся подов, вывод второй команды будет похож на 
+You should specify the name of pod with NotReady status instead of <pod_name>. Output will look like:
+
+
 
 ```shell
 - Warning  FailedScheduling  default-scheduler  0/1 nodes are available: 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.

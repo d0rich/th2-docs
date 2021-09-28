@@ -6,27 +6,27 @@ chapter: true
 
 #   Structure
 
-Не выделяется цветом контент, перенесённый из первоисточника (документация th2 из репозиториев гитхаба) без изменений.
+Non-reorganized content from sources (th2 github, wiki) is not highlighted.
 
-Цветом выделяется контент, подвергшийся изменению
+Reorganized content from sources is highlighted.
 
-1) Зелёным обозначен контент, добавленный на страницу сверх представленного в первоисточнике
-2) Оранжевым обозначен контент, изменённый относительно первоисточника
-3) Красным обозначен контент, исключённый из содержания страницы
+1) Grey color - additional content (created from scratch)
+2) Orange color - reorganized content from sources
+3) Red color - deleted content
 
 #   Page code example
 
 ```shell
 {{< hl "#B5B8B1" >}}
-Добавленный контент
+additional
 {{< /hl >}}
 
 {{< hl "#FFDCB3" >}}
-Изменённый контент
+reorgaized
 {{< /hl >}}
 
 {{< hl "#E8988C" >}}
-Это для удаленных фрагментов
+deleted
 {{< /hl >}}
 
 ```
@@ -34,13 +34,13 @@ chapter: true
 #   Page will look like
 
 {{< hl "#B5B8B1" >}}
-Добавленный контент
+additional
 {{< /hl >}}
 
 {{< hl "#FFDCB3" >}}
-Изменённый контент
+reorgaized
 {{< /hl >}}
 
 {{< hl "#E8988C" >}}
-Это для удаленных фрагментов
+deleted
 {{< /hl >}}

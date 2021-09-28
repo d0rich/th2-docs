@@ -6,10 +6,10 @@ chapter: true
 
 #   Structure
 
-Ссылки на другие страницы сайта, а так же на другие сайты, репозитории, инструкции следует оформлять следующим образом:
+Other websites and other sections of our site, repositories and guides should be mentioned:
 
-1) Подводящий текст произвольной длины (от 1 слова)
-2) 1-2 главных значащих слова выполняются в форме гиперссылки
+1) Short leading text
+2) 1 or 2 main words should be using as a hyperlink 
 
 
 #   Page code example

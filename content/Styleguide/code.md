@@ -6,20 +6,22 @@ chapter: true
 
 #   Structure
 
-Фрагменты кода (как для исполнения в терминале, так и выводящиеся в терминале для пользователя) следует оформлять следующим образом:
+Code parts (both for execution and output code) should be shaped:
 
-1) Цель ввода команды
-2) Текст команды 
-3) Сведения о плейсхолдерах в команде
-4) Сведения о пути, который нужно открыть в терминале, чтобы команда была исполнена корректно
-5) Ожидаемый вывод в терминале
+1) code execution purpose
+2) code itself
+3) placeholder comments 
+4) path comments (where Terminal should be opened to execute code properly)
+5) expected terminal output
 
-1. При упоминании переменной в тексте выделить её курсивом при помощи \_  
+1. Variables when mentioned are italicized with symbols \_  
+
 _variable_
+
 ```md
 _variable_
 ```
-2. При необходимости указать на расположение переменной в файле использовать [highlight](https://gohugo.io/content-management/syntax-highlighting/)
+2. Variable in file if mentioned are [highlighted](https://gohugo.io/content-management/syntax-highlighting/)
    {{< highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
    // GetTitleFunc returns a func that can be used to transform a string to
    // title case.
@@ -42,9 +44,9 @@ _variable_
      }
    }
    {{< / highlight >}}
-3. При выводе кода указать используемый синтаксис для корректной подсветки
-   1. _shell_ - для командной строки
-   2. _yaml_ - для .yaml файлов
+3. Specify correct syntax when describing code output for proper highlighting:
+   1. _shell_ - for terminal input (cammand line)
+   2. _yaml_ - for .yaml files
 #   Page code example
 
 ```shell

@@ -8,4 +8,4 @@ chapter: true
 
 # Basics
 
-Шаблон страницы для удобства и скорости создания страницы, уже насколько это возможно соответствующей этой инструкции
+Page templates to improve system documentation process, make all the documentation pages clear and template-supplied

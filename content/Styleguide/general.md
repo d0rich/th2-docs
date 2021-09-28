@@ -6,51 +6,23 @@ chapter: true
 
 # General recommendations
 
-Общие рекомендации, на соответствие которым лучше всего проверить написанную страницу после полного наполнения требуемым содержимым
+General recommendations to be satisfied before page deployment
 
-## Общие рекомендации по оформлению
+## General documentation recommendations:
 
-1) Выполнять оформление документации в едином стиле, оформляя однотипные элементы одинаковым образом (образец: https://kubernetes.io/docs/contribute/style/style-guide/ )
-2) Использовать шаблоны страниц в соответствии с назначением (пример: https://kubernetes.io/docs/contribute/style/write-new-topic/ )
-3) В разделах типа Tutorial сделать в начале страницы раздел “Before you start” с проверками готовности, в конце - раздел “What`s next?” с проверкой правильности выполненных действий и ссылкой на раздел документации, который следует изучить (выполнить) следующим
-4) Типы страниц документации (пример: Concept, Task, Tutorial, Reference)
-5) Для каждой страницы задать чётко определённую цель, назначение этой страницы (какую цель эта страница поможет достичь пользователю)
-6) Писать максимально сжато и по делу, т.к.:
-- Проще поддерживать актуальным
-- Так легче сфокусироваться на важном
-7) Всегда начинать с построения плана страницы (позже стоит перейти к шаблонам)
-8) Для кого эта страница?
-9) Чего читатель хочет достичь?
-10) Использовать ответы на эти вопросы в качестве заголовков для разделов документа
-11) Детализировать ответ на каждый вопрос без лишних подробностей.
-12) Приём “расскажи своими словами и перепиши” (https://www.youtube.com/watch?v=R6zeikbTgVc&ab_channel=LeadDev 5:43) (можно использовать расшифровки записи устной речи)
+1) Follow styleguide, write similar parts of documentation using same techniques (example: https://kubernetes.io/docs/contribute/style/style-guide/ )
+2) Use page templates (example: https://kubernetes.io/docs/contribute/style/write-new-topic/ )
+3) Tutorials should start with “Before you start” section contains pre-flight checks, and end with “What`s next?” section with post-action checks and links to next steps of tutorial
+4) Specify content types and supply them with templates (Concept, Task, Tutorial, Reference)
+5) Every page should have a concrete purpose (how this page may help user)
+6) Write short and clean because:
+- it`s easier to keep up to date
+- and easier to concentrate on main idea
+7) Each page should start with short structure plan (using templates if it`s possible)
+8) Who is the target audience of the page?
+9) What reader wants to achieve?
+10) Use answers as section titles
+11) Answer them short and clearly 
+12) Use “tell in your own words” tip (https://www.youtube.com/watch?v=R6zeikbTgVc&ab_channel=LeadDev 5:43) (можно использовать расшифровки записи устной речи)
 
-- СТРУКТУРА вместо одеяла текста
-- Если “описать” дольше, чем “исправлять” - лучше исправить
-
-## Разделы документации
-1) Обзор платформы
-- Объяснить для чего нужна платформа https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/ https://v3.vuejs.org/guide/introduction.html#what-is-vue-js
-- Описать проблемы, существующие в мире, где нет нашей платформы https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
-- Описать, чего платформа НЕ делает (во избежании недопониманий) https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
-2) Pre Requirements
-- Кратко объяснить зачем нужен каждый пункт. https://docs.corda.net/docs/corda-os/4.8/getting-set-up.html
-- Дать инструкцию или ссылку на инструкцию по установке. https://docs.corda.net/docs/corda-os/4.8/getting-set-up.html
-- Дать информацию об особенностях настройки prerequirement конкретно в нашей системе. (Лучше, чтобы это было автоматизировано)
-- При возможности модульной установки сделать разделы prerequirements для отдельных компонентов
-3) Установка
-- Желательно, чтобы установка занимала до 10 минут времени https://docs.corda.net/docs/corda-os/4.8/tutorial-cordapp.html
-- Время можно уменьшить, расположив все действия, связанные с установкой в 1 месте.
-- При длинной установке проинформировать пользователя зачем нужен конкретный шаг, какие трудности могут возникнуть при невыполнении или некорректном выполнении шага.
-- Предоставить пример дерева файлов проекта при его изменении. https://docs.corda.net/docs/corda-os/4.8/writing-a-cordapp.html
-- Дать комментарий о допустимых отклонениях от предоставленного дерева файлов.
-- Указать файлы конфигураций, их расположение, примеры для различных конфигураций (в т.ч. для демонстрационной)
-- Указать параметры, изменяемые в первичной и последующей настройке, рекомендованные значения, а так же как и с какими значениями должны соотноситься
-4) Структура проекта https://docs.corda.net/docs/corda-os/4.8/writing-a-cordapp.html
-- Необходимо сделать гайд о структуре проекта (взаимное расположение папок, взаимодействие репозиториев и тд).
-- Если структура не важна, то обрисовать задуманную разработчиками структуру.
-5) Работа с платформой
-- Упомянуть, в каком виде и возможно, где ранее элементы данного действия могли встретиться https://v3.vuejs.org/guide/component-props.html#prop-types
-- Приводить примеры исполнения описываемых действий https://v3.vuejs.org/guide/component-props.html#passing-static-or-dynamic-props
-6) Раздел Troubleshooting, ссылки на него из разделов руководства по установке и использованию платформы
-- Способы диагностики проблем, “рецепты” исправления ошибок.
+- STRUCTURE instead of text chunk

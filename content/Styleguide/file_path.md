@@ -6,21 +6,22 @@ chapter: true
 
 #   Structure
 
-Внесение изменений в файл следует оформлять следующим образом:
+Changing values in files should be shaped:
 
-1) Указать необходимость открыть файл
-2) Указать название файла (специальное оформление)
-3) Указать путь к файлу относительно основной директории проекта
-4) Указать, где следует получить данные для внесения изменений в файл
-5) Показать внутреннюю структуру файла и места, в которых нужно внести изменения
+1) Declare that user need to open file
+2) Specify file name using styleguide tips
+3) Specify path to file
+4) Specify where user should find correct values
+5) Show file structure, point the places where user needs to make changes
 
-Ссылаться на файл нужно следующим образом:
-1. Название файла в тексте выделить при помощи косых кавычек (\`) `filename.ext`
+Files when mentioned should be named:
+1. Filename, underlined using \` 
+`filename.ext`
 ```md
 `filename.ext`
 ```
-2. При необходимости указания расположения файла добавить древо файлов. [tree](https://pingvinus.ru/note/tree)  
-Подсветить нужную строку при помощи [highlight](https://gohugo.io/content-management/syntax-highlighting/)
+2. Add information about project [tree](https://pingvinus.ru/note/tree), if needed  
+[highlight](https://gohugo.io/content-management/syntax-highlighting/) a string  if needed
 {{< highlight md "hl_lines=5" >}}
 .
 ├── archetypes
@@ -36,7 +37,7 @@ chapter: true
 #   Page code example
 
 ```md
-    Откройте файл `infra-mgr-config.yml` и поменяйте параметр spec.k8s-propagation с off на sync. Это позволит в будущем th2 автоматически построить все зависимости, указанные в th2-infra-schema.
+   Open `infra-mgr-config.yml` file and specify spec.k8s-propagation variable sync instead of off. It allows th2 verify  all the dependencies from th2-infra-schema automatically.
 
     ```yml
     kind: SettingsFile
@@ -49,15 +50,14 @@ chapter: true
 
 #   Page will look like
 
-Откройте файл `infra-mgr-config.yml` и поменяйте параметр spec.k8s-propagation с off на sync. Это позволит в будущем th2 автоматически построить все зависимости, указанные в th2-infra-schema.
+Open `infra-mgr-config.yml` file and specify spec.k8s-propagation variable sync instead of off. It allows th2 verify  all the dependencies from th2-infra-schema automatically.
 
 ```yml
-kind: SettingsFile
-metadata:
-name: infra-mgr-config
-spec:
-k8s-propagation: off # replace with sync
+    kind: SettingsFile
+    metadata:
+    name: infra-mgr-config
+    spec:
+    k8s-propagation: off # replace with sync
 ```
-
 
 
