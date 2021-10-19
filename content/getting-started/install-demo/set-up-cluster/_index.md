@@ -67,12 +67,51 @@ Examples below use HostPath type of
 Please read the documentation to choose an appropriate PV type for your environment.
 {{% /notice %}}
 
+### Create directories for data persistence
+
+{{% notice info %}}
+If you are using _minikube_, create directories inside it. For that connect to minikube container with
+`minikube ssh` and execute next command.
+{{% /notice %}}
+
 The following command can require root permissions, create directory on th2 node:
 ```shell
 mkdir /opt/grafana /opt/prometheus /opt/loki /opt/rabbitmq
 ```
 
+### Edit persistence volume configuration
 Set node name in `pvs.yaml` (replace **\<node-name\>**)  
+`pvs.yaml` example:
+```yaml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: storage-loki
+  labels:
+    app: loki
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /opt/loki
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - <node-name> # replace with node name
+---
+```
+
+### Create kubernetes entities for data persistence
 
 {{% notice warning %}}
 Be sure you are located in the `th2-infra/example-values` directory.
@@ -486,6 +525,10 @@ Check access to Grafana (default user/password: admin/prom-operator. Must be cha
 `http://your-host:30000/grafana/login`
 
 ## Step 7. Check up installed services
+
+{{% notice note %}}
+To know cluster IP (your-host) execute `kubectl cluster-info`.
+{{% /notice %}}
 
 - Kubernetes dashboard `http://your-host:30000/dashboard/`
 - Grafana `http://your-host:30000/grafana/`
