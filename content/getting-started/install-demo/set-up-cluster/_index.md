@@ -165,15 +165,52 @@ $ kubectl apply -f ./persistence/pvc.yaml
 Details for th2-read-log README.md  
 {{% /hl %}}
 
-## Step 3. Configure services
+## Step 3. Configure th2
 
 Once all of the required software is installed on your test-box and operator-box and
 th2-infra repositories are ready you can start configuring the cluster.
 
+{{% hl "#E8988C" %}}
 Switch namespace to service:
 ```shell
 kubectl config set-context --current --namespace=service
 ```
+
+Switch namespace to monitoring
+```shell
+kubectl config set-context --current --namespace=monitoring
+```
+{{% /hl %}}
+
+{{% notice warning %}}
+Be sure you are located in the `th2-infra/example-values` directory.
+{{% /notice %}}
+
+{{% hl "#FFDCB3" %}}
+### Define Grafana and Dashboard host names
+
+{{% notice note %}}
+Host name must be resolved from QA boxes
+{{% /notice %}}
+
+Define Dashboard host name in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
+
+```yaml
+ingress:
+  hosts:
+    - <th2_host_name>
+```
+Define Grafana host names in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
+```yaml
+grafana:
+  ingress:
+    hosts:
+      - <th2_host_name>
+```
+
+{{% /hl %}}
+
+
 
 ### Access for infra-mgr th2 schema git repository:
 
@@ -263,7 +300,7 @@ rabbitmq:
   rabbitmqErlangCookie: cookie
 ```
 
-## Step 4. Deploy th2 services
+## Step 4. Deploy th2
 
 {{% notice warning %}}
 Be sure you are located in the `th2-infra/example-values` directory.
@@ -334,6 +371,33 @@ NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
 ingress-ingress-nginx-controller   1/1     1            1           41d
 ```
 {{% /spoiler %}}
+
+### Install Prometheus
+{{% hl "#B5B8B1" %}}
+Download Prometheus repository locally
+{{% /hl %}}
+```shell
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
+{{% hl "#B5B8B1" %}}
+Install Prometheus
+{{% /hl %}}
+```shell
+helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
+```
+
+{{% spoiler "Check if dashboard is running." %}}
+Get dashboard pod:
+```shell
+kubectl get pod -n monitoring -l app=kube-prometheus-stack-operator
+```
+Output example:
+```shell
+NAME                                                   READY   STATUS    RESTARTS   AGE
+prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0          41d
+```
+{{% /spoiler %}}
+
 ### Install th2-infra components in the service namespace
 {{% hl "#B5B8B1" %}}
 Download th2 repository locally
@@ -355,68 +419,6 @@ helm install -n service --version=<version> th2-infra th2/th2 -f ./service.value
 {{% hl "#E8988C" %}}
 Wait for all pods in service namespace are up and running, once completed proceed with [schema configuration](https://github.com/th2-net/th2-infra-schema-demo/blob/master/README.md) to deploy th2 namespaces.
 {{% /hl %}}
-
-### Check result
-
-Check running pods:
-```shell
-kubectl get pods -n service
-```
-
-Output example:
-```shell
-NAME                                               READY   STATUS    RESTARTS   AGE
-helm-operator-79fc58f746-q8qwd                     1/1     Running   0          21d
-infra-editor-7cd68c8587-q5tfp                      1/1     Running   0          20d
-infra-mgr-67b65f4bb-gb4cc                          1/1     Running   0          20d
-infra-operator-6b7987b55-zxxdt                     1/1     Running   0          20d
-infra-repo-9c77fd6f7-xj9wf                         1/1     Running   0          20d
-ingress-ingress-nginx-controller-b556b7cb5-gfrhl   1/1     Running   0          22d
-rabbitmq-0                                         1/1     Running   0          21d
-
-```
-
-
-## Step 5. Configure monitoring tools
-
-Switch namespace to monitoring
-```shell
-kubectl config set-context --current --namespace=monitoring
-```
-{{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
-{{% /notice %}}
-
-{{% hl "#FFDCB3" %}}
-### Define Grafana and Dashboard host names
-
-{{% notice note %}}
-Host name must be resolved from QA boxes
-{{% /notice %}}
-
-Define Dashboard host name in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
-
-```yaml
-ingress:
-  hosts:
-    - <th2_host_name>
-```
-Define Grafana host names in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
-```yaml
-grafana:
-  ingress:
-    hosts:
-      - <th2_host_name>
-```
-
-{{% /hl %}}
-
-
-## Step 6. Deploy monitoring tools
-
-{{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
-{{% /notice %}}
 
 ### Install Kubernetes Dashboard
 
@@ -471,37 +473,31 @@ prometheus-grafana-74ff7fcbd4-h2r8t   2/2     Running   0          41d
 ```
 {{% /spoiler %}}
 
-### Install Prometheus
-{{% hl "#B5B8B1" %}}
-Download Prometheus repository locally
-{{% /hl %}}
+### Check result
+#### Pods
+Check if service pods are running:
 ```shell
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-```
-{{% hl "#B5B8B1" %}}
-Install Prometheus
-{{% /hl %}}
-```shell
-helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
+kubectl get pods -n service
 ```
 
-{{% spoiler "Check if dashboard is running." %}}
-Get dashboard pod:
+Output example:
 ```shell
-kubectl get pod -n monitoring -l app=kube-prometheus-stack-operator
+NAME                                               READY   STATUS    RESTARTS   AGE
+helm-operator-79fc58f746-q8qwd                     1/1     Running   0          21d
+infra-editor-7cd68c8587-q5tfp                      1/1     Running   0          20d
+infra-mgr-67b65f4bb-gb4cc                          1/1     Running   0          20d
+infra-operator-6b7987b55-zxxdt                     1/1     Running   0          20d
+infra-repo-9c77fd6f7-xj9wf                         1/1     Running   0          20d
+ingress-ingress-nginx-controller-b556b7cb5-gfrhl   1/1     Running   0          22d
+rabbitmq-0                                         1/1     Running   0          21d
+```
+
+Check if monitoring pods are running
+```shell
+kubectl get pods -n monitoring
 ```
 Output example:
 ```shell
-NAME                                                   READY   STATUS    RESTARTS   AGE
-prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0          41d
-```
-{{% /spoiler %}}
-
-### Check result
-#### Pods
-Check if monitoring pods are running
-```shell
-$ kubectl get pods
 NAME                                                     READY   STATUS    RESTARTS   AGE
 ........
 pod/dashboard-kubernetes-dashboard-77d85586db-j9v8f      1/1     Running   0          56s
@@ -524,7 +520,7 @@ Add loki Datasource as http://loki:3100 and import Dashboard from components-log
 Check access to Grafana (default user/password: admin/prom-operator. Must be changed):  
 `http://your-host:30000/grafana/login`
 
-## Step 7. Check up installed services
+## Step 5. Check up installed services
 
 {{% notice note %}}
 To know cluster IP (your-host) execute `kubectl cluster-info`.
