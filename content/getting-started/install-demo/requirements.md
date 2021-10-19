@@ -54,6 +54,21 @@ For more examples and ideas, visit:
 ```
 {{% /spoiler %}}
 
+{{% notice note %}}
+Minikube can be installed as an alternative to **2. kubelet, kubeadm, kubectl** and **3. Kubernetes cluster**.
+Minikube runs kubernetes cluster inside container. 
+Minikube is easier to configure, but it can't expand cluster to several nodes.
+Instructions for installing minikube are given in the official kubernetes [guide](https://minikube.sigs.k8s.io/docs/start/)
+{{% /notice %}}
+
+{{% spoiler "How to create kubernetes cluster with minikube." %}}
+
+It is possible to specify kubernetes cluster version before running it.
+
+```shell
+minikube start --kubernetes-version v1.19.14
+```
+{{% /spoiler %}}
 ### 2. kubelet, kubeadm, kubectl v1.19.x - 1.20.x
 
 Kubernetes is an open source, automated management system for containerized applications. In our case, docker containers.
