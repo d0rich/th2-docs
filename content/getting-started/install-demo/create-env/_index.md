@@ -21,11 +21,21 @@ the [infra: Theory of Pins and Links](https://github.com/th2-net/th2-documentati
 {{% hl "#B5B8B1" %}}
 Go to the Infra Editor (`http://your-host:30000/editor/`). And create schema.
 
-![Create schema](../images/create-schema-1.png)
+![Create schema](images/create-schema-1.png)
 
-You need to create a name for this. 
+Name is needed for creating.
 
-![Name for schema](../images/create-schema-2.png)
+![Name for schema](images/create-schema-2.png)
 
 After submitting infra-mgr will create th2-<new_schema_name> namespace and install all needed components.
+
+Infra Editor edit infra schema repository linked to the cluster. That is why SSH key is needed.
+For each new schema it creates new branch identical to default branch.
+
+![New branch](images/new-branch.png)
+
+The main action is creating new namespace in kubernetes cluster for new schema.
+It will have all components defined in schema.
+
+![New namespace](images/new-namespace.png)
 {{% /hl %}}
