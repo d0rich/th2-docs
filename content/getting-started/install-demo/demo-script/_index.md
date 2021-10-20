@@ -181,7 +181,7 @@ check1                      NodePort    10.111.68.46     <none>        8080:3117
 - username, password: credentials for rabbitMQ
 - vHost, port, exchangeName: Kubernetes Dashboard - Config Maps - rabbit-mq-external-app-config.
 
-![rabbit config](../images/db-rabbitmq.png)
+![rabbit config](./images/db-rabbitmq.png)
 
 ```json
 {
@@ -201,7 +201,7 @@ exchange and routing key from script-entry-point to estore.
 You can find this queue in Kubernetes Dashboard in Config Maps tab - 
 script-entry-point-app-config.
 
-![mq config](../images/db-mq.png)
+![mq config](./images/db-mq.png)
 
 ```json
 {

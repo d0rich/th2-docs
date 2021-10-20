@@ -39,7 +39,14 @@ spec:
 
 {{% hl "#B5B8B1" %}}
 
-Publish your repository on github, or use another approach to get ssh access to th2-infra-schema. th2 will sync 
+Reinitialize repository to make downloaded branch main.
+
+```shell
+rm -rf .git
+git init
+```
+
+Publish your repository on github. th2 will sync 
 with th2-infra-schema using ssh.
 
 {{% /hl %}}
