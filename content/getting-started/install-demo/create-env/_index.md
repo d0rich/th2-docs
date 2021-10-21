@@ -29,12 +29,14 @@ Name is needed for creating.
 
 After submitting infra-mgr will create th2-<new_schema_name> namespace and install all needed components.
 
+![Infra Schema](images/infra-schema.png)
+
 Infra Editor edit infra schema repository linked to the cluster. That is why SSH key is needed.
 For each new schema it creates new branch identical to default branch.
 
 ![New branch](images/new-branch.png)
 
-The main action is creating new namespace in kubernetes cluster for new schema.
+Infra Editor will create new namespace th2-<new_schema_name> in kubernetes cluster for new schema.
 It will have all components defined in schema.
 
 ![New namespace](images/new-namespace.png)
