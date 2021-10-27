@@ -4,29 +4,13 @@ weight: 20
 chapter: false
 ---
 
-## Contents
+At the end of this step your environment schema will be like in diagram below.
 
-{{% hl "#FFDCB3" %}}
-
-Content was reorganized
-1. Create namespaces
-2. Data persistence
-3. Configure services
-4. Deploy th2 services
-5. Configure monitoring tools
-6. Deploy monitoring tools
-7. Check up
-{{% /hl %}}
-{{% hl "#E8988C" %}}
-- [Upgrade th2-infra](https://github.com/th2-net/th2-infra#upgrade-th2-infra)
-- [Re-adding persistence for components in th2 namespaces](https://github.com/th2-net/th2-infra#re-adding-persistence-for-components-in-th2-namespaces)
-{{% /hl %}}
+![](images/Demo-cluster-components-3-set-up-cluster.drawio.png)
 
 ## Step 1. Create namespaces
 
-{{% hl "#B5B8B1" %}}
 Create namespaces for monitoring and th2 serving tools
-{{% /hl %}}
 
 ```shell
 kubectl create namespace monitoring
@@ -153,40 +137,18 @@ service      data-rabbitmq-0                                                    
 ```
 {{% /spoiler %}}
 
-{{% hl "#E8988C" %}}
-If you would like to include th2 read components into your configuration, you also have to set up a dedicated PersistentVolume for th2-read log directory. You should add PersistentVolume mapped to /opt/components directory and then create PersistentVolumeClaim once a schema namespace installed. PV and PVC examples can be found here persistence/
-
-$ mkdir /opt/components  
-set node name in persistence/pv.yaml  
-create PV:  
-$ kubectl apply -f ./persistence/pv.yaml  
-create PVC:  
-$ kubectl apply -f ./persistence/pvc.yaml  
-Details for th2-read-log README.md  
-{{% /hl %}}
 
 ## Step 3. Configure th2
 
 Once all of the required software is installed on your test-box and operator-box and
 th2-infra repositories are ready you can start configuring the cluster.
 
-{{% hl "#E8988C" %}}
-Switch namespace to service:
-```shell
-kubectl config set-context --current --namespace=service
-```
-
-Switch namespace to monitoring
-```shell
-kubectl config set-context --current --namespace=monitoring
-```
-{{% /hl %}}
 
 {{% notice warning %}}
 Be sure you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
-{{% hl "#FFDCB3" %}}
+
 ### Define Grafana and Dashboard host names
 
 {{% notice note %}}
@@ -208,7 +170,6 @@ grafana:
       - <th2_host_name>
 ```
 
-{{% /hl %}}
 
 
 
@@ -307,15 +268,15 @@ Be sure you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
 ### Install helm-operator
-{{% hl "#B5B8B1" %}}
+
 Download helm-operator repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add fluxcd https://charts.fluxcd.io
 ```
-{{% hl "#B5B8B1" %}}
+
 Install helm-operator
-{{% /hl %}}
+
 ```shell
 helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./helm-operator.values.yaml
 ```
@@ -333,32 +294,14 @@ helm-operator   1/1     1            1           40d
 {{% /spoiler %}}
 
 ### Install NGINX Ingress Controller
-{{% hl "#B5B8B1" %}}
 Download NGINX Ingress Controller repository locally
-{{% /hl %}}
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 ```
-{{% hl "#B5B8B1" %}}
 Install NGINX Ingress Controller
-{{% /hl %}}
 ```shell
 helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f ./ingress.values.yaml
 ```
-
-{{% hl "#E8988C" %}}
-Check:
-```shell
-kubectl get pods
-```
-Output example:
-```shell
-NAME                                                READY   STATUS    RESTARTS   AGE
-........
-ingress-ingress-nginx-controller-7979dcdd85-mw42w   1/1     Running   0          30s
-........
-```
-{{% /hl %}}
 
 {{% spoiler "Check if nginx ingress controller is running." %}}
 Get helm operator deployment:
@@ -373,15 +316,15 @@ ingress-ingress-nginx-controller   1/1     1            1           41d
 {{% /spoiler %}}
 
 ### Install Prometheus
-{{% hl "#B5B8B1" %}}
+
 Download Prometheus repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
-{{% hl "#B5B8B1" %}}
+
 Install Prometheus
-{{% /hl %}}
+
 ```shell
 helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
 ```
@@ -399,15 +342,15 @@ prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0      
 {{% /spoiler %}}
 
 ### Install th2-infra components in the service namespace
-{{% hl "#B5B8B1" %}}
+
 Download th2 repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add th2 https://th2-net.github.io
 ```
-{{% hl "#B5B8B1" %}}
+
 Install th2
-{{% /hl %}}
+
 
 {{% notice note %}}
 Replace with th2-infra release version you need, please follow to https://github.com/th2-net/th2-infra/releases
@@ -416,21 +359,16 @@ Replace with th2-infra release version you need, please follow to https://github
 helm install -n service --version=<version> th2-infra th2/th2 -f ./service.values.yaml -f ./secrets.yaml
 ```
 
-{{% hl "#E8988C" %}}
-Wait for all pods in service namespace are up and running, once completed proceed with [schema configuration](https://github.com/th2-net/th2-infra-schema-demo/blob/master/README.md) to deploy th2 namespaces.
-{{% /hl %}}
-
 ### Install Kubernetes Dashboard
 
-{{% hl "#B5B8B1" %}}
 Download [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 ```
-{{% hl "#B5B8B1" %}}
+
 Install Kubernetes Dashboard
-{{% /hl %}}
+
 ```shell
 helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -f ./dashboard.values.yaml
 ```
@@ -448,15 +386,15 @@ dashboard-kubernetes-dashboard-567678889f-2snh7   1/1     Running   0          4
 {{% /spoiler %}}
 
 ### Install Grafana
-{{% hl "#B5B8B1" %}}
+
 Download Grafana repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
-{{% hl "#B5B8B1" %}}
+
 Install Grafana
-{{% /hl %}}
+
 ```shell
 helm install --version=0.40.1 loki -n monitoring grafana/loki-stack -f ./loki.values.yaml
 ```
@@ -512,10 +450,6 @@ prometheus-prometheus-prometheus-oper-prometheus-0       3/3     Running   1    
 ........
 ```
 #### Access from browser
-
-{{% hl "#E8988C" %}}
-Add loki Datasource as http://loki:3100 and import Dashboard from components-logs.json and RabbitMQ Overview from here: https://grafana.com/grafana/dashboards/10991
-{{% /hl %}}
 
 Check access to Grafana (default user/password: admin/prom-operator. Must be changed):  
 `http://your-host:30000/grafana/login`
