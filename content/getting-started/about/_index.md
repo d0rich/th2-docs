@@ -9,6 +9,8 @@ chapter: true
 
 th2 is the main platform leveraged by the Exactpro team. th2 has already been successfully deployed in a number of use cases. Its first adopter – Airbus' subsidiary Skytra – harnessed the technology for its derivatives trading software; and its most recent implementation was for ML-driven testing of Quod Financial’s technology.
 
+![About 5](images/about5.jpg)
+
 # What is th2?
 
 th2 is a Kubernetes-driven microservices solution that allows implementing a large variety of automated testing techniques and efficiently combining them to deal with very complex test cases and scenarios. It operates by leveraging a technology stack with an open interface, allowing users to adopt digital technology such as the cloud and distributed ledger technology (DLT). It can integrate with a wide range of existing test tools, frameworks, and network protocols to deliver efficient machine-driven end-to-end test libraries with comprehensive coverage of your system.
@@ -23,9 +25,16 @@ We work closely with client teams starting from the initial analysis and design 
 
 th2 - an attempt to bridge the gap between software development and software testing tools. th2 widely uses many cutting-edge technologies, the core of the platform is available in [open source](https://github.com/th2-net).
 
+![About 1](images/about1.jpg)
+![About 3](images/about3.jpg)
+
 th2 offers stock exchanges, clearing houses, central securities depositories (CSDs), and other financial infrastructures a comprehensive end-to-end technology agnostic AI-driven test automation solution in functional and non-functional testing. It aims to help regulated capital markets participants stay compliant and resilient to disruption, while focusing on innovation and having the freedom to embrace emerging technologies most relevant to their clients’ needs. Built with these goals in mind, th2 brings unprecedented flexibility, breadth and depth of software testing to the financial industry.
 
+![About 4](images/about4.jpg)
+
 th2 is a scalable and Resilient way to model, generate, execute and interpret arbitrarily many diverse tests and their permutations against any number of environment configurations, as well as to simulate thousands and millions of messages per seconds, observe and collect traffic and events from various endpoints and store them for human and machine analysis.
+
+![About 2](images/about2.jpg)
 
 # th2 benefits
 - The capacity to execute more functional tests under load to improve test coverage, system quality and resilience
@@ -40,5 +49,4 @@ th2 is a scalable and Resilient way to model, generate, execute and interpret ar
 - Performs model-based testing and analyzes the behavior of systems under test
 - Integrates with a variety of widely adopted test tools and frameworks via its open interface, using protocols, API, UI, DLT and cloud endpoints
 
-
-
+![About 6](images/about6.PNG)
