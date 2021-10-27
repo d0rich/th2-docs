@@ -9,8 +9,6 @@ chapter: true
 
 th2 is the main platform leveraged by the Exactpro team. th2 has already been successfully deployed in a number of use cases. Its first adopter – Airbus' subsidiary Skytra – harnessed the technology for its derivatives trading software; and its most recent implementation was for ML-driven testing of Quod Financial’s technology.
 
-![About 5](images/about5.jpg)
-
 # What is th2?
 
 th2 is a Kubernetes-driven microservices solution that allows implementing a large variety of automated testing techniques and efficiently combining them to deal with very complex test cases and scenarios. It operates by leveraging a technology stack with an open interface, allowing users to adopt digital technology such as the cloud and distributed ledger technology (DLT). It can integrate with a wide range of existing test tools, frameworks, and network protocols to deliver efficient machine-driven end-to-end test libraries with comprehensive coverage of your system.
