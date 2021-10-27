@@ -3,11 +3,12 @@ title: Install required software
 weight: 5
 chapter: false
 ---
-{{% hl "#B5B8B1" %}}
-The entire page is new.
-{{% /hl %}}
 
 Install required software to the test-box and operator-box.
+
+During this step you will create next components for final schema.
+
+![](images/Demo-cluster-components-1-install-software.drawio.png)
 
 ## Test box (th2 node)
 

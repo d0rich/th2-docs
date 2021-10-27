@@ -27,7 +27,6 @@ git clone -b demo-ver-1.5.4-local --single-branch https://github.com/th2-net/th2
 
 ### Change rabbitMQ configmap
 
-{{% hl "#B5B8B1" %}}
 Simulator boxes create their own configs from configmaps in kubernetes cluster.
 
 Change `host` value in `rabbit-mq-external-app-config` configmap from to _localhost_ to 
@@ -37,7 +36,7 @@ Execute next command to know the cluster hostname:
 ```shell
 kubectl cluster-info
 ```
-{{% /hl %}}
+
 
 ```shell
 KUBE_EDITOR="nano" kubectl edit configmap -n <schema-namespace> rabbit-mq-external-app-config -o yaml

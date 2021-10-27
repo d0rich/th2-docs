@@ -4,8 +4,5 @@ weight: 5
 chapter: true
 ---
 
-
-
 # About th2
-
 

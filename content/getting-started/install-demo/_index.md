@@ -4,17 +4,17 @@ weight: 15
 chapter: true
 ---
 
-### Part 3
-
 # Install demo example
 
-{{< hl "#B5B8B1" >}}
-You will know how to install th2.
-{{< /hl >}}
+In this guide, you will know how to run th2 in a Kubernetes cluster and test a system as part of our demo example.
+
+The resulting environment setup is presented on the diagram below.
+
+![](images/Demo-cluster-components-full-schema.drawio.png) 
 
 ## Contents
 1. [Install required software](requirements)
-2. [Download th2](download-th2)
+2. [Download th2](dl-th2-reps)
 3. [Download th2 demo example](get-th2-demo)
 4. [Set up cluster](set-up-cluster)
 5. [Create th2 environment](create-env)

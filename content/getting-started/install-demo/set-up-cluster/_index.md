@@ -4,29 +4,13 @@ weight: 20
 chapter: false
 ---
 
-## Contents
+At the end of this step, your environment schema is expected to be like in the diagram below.
 
-{{% hl "#FFDCB3" %}}
-
-Content was reorganized
-1. Create namespaces
-2. Data persistence
-3. Configure services
-4. Deploy th2 services
-5. Configure monitoring tools
-6. Deploy monitoring tools
-7. Check up
-{{% /hl %}}
-{{% hl "#E8988C" %}}
-- [Upgrade th2-infra](https://github.com/th2-net/th2-infra#upgrade-th2-infra)
-- [Re-adding persistence for components in th2 namespaces](https://github.com/th2-net/th2-infra#re-adding-persistence-for-components-in-th2-namespaces)
-{{% /hl %}}
+![](images/Demo-cluster-components-3-set-up-cluster.drawio.png)
 
 ## Step 1. Create namespaces
 
-{{% hl "#B5B8B1" %}}
-Create namespaces for monitoring and th2 serving tools
-{{% /hl %}}
+Create namespaces for monitoring and th2 service tools.
 
 ```shell
 kubectl create namespace monitoring
@@ -59,7 +43,7 @@ service           Active   41d
 ## Step 2. Data persistence
 
 Data persistence is required for the following components: Grafana, Prometheus,
-Loki, RabbitMQ components and should be set up on this step.
+Loki, RabbitMQ - and should be set up at this step.
 
 {{% notice note %}}
 Examples below use HostPath type of
@@ -70,7 +54,7 @@ Please read the documentation to choose an appropriate PV type for your environm
 ### Create directories for data persistence
 
 {{% notice info %}}
-If you are using _minikube_, create directories inside it. For that connect to minikube container with
+If you are using _minikube_, create directories inside it. To do this, connect to the minikube container with
 `minikube ssh` and execute next command.
 {{% /notice %}}
 
@@ -114,7 +98,7 @@ spec:
 ### Create kubernetes entities for data persistence
 
 {{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
+Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
 Create PVs and PVCs:
@@ -153,44 +137,22 @@ service      data-rabbitmq-0                                                    
 ```
 {{% /spoiler %}}
 
-{{% hl "#E8988C" %}}
-If you would like to include th2 read components into your configuration, you also have to set up a dedicated PersistentVolume for th2-read log directory. You should add PersistentVolume mapped to /opt/components directory and then create PersistentVolumeClaim once a schema namespace installed. PV and PVC examples can be found here persistence/
-
-$ mkdir /opt/components  
-set node name in persistence/pv.yaml  
-create PV:  
-$ kubectl apply -f ./persistence/pv.yaml  
-create PVC:  
-$ kubectl apply -f ./persistence/pvc.yaml  
-Details for th2-read-log README.md  
-{{% /hl %}}
 
 ## Step 3. Configure th2
 
 Once all of the required software is installed on your test-box and operator-box and
-th2-infra repositories are ready you can start configuring the cluster.
+th2-infra repositories are ready, you can start configuring the cluster.
 
-{{% hl "#E8988C" %}}
-Switch namespace to service:
-```shell
-kubectl config set-context --current --namespace=service
-```
-
-Switch namespace to monitoring
-```shell
-kubectl config set-context --current --namespace=monitoring
-```
-{{% /hl %}}
 
 {{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
+Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
-{{% hl "#FFDCB3" %}}
+
 ### Define Grafana and Dashboard host names
 
 {{% notice note %}}
-Host name must be resolved from QA boxes
+Host name must be resolved from QA boxes.
 {{% /notice %}}
 
 Define Dashboard host name in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
@@ -208,13 +170,12 @@ grafana:
       - <th2_host_name>
 ```
 
-{{% /hl %}}
 
 
 
 ### Access for infra-mgr th2 schema git repository:
 
-`Ssh` access with write permissions is required by th2-infra-mgr component
+`Ssh` access with write permissions is required by th2-infra-mgr component.
 
 {{% notice warning %}}
 Be sure you are located in the `th2-infra/example-values` directory.
@@ -254,13 +215,13 @@ cassandra:
 
 ### Define th2 ingress hostname
 
-Add _ingress.hostname_ value if required into
-`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml))
-otherwise th2 http services will be available on node IP address
+If required, add the _ingress.hostname_ value into the
+`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
+Otherwise, th2 http services will be available on node IP address.
 
 ### Create secret with th2 credentials
 
-Create `secrets.yaml` in `th2-infra` folder.
+Create `secrets.yaml` in the `th2-infra` folder.
 
 {{% notice warning %}}
 Do not commit `secrets.yaml` into git.
@@ -268,26 +229,26 @@ Do not commit `secrets.yaml` into git.
 
 Example:
 ```yaml
-# reguired only for images from a private registry, will be attached as the first PullSecret to deployments
+# required only for images from a private registry, will be attached as the first PullSecret to deployments
 #productRegistry:
 #  username: user
 #  password: password
 #  name: private-registry-1.example.com # core components registry
 
-# reguired only for images from a private registry, will be attached as the second PullSecret to deployments
+# required only for images from a private registry, will be attached as the second PullSecret to deployments
 #solutionRegistry:
 #  username: user
 #  password: password
 #  name: private-registry-2.example.com # components registry
 
-# reguired only for images from a private registry, will be attached as the third PullSecret to deployments
+# required only for images from a private registry, will be attached as the third PullSecret to deployments
 #proprietaryRegistry:
 #  username: user
 #  password: password
 #  name: private-registry-3.example.com # components registry
 
 cassandra:
-# set credentials for existing Cassandra cluster
+# set credentials for the existing Cassandra cluster
   dbUser:
     user: <user-name>
     password: <password>
@@ -303,19 +264,19 @@ rabbitmq:
 ## Step 4. Deploy th2
 
 {{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
+Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
 ### Install helm-operator
-{{% hl "#B5B8B1" %}}
+
 Download helm-operator repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add fluxcd https://charts.fluxcd.io
 ```
-{{% hl "#B5B8B1" %}}
+
 Install helm-operator
-{{% /hl %}}
+
 ```shell
 helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./helm-operator.values.yaml
 ```
@@ -333,32 +294,14 @@ helm-operator   1/1     1            1           40d
 {{% /spoiler %}}
 
 ### Install NGINX Ingress Controller
-{{% hl "#B5B8B1" %}}
 Download NGINX Ingress Controller repository locally
-{{% /hl %}}
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 ```
-{{% hl "#B5B8B1" %}}
 Install NGINX Ingress Controller
-{{% /hl %}}
 ```shell
 helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f ./ingress.values.yaml
 ```
-
-{{% hl "#E8988C" %}}
-Check:
-```shell
-kubectl get pods
-```
-Output example:
-```shell
-NAME                                                READY   STATUS    RESTARTS   AGE
-........
-ingress-ingress-nginx-controller-7979dcdd85-mw42w   1/1     Running   0          30s
-........
-```
-{{% /hl %}}
 
 {{% spoiler "Check if nginx ingress controller is running." %}}
 Get helm operator deployment:
@@ -373,15 +316,15 @@ ingress-ingress-nginx-controller   1/1     1            1           41d
 {{% /spoiler %}}
 
 ### Install Prometheus
-{{% hl "#B5B8B1" %}}
+
 Download Prometheus repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
-{{% hl "#B5B8B1" %}}
+
 Install Prometheus
-{{% /hl %}}
+
 ```shell
 helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
 ```
@@ -399,38 +342,33 @@ prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0      
 {{% /spoiler %}}
 
 ### Install th2-infra components in the service namespace
-{{% hl "#B5B8B1" %}}
+
 Download th2 repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add th2 https://th2-net.github.io
 ```
-{{% hl "#B5B8B1" %}}
+
 Install th2
-{{% /hl %}}
+
 
 {{% notice note %}}
-Replace with th2-infra release version you need, please follow to https://github.com/th2-net/th2-infra/releases
+Replace with the th2-infra release version you need, please follow https://github.com/th2-net/th2-infra/releases
 {{% /notice %}}
 ```shell
 helm install -n service --version=<version> th2-infra th2/th2 -f ./service.values.yaml -f ./secrets.yaml
 ```
 
-{{% hl "#E8988C" %}}
-Wait for all pods in service namespace are up and running, once completed proceed with [schema configuration](https://github.com/th2-net/th2-infra-schema-demo/blob/master/README.md) to deploy th2 namespaces.
-{{% /hl %}}
-
 ### Install Kubernetes Dashboard
 
-{{% hl "#B5B8B1" %}}
 Download [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 ```
-{{% hl "#B5B8B1" %}}
+
 Install Kubernetes Dashboard
-{{% /hl %}}
+
 ```shell
 helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -f ./dashboard.values.yaml
 ```
@@ -448,15 +386,15 @@ dashboard-kubernetes-dashboard-567678889f-2snh7   1/1     Running   0          4
 {{% /spoiler %}}
 
 ### Install Grafana
-{{% hl "#B5B8B1" %}}
+
 Download Grafana repository locally
-{{% /hl %}}
+
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
-{{% hl "#B5B8B1" %}}
+
 Install Grafana
-{{% /hl %}}
+
 ```shell
 helm install --version=0.40.1 loki -n monitoring grafana/loki-stack -f ./loki.values.yaml
 ```
@@ -513,17 +451,13 @@ prometheus-prometheus-prometheus-oper-prometheus-0       3/3     Running   1    
 ```
 #### Access from browser
 
-{{% hl "#E8988C" %}}
-Add loki Datasource as http://loki:3100 and import Dashboard from components-logs.json and RabbitMQ Overview from here: https://grafana.com/grafana/dashboards/10991
-{{% /hl %}}
-
-Check access to Grafana (default user/password: admin/prom-operator. Must be changed):  
-`http://your-host:30000/grafana/login`
+Check access to Grafana (the default `user/password: admin/prom-operator` must be changed):  
+`http://your-host:30000/grafana/login`.
 
 ## Step 5. Check up installed services
 
 {{% notice note %}}
-To know cluster IP (your-host) execute `kubectl cluster-info`.
+To get the cluster IP (your-host), execute the `kubectl cluster-info` command.
 {{% /notice %}}
 
 - Kubernetes dashboard `http://your-host:30000/dashboard/`
