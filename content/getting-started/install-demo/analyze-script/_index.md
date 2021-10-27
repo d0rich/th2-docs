@@ -80,20 +80,13 @@ In the **step 2** _script_ sends instructions for checking response to the _chec
 
 To the end of the **step 2** response be successfully checked by sent instructions is expected.
 
-#### Actual work
+#### Generated events
 
-First image contains events within steps 1 and 2 from th2 reports.
+Next image contains events within steps 1 and 2 from th2 reports.
 
-Second image is the modified flow diagram with marks of creating events.
+Moments of creating these events are demonstrated in "Actual work" section.
 
 ![](images/steps-1-2-report.png)
-
-_"Received 'ExecutionReport' response message"_ in **step 1** is an expected output.
-
-Green _"Check messages"_ in **step 2** is an expected output.
-
-![](images/Demo_script_flow-Step1-2.drawio.png)
-
 
 There is a possibility to check messages details. It can be very useful.  
 For example, details of  _ExecutionReport_ from **step 1**.
@@ -103,6 +96,26 @@ Fields _Price_, _OrderQty_ (Size), _Text_ (Comment) can be found here.
 
 _Text_ contains information that this report is about placing order.
 
+#### Actual work in **Step 1**
+
+1. Trader "DEMO-CONN1" sends request to create passive Order.
+2. Trader "DEMO-CONN1" receives Execution Report. The order stands on book in status NEW.
+
+_"Received 'ExecutionReport' response message"_ is an expected output in **step 1**.
+
+
+| Step 1.1 | Step 1.2 | 
+|---|---|
+| ![]( images/Demo_script_steps-step1-1.drawio.png) | ![]( images/Demo_script_steps-step1-2.drawio.png) |  
+
+#### Actual work in **Step 2**
+
+1. _Script_ sends instructions for response check to _check1_.
+2. _Check1_ analyses response and generates event as the result.
+
+Green _"Check messages"_ is an expected output in **step 2**.
+
+![](images/Demo_script_steps-step2.drawio.png)
 
 ### STEPS 3, 4
 
@@ -119,19 +132,32 @@ In the **step 4** _script_ sends instructions for checking response to the _chec
 
 To the end of the **step 4** response be successfully checked by sent instructions is expected.
 
-#### Actual work
+#### Generated events
 
-First image contains events within steps 3 and 4 from th2 reports.
-
-Second image is the modified flow diagram with marks of creating events.
+Next image contains events within steps 3 and 4 from th2 reports.
 
 ![](images/steps-3-4-report.png)
 
-_"Received 'ExecutionReport' response message"_ in **step 3** is an expected output.
+#### Actual work in **Step 3**
 
-Green _"Check messages"_ in **step 4** is an expected output.
+1. Trader "DEMO-CONN1" sends request to create passive Order with price lower than first order.
+2. Trader "DEMO-CONN1" receives Execution Report. The order stands on book in status NEW.
 
-![](images/Demo_script_flow-Step3-4.drawio.png)
+_"Received 'ExecutionReport' response message"_ is an expected output in **step 3**.
+
+
+| Step 3.1 | Step 3.2 | 
+|---|---|
+| ![]( images/Demo_script_steps-step1-1.drawio.png) | ![]( images/Demo_script_steps-step1-2.drawio.png) |  
+
+#### Actual work in **Step 4**
+
+1. _Script_ sends instructions for response check to _check1_.
+2. _Check1_ analyses response and generates event as the result.
+
+Green _"Check messages"_ is an expected output in **step 4**.
+
+![](images/Demo_script_steps-step2.drawio.png)
 
 ### STEPS 5, 6, 7
 
@@ -167,15 +193,41 @@ _DEMO-CONN2_ should receive 3 messages:
 To the end of the **step 7** response be successfully checked
 **3** messages by sent instructions is expected.
 
-#### Actual work
+#### Generated events
 
-First image contains events within steps 5, 6 and 7 from th2 reports.
-
-Second image is the modified flow diagram with marks of creating events.
+Next image contains events within steps 5, 6 and 7 from th2 reports.
 
 ![](images/steps-5-6-7-report.png)
 
-![](images/Demo_script_flow-Step5-6-7.drawio.png)
+#### Actual work in **Step 5** 
+
+1. Trader "DEMO-CONN2" sends request to create aggressive IOC Order.
+2. Trader "DEMO-CONN1" receives Execution Reports with ExecType=F: first at Order2 and second on Order1.
+3. Trader "DEMO-CONN2" receives Execution Reports: first trade with Order2, next with Order1 and then cancellation.
+
+_"Received 'ExecutionReport' response message"_ is an expected output in **step 5**.
+
+| Step 5.1 | Step 5.2/5.3 | 
+|---|---|
+| ![]( images/Demo_script_steps-step1-1.drawio.png) | ![]( images/Demo_script_steps-step1-2.drawio.png) |  
+
+#### Actual work in **Step 6**
+
+1. _Script_ sends instructions for response for trader "DEMO-CONN1" check to _check1_.
+2. _Check1_ analyses response and generates event as the result.
+
+Green _"Check messages"_ is an expected output in **step 6**.
+
+![](images/Demo_script_steps-step2.drawio.png)
+
+#### Actual work in **Step 7**
+
+1. _Script_ sends instructions for response for trader "DEMO-CONN2" check to _check1_.
+2. _Check1_ analyses response and generates event as the result.
+
+Green _"Check messages"_ is an expected output in **step 7**.
+
+![](images/Demo_script_steps-step7.drawio.png)
 
 ## Searching exceptions
 th2 is the **test** tool. So it should be able to catch exceptions. 
