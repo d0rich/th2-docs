@@ -6,9 +6,9 @@ chapter: true
 
 # Install demo example
 
-During this guide you will know how to run th2 in kubernetes cluster and test system with demo example.
+In this guide, you will know how to run th2 in a Kubernetes cluster and test a system as part of our demo example.
 
-Diagram of the final environment presented below.
+The resulting environment setup is presented on the diagram below.
 
 ![](images/Demo-cluster-components-full-schema.drawio.png) 
 
