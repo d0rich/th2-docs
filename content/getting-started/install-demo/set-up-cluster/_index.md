@@ -4,13 +4,13 @@ weight: 20
 chapter: false
 ---
 
-At the end of this step your environment schema will be like in diagram below.
+At the end of this step, your environment schema is expected to be like in the diagram below.
 
 ![](images/Demo-cluster-components-3-set-up-cluster.drawio.png)
 
 ## Step 1. Create namespaces
 
-Create namespaces for monitoring and th2 serving tools
+Create namespaces for monitoring and th2 service tools.
 
 ```shell
 kubectl create namespace monitoring
@@ -43,7 +43,7 @@ service           Active   41d
 ## Step 2. Data persistence
 
 Data persistence is required for the following components: Grafana, Prometheus,
-Loki, RabbitMQ components and should be set up on this step.
+Loki, RabbitMQ - and should be set up at this step.
 
 {{% notice note %}}
 Examples below use HostPath type of
@@ -54,7 +54,7 @@ Please read the documentation to choose an appropriate PV type for your environm
 ### Create directories for data persistence
 
 {{% notice info %}}
-If you are using _minikube_, create directories inside it. For that connect to minikube container with
+If you are using _minikube_, create directories inside it. To do this, connect to the minikube container with
 `minikube ssh` and execute next command.
 {{% /notice %}}
 
@@ -98,7 +98,7 @@ spec:
 ### Create kubernetes entities for data persistence
 
 {{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
+Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
 Create PVs and PVCs:
@@ -141,18 +141,18 @@ service      data-rabbitmq-0                                                    
 ## Step 3. Configure th2
 
 Once all of the required software is installed on your test-box and operator-box and
-th2-infra repositories are ready you can start configuring the cluster.
+th2-infra repositories are ready, you can start configuring the cluster.
 
 
 {{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
+Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
 
 ### Define Grafana and Dashboard host names
 
 {{% notice note %}}
-Host name must be resolved from QA boxes
+Host name must be resolved from QA boxes.
 {{% /notice %}}
 
 Define Dashboard host name in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
@@ -175,7 +175,7 @@ grafana:
 
 ### Access for infra-mgr th2 schema git repository:
 
-`Ssh` access with write permissions is required by th2-infra-mgr component
+`Ssh` access with write permissions is required by th2-infra-mgr component.
 
 {{% notice warning %}}
 Be sure you are located in the `th2-infra/example-values` directory.
@@ -215,13 +215,13 @@ cassandra:
 
 ### Define th2 ingress hostname
 
-Add _ingress.hostname_ value if required into
-`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml))
-otherwise th2 http services will be available on node IP address
+If required, add the _ingress.hostname_ value into the
+`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
+Otherwise, th2 http services will be available on node IP address.
 
 ### Create secret with th2 credentials
 
-Create `secrets.yaml` in `th2-infra` folder.
+Create `secrets.yaml` in the `th2-infra` folder.
 
 {{% notice warning %}}
 Do not commit `secrets.yaml` into git.
@@ -229,26 +229,26 @@ Do not commit `secrets.yaml` into git.
 
 Example:
 ```yaml
-# reguired only for images from a private registry, will be attached as the first PullSecret to deployments
+# required only for images from a private registry, will be attached as the first PullSecret to deployments
 #productRegistry:
 #  username: user
 #  password: password
 #  name: private-registry-1.example.com # core components registry
 
-# reguired only for images from a private registry, will be attached as the second PullSecret to deployments
+# required only for images from a private registry, will be attached as the second PullSecret to deployments
 #solutionRegistry:
 #  username: user
 #  password: password
 #  name: private-registry-2.example.com # components registry
 
-# reguired only for images from a private registry, will be attached as the third PullSecret to deployments
+# required only for images from a private registry, will be attached as the third PullSecret to deployments
 #proprietaryRegistry:
 #  username: user
 #  password: password
 #  name: private-registry-3.example.com # components registry
 
 cassandra:
-# set credentials for existing Cassandra cluster
+# set credentials for the existing Cassandra cluster
   dbUser:
     user: <user-name>
     password: <password>
@@ -264,7 +264,7 @@ rabbitmq:
 ## Step 4. Deploy th2
 
 {{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
+Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
 ### Install helm-operator
@@ -353,7 +353,7 @@ Install th2
 
 
 {{% notice note %}}
-Replace with th2-infra release version you need, please follow to https://github.com/th2-net/th2-infra/releases
+Replace with the th2-infra release version you need, please follow https://github.com/th2-net/th2-infra/releases
 {{% /notice %}}
 ```shell
 helm install -n service --version=<version> th2-infra th2/th2 -f ./service.values.yaml -f ./secrets.yaml
@@ -451,13 +451,13 @@ prometheus-prometheus-prometheus-oper-prometheus-0       3/3     Running   1    
 ```
 #### Access from browser
 
-Check access to Grafana (default user/password: admin/prom-operator. Must be changed):  
-`http://your-host:30000/grafana/login`
+Check access to Grafana (the default `user/password: admin/prom-operator` must be changed):  
+`http://your-host:30000/grafana/login`.
 
 ## Step 5. Check up installed services
 
 {{% notice note %}}
-To know cluster IP (your-host) execute `kubectl cluster-info`.
+To get the cluster IP (your-host), execute the `kubectl cluster-info` command.
 {{% /notice %}}
 
 - Kubernetes dashboard `http://your-host:30000/dashboard/`
