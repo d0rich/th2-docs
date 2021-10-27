@@ -6,6 +6,6 @@ chapter: true
 
 
 
-# Something about what is th2 and what it does
+# About th2
 
 
