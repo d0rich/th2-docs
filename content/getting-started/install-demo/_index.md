@@ -14,7 +14,7 @@ Diagram of the final environment presented below.
 
 ## Contents
 1. [Install required software](requirements)
-2. [Download th2](download-th2)
+2. [Download th2](dl-th2-reps)
 3. [Download th2 demo example](get-th2-demo)
 4. [Set up cluster](set-up-cluster)
 5. [Create th2 environment](create-env)
