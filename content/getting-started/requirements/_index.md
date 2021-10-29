@@ -15,6 +15,6 @@ Please follow the guidlines below when choosing hardware for your th2 solution:
 th2 env = Infra + Core + Monitoring + Building blocks + Custom + Data Storage(Cassandra)
 
 There are tables with different hardware requirements below. You can choose options for your node
-and total requirements will be calculated in final table.
+and total minimal requirements will be calculated in final table.
 
 {{% requirements-calculator %}}
