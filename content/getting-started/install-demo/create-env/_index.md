@@ -13,7 +13,7 @@ This component is **"Working infra schema"**.
 {{% notice warning %}}
 Main instructions will work only with repositories published in the main way
 described in [Publish th2 infra schema](./publish-schema) point.
-{{% notice %}}
+{{% /notice %}}
 
 Find [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master)
 repository copied by you. 
@@ -62,7 +62,7 @@ It will have all components defined in schema.
 {{% notice warning %}}
 Alternative instructions will work only with repositories published in the alternative way
 described in [Publish th2 infra schema](./publish-schema) point.
-{{% notice %}}
+{{% /notice %}}
 
 In th2, environment is called `infractructure schema` or just `schema`, it's created by the 
 dedicated [infra-mgr](https://github.com/th2-net/th2-infra-mgr) 

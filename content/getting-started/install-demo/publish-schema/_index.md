@@ -26,7 +26,7 @@ repository or use it as the template. It can be either **public** or **private**
 
 {{% notice info %}}
 th2 will sync with th2-infra-schema using ssh.
-{{% notice %}}
+{{% /notice %}}
 
 ## Alternative: publish infra schema to create environment with GUI
 
