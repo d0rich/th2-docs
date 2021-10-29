@@ -4,7 +4,7 @@ weight: 5
 chapter: true
 ---
 
-# Hardware Requirements
+# Hardware and Network Requirements
 
 1. Machines that meet kubeadm’s minimum requirements for the workers
 
