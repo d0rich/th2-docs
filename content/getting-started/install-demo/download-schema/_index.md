@@ -1,5 +1,5 @@
 ---
-title: Download th2 repositories
+title: Publish th2 infra schema
 weight: 10
 chapter: false
 ---
@@ -7,20 +7,28 @@ During this step you will create next components for final schema.
 
 ![](images/Demo-cluster-components-2-repositories.drawio.png)
 
-## th2 infra
-Clone [th2-infra](https://github.com/th2-net/th2-infra) repository.
-
-This repository contains configuration files for starting th2 inside kubernetes.
-
-```shell
-git clone https://github.com/th2-net/th2-infra.git
-```
-
 ## th2 infra schema
 
 **th2 infra schema** is repository with description of th2 components and links between them.
 
+Some prepared configurations of th2 are available in 
+the [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master)
+repository.
+
 See [Theory of pins and links](https://github.com/th2-net/th2-documentation/wiki/infra:-Theory-of-Pins-and-Links) for more information.
+
+## Publish infra schema
+
+Fork [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master)
+repository or use it as the template. It can be either **public** or **private**.
+
+![](images/clone-th2-infra-schema-demo.png)
+
+{{% notice info %}}
+th2 will sync with th2-infra-schema using ssh.
+{{% notice %}}
+
+## Alternative: publish infra schema to create environment with GUI
 
 ### Download th2 infra schema
 
@@ -43,7 +51,7 @@ kind: SettingsFile
 metadata:
   name: infra-mgr-config
 spec:
-  k8s-propagation: off # replace with sync
+  k8s-propagation: sync
 ```
 
 ### Publish git repository
@@ -55,8 +63,7 @@ rm -rf .git
 git init
 ```
 
-Publish your repository on github. th2 will sync
-with th2-infra-schema using ssh.
+Publish your repository on github. It can be either **public** or **private**.
 
 ## Result
 
