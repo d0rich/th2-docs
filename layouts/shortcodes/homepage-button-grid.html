@@ -1,0 +1,41 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<style>
+    .homepage-button-grid{
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+        justify-items: center;
+        max-width: 900px;
+    }
+    .homepage-button-grid button{
+        padding: 1rem 2rem;
+        width: 10rem;
+        white-space: pre-line;
+        height: 100%;
+    }
+    @media screen and (min-width: 1200px){
+        .homepage-button-grid button{
+            width: 15rem;
+        }
+    }
+    @media screen and (max-width: 800px){
+        .homepage-button-grid{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media screen and (max-width: 400px){
+        .homepage-button-grid{
+            grid-template-columns: repeat(1, 1fr);
+        }
+        .homepage-button-grid button{
+            width: 80vw;
+        }
+    }
+</style>
+<div class="homepage-button-grid">
+    <a href="./getting-started"><button>Getting started</button></a>
+    <a href="./getting-started/requirements"><button>System Requirements</button></a>
+    <a href="./getting-started/install-demo"><button>Install th2</button></a>
+    <a href="./readmes"><button>README's</button></a>
+</div>
