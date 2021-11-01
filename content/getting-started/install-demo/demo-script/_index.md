@@ -25,36 +25,6 @@ Clone [CSV reader](https://github.com/th2-net/th2-read-log) branch for demo scri
 git clone -b demo-ver-1.5.4-local --single-branch https://github.com/th2-net/th2-read-csv.git
 ```
 
-### Change rabbitMQ configmap
-
-Simulator boxes create their own configs from configmaps in kubernetes cluster.
-
-Change `host` value in `rabbit-mq-external-app-config` configmap from to _localhost_ to 
-kubernetes cluster hostname.
-
-Execute next command to know the cluster hostname:
-```shell
-kubectl cluster-info
-```
-
-
-```shell
-KUBE_EDITOR="nano" kubectl edit configmap -n <schema-namespace> rabbit-mq-external-app-config -o yaml
-```
-
-Configmap before:
-```json
-{
-	"rabbitMQ.json": "{\"host\":\"localhost\",\"port\":\"32000\",\"vHost\":\"th2-th2-demo\",\"username\":\"th2-user-th2-demo\",\"password\":\"${RABBITMQ_PASS}\",\"exchangeName\":\"th2-exchange\"}"
-}
-```
-Configmap after:
-```json
-{
-	"rabbitMQ.json": "{\"host\":\"192.168.49.2\",\"port\":\"32000\",\"vHost\":\"th2-th2-demo\",\"username\":\"th2-user-th2-demo\",\"password\":\"${RABBITMQ_PASS}\",\"exchangeName\":\"th2-exchange\"}"
-}
-```
-
 ### Run simulator boxes
 
 Run CSV reader:

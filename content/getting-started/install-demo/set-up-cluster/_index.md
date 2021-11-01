@@ -211,6 +211,14 @@ infraMgr:
   git:
     repository: git@github.com:th2-net/th2-infra-demo-configuration.git
 ```
+### Define rabbitMQ host name
+
+Set _externalRabbitMQHost.host_ value as the host name of your cluster in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
+
+```yaml
+externalRabbitMQHost:
+  host: 192.168.49.2
+```
 
 ### Define cassandra host name
 
