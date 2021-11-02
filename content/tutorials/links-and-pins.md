@@ -8,7 +8,9 @@ chapter: true
 
 ### Pins.
 
+Each box will have a number of connectors called pins. The pins are used by the box to send/receive messages or to execute gRPC commands. In the example below, the box has two pins. Each pin have a name (it is used in the links), a connection-type (MQ or gRPC) and attributes.
 
+Attributes describe what message stream goes through this particular pin. They are specific for each box and here, for instance, two pins – in and in_raw – are defined. They describe the raw and the parsed messages that comes into the box from the environment under test. Some attributes are optional while one of them is mandatory.
 
 ```shell
     - name: in
