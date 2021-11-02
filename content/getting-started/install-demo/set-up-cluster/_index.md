@@ -4,9 +4,8 @@ weight: 15
 chapter: false
 ---
 
-At the end of this step, your environment schema is expected to be like in the diagram below.
-
-![](images/Demo-cluster-components-3-set-up-cluster.drawio.png)
+During this step you will prepare kubernetes cluster and configuration maps for 
+installing th2.
 
 ## Step 1. Get th2 infra values
 Clone [th2-infra](https://github.com/th2-net/th2-infra) repository.

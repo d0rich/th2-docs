@@ -6,7 +6,12 @@ chapter: false
 
 Install required software to the test-box and operator-box.
 
-During this step you will create next components for final schema.
+During this step you will create next components for final schema:
+1. [Docker](#1-docker-ce-v19)
+2. [Kubernetes cluster](#3-kubernetes-cluster)
+3. Cassandra database cluster
+4. [GIT](#1-git)
+5. [Web browser](#4-chrome-75-or-newer)
 
 ![](images/Demo-cluster-components-1-install-software.drawio.png)
 
@@ -55,21 +60,6 @@ For more examples and ideas, visit:
 ```
 {{% /spoiler %}}
 
-{{% notice note %}}
-Minikube can be installed as an alternative to **2. kubelet, kubeadm, kubectl** and **3. Kubernetes cluster**.
-Minikube runs kubernetes cluster inside container. 
-Minikube is easier to configure, but it can't expand cluster to several nodes.
-Instructions for installing minikube are given in the official kubernetes [guide](https://minikube.sigs.k8s.io/docs/start/)
-{{% /notice %}}
-
-{{% spoiler "How to create kubernetes cluster with minikube." %}}
-
-It is possible to specify kubernetes cluster version before running it.
-
-```shell
-minikube start --kubernetes-version v1.19.14
-```
-{{% /spoiler %}}
 ### 2. kubelet, kubeadm, kubectl v1.19.x - 1.20.x
 
 Kubernetes is an open source, automated management system for containerized applications. In our case, docker containers.
@@ -115,6 +105,22 @@ kubeadm version: &version.Info{Major:"1", Minor:"20", GitVersion:"v1.20.9", GitC
 {{% /spoiler %}}
 
 ### 3. Kubernetes cluster
+
+{{% notice note %}}
+Minikube can be installed as an alternative to **2. kubelet, kubeadm, kubectl** and **3. Kubernetes cluster**.
+Minikube runs kubernetes cluster inside container.
+Minikube is easier to configure, but it can't expand cluster to several nodes.
+Instructions for installing minikube are given in the official kubernetes [guide](https://minikube.sigs.k8s.io/docs/start/)
+{{% /notice %}}
+
+{{% spoiler "How to create kubernetes cluster with minikube." %}}
+
+It is possible to specify kubernetes cluster version before running it.
+
+```shell
+minikube start --kubernetes-version v1.19.14
+```
+{{% /spoiler %}}
 
 The th2 modules will run on the kubernetes cluster. Use the official [guide](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/) to create a cluster.
 

@@ -6,7 +6,7 @@ chapter: false
 
 During this step you will add final component to the environment schema. 
 This component is **"Working infra schema"**.
-![](images/Demo-cluster-components-4-final.drawio.png)
+![](images/Demo-cluster-components-5-final.drawio.png)
 
 ## Create infra schema with GIT branches
 

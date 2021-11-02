@@ -4,6 +4,11 @@ weight: 20
 chapter: false
 ---
 
+During this step you will deploy th2 into your kubernetes cluster.
+At the end of this step your environment setup will be as shown below.
+
+![](images/Demo-cluster-components-4-install-th2.drawio.png)
+
 ## Deploy th2
 
 {{% notice warning %}}

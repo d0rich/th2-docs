@@ -5,7 +5,7 @@ chapter: false
 ---
 During this step you will create next components for final schema.
 
-![](images/Demo-cluster-components-2-repositories.drawio.png)
+![](images/Demo-cluster-components-2-infra-schema.drawio.png)
 
 ## th2 infra schema
 
