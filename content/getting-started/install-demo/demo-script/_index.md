@@ -77,9 +77,35 @@ python -m pip install -r requirements.txt
 Set up configs from directory configs (mq.json, rabbit.json, grpc.json) according to your components.
 
 {{% notice note %}}
-Words inside _${value}_ in JSON examples and in dashboard config maps are names of the values, that depends on your cluster.
+Words inside _<value>_ in JSON examples and in dashboard config maps are names of the values, that depends on your cluster.
 You must find it by the following instructions.
 {{% /notice %}}
+
+### mq.json
+
+Fill mq.json in folder config with RabbitMQ
+exchange and routing key from script-entry-point to estore.
+You can find this queue in Kubernetes Dashboard in Config Maps tab -
+script-entry-point-app-config.
+
+![mq config](./images/db-mq.png)
+
+```json
+{
+  "queues": {
+    "event-store-pin": {
+      "attributes": [
+        "event",
+        "publish"
+      ],
+      "exchange": "th2-exchange",
+      "filters": [],
+      "name": "key[th2-1-5-4:script-entry-point:estore-pin]",
+      "queue": "not_necessary"
+    }
+  }
+}
+```
 
 ### grpc.json
 
@@ -93,8 +119,8 @@ Fill host and port fields in grpc.json
       "service-class": "ActService",
       "endpoints": {
         "act": {
-          "host": "${NODE_IP}",
-          "port": "${ACT_PORT}"
+          "host": "<cluster-ip>",
+          "port": "<act-port>"
         }
       },
       "strategy": {
@@ -106,8 +132,8 @@ Fill host and port fields in grpc.json
       "service-class": "Check1Service",
       "endpoints": {
         "check1": {
-          "host": "${NODE_IP}",
-          "port": "${CHECK1_PORT}"
+          "host": "<cluster-ip>",
+          "port": "<check1-port>"
         }
       },
       "strategy": {
@@ -119,16 +145,19 @@ Fill host and port fields in grpc.json
 }
 ```
 
-_NODE_IP_ is IP address of a cluster node.
+You can find values for grpc.json in Kubernetes Dashboard in Config Maps tab -
+script-entry-point-app-config (same as for [mq.json](#mqjson)).
 
-You can find _CHECK1_PORT_ and _ACT_PORT_ by executing following command.  
-{{% notice info %}}
-Some ports are written in the following style: \<ClusterPort\>:\<NodePort\>/\<Protocol\>.  
-For configuration you will need NodePort of appropriate service.
-{{% /notice %}}
+
+{{% spoiler "Alternative way to find values" %}}
+Alternatively you can find _check1-port_ and _act-port_ by executing following command.
+
 ```shell
 kubectl get service -n <th2-schema-namespace> 
 ```
+
+Some ports are written in the following style: \<cluster-port\>:\<node-port\>/\<protocol\>.  
+For configuration you will need _node-port_ of appropriate service.
 
 Output example:
 ```shell
@@ -139,6 +168,8 @@ act-ui-backend              NodePort    10.107.95.164    <none>        8080:3135
 check1                      NodePort    10.111.68.46     <none>        8080:31179/TCP,9752:31099/TCP   19d
 ........
 ```
+
+{{% /spoiler %}}
 
 #### Example of **grpc.json**:
 ```json
@@ -176,11 +207,12 @@ check1                      NodePort    10.111.68.46     <none>        8080:3117
 
 ### rabbit.json
 
-- host: IP address of a cluster node
-- username, password: credentials for rabbitMQ
-- vHost, port, exchangeName: Kubernetes Dashboard - Config Maps - rabbit-mq-external-app-config.
+You can find values for rabbit.json by following path: 
+Kubernetes Dashboard / Config Maps / rabbit-mq-external-app-config
 
 ![rabbit config](./images/db-rabbitmq.png)
+
+**rabbit.json** example:
 
 ```json
 {
@@ -188,34 +220,8 @@ check1                      NodePort    10.111.68.46     <none>        8080:3117
   "vHost": "th2-1-5-4",
   "port": "32000",
   "username": "th2",
-  "password": "hkjsdbjfhbhbfk",
+  "password": "password",
   "exchangeName": "th2-exchange"
-}
-```
-
-### mq.json
-
-Fill mq.json in folder config with RabbitMQ 
-exchange and routing key from script-entry-point to estore. 
-You can find this queue in Kubernetes Dashboard in Config Maps tab - 
-script-entry-point-app-config.
-
-![mq config](./images/db-mq.png)
-
-```json
-{
-  "queues": {
-    "event-store-pin": {
-      "attributes": [
-        "event",
-        "publish"
-      ],
-      "exchange": "th2-exchange",
-      "filters": [],
-      "name": "key[th2-1-5-4:script-entry-point:estore-pin]",
-      "queue": "not_necessary"
-    }
-  }
 }
 ```
 
