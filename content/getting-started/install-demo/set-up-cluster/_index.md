@@ -145,7 +145,7 @@ service      data-rabbitmq-0                                                    
 ```
 {{% /spoiler %}}
 
-## Step 4. Configure th2
+## Step 4. Configure th2 infra values
 
 Once all of the required software is installed on your test-box and operator-box and
 th2-infra repositories are ready, you can start configuring the cluster.
@@ -155,8 +155,9 @@ th2-infra repositories are ready, you can start configuring the cluster.
 Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
+### dashboard.values.yaml
 
-### Define Grafana and Dashboard host names
+#### Define Dashboard host name
 
 {{% notice note %}}
 Host name must be resolved from QA boxes.
@@ -169,6 +170,9 @@ ingress:
   hosts:
     - <th2_host_name>
 ```
+
+### prometheus-operator.values.yaml
+#### Define Grafana host name
 Define Grafana host names in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 ```yaml
 grafana:
@@ -176,9 +180,6 @@ grafana:
     hosts:
       - <th2_host_name>
 ```
-
-
-
 
 ### Access for infra-mgr th2 schema git repository:
 
@@ -199,7 +200,9 @@ Create infra-mgr secret from the private key:
 kubectl -n service create secret generic infra-mgr --from-file=infra-mgr=./infra-mgr-rsa.key
 ```
 
-### Set the repository with schema configuration
+### service.values.yaml
+
+#### Set the repository with schema configuration
 
 Set _infraMgr.git.repository_ value in the
 `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml))
@@ -210,7 +213,7 @@ infraMgr:
   git:
     repository: git@github.com:th2-net/th2-infra-demo-configuration.git
 ```
-### Define rabbitMQ host name
+#### Define rabbitMQ host name
 
 Set _externalRabbitMQHost.host_ value as the host name of your cluster in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
 
@@ -219,7 +222,7 @@ externalRabbitMQHost:
   host: 192.168.49.2
 ```
 
-### Define cassandra host name
+#### Define cassandra host name
 
 Set _cassandra.host_ value for cassandra in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
 ```yaml
@@ -228,13 +231,15 @@ cassandra:
   host: <cassandra-host>
 ```
 
-### Define th2 ingress hostname
+#### Define th2 ingress hostname
 
 If required, add the _ingress.hostname_ value into the
 `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
 Otherwise, th2 http services will be available on node IP address.
 
-### Create secret with th2 credentials
+### secrets.yaml
+
+#### Create secret with th2 credentials
 
 Create `secrets.yaml` in the `th2-infra` folder.
 
