@@ -135,3 +135,10 @@ a:hover {
   color: var(--MENU-HOME-LINK-HOVERED-color);
 }
 
+table tr:nth-of-type(2n){
+    background-color: #f5f7f8;
+}
+
+table tr:hover{
+    background-color: var(--EXACTPRO-MAIN-TURQUOISE-20);
+}
