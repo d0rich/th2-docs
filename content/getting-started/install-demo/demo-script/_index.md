@@ -219,11 +219,16 @@ Kubernetes Dashboard / Config Maps / rabbit-mq-external-app-config
   "host": "10.44.16.110",
   "vHost": "th2-1-5-4",
   "port": "32000",
-  "username": "th2",
-  "password": "password",
+  "username": "th2-1-5-4",
+  "password": "${RABBITMQ_PASS}",
   "exchangeName": "th2-exchange"
 }
 ```
+
+{{% notice note %}}
+If this configuration doesn't work, try to change `username` 
+and `password` values like in `secrets.yaml`.
+{{% /notice %}}
 
 ## 5. Run demo script
 
