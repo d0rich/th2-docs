@@ -3,6 +3,9 @@ languageCode = "en-us"
 title = "th2 documentation"
 theme = "learn"
 
+[markup.goldmark.renderer]
+unsafe= true
+
 [params]
 landingPageURL = "https://d0rich.github.io/th2-docs/"
 titleSeparator = "|"
