@@ -17,15 +17,10 @@ Make sure that you are located in the `th2-infra/example-values` directory.
 
 ### Install helm-operator
 
-Download helm-operator repository locally
+Download and install helm-operator
 
 ```shell
 helm repo add fluxcd https://charts.fluxcd.io
-```
-
-Install helm-operator
-
-```shell
 helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./helm-operator.values.yaml
 ```
 
@@ -42,12 +37,9 @@ helm-operator   1/1     1            1           40d
 {{% /spoiler %}}
 
 ### Install NGINX Ingress Controller
-Download NGINX Ingress Controller repository locally
+Download and install NGINX Ingress Controller
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-```
-Install NGINX Ingress Controller
-```shell
 helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f ./ingress.values.yaml
 ```
 
@@ -65,15 +57,10 @@ ingress-ingress-nginx-controller   1/1     1            1           41d
 
 ### Install Prometheus
 
-Download Prometheus repository locally
+Download and install Prometheus repository locally
 
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-```
-
-Install Prometheus
-
-```shell
 helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
 ```
 
@@ -91,33 +78,24 @@ prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0      
 
 ### Install th2-infra components in the service namespace
 
-Download th2 repository locally
-
-```shell
-helm repo add th2 https://th2-net.github.io
-```
-
-Install th2
-
+Download and install th2-infra
 
 {{% notice note %}}
 Replace with the th2-infra release version you need, please follow https://github.com/th2-net/th2-infra/releases
 {{% /notice %}}
+
 ```shell
+helm repo add th2 https://th2-net.github.io
 helm install -n service --version=<version> th2-infra th2/th2 -f ./service.values.yaml -f ./secrets.yaml
 ```
 
 ### Install Kubernetes Dashboard
 
-Download [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) repository locally
+Download and install 
+[Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
 
 ```shell
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-```
-
-Install Kubernetes Dashboard
-
-```shell
 helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -f ./dashboard.values.yaml
 ```
 
@@ -135,15 +113,10 @@ dashboard-kubernetes-dashboard-567678889f-2snh7   1/1     Running   0          4
 
 ### Install Grafana
 
-Download Grafana repository locally
+Download and install Grafana
 
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
-```
-
-Install Grafana
-
-```shell
 helm install --version=0.40.1 loki -n monitoring grafana/loki-stack -f ./loki.values.yaml
 ```
 
@@ -204,8 +177,8 @@ Check access to Grafana (the default `user/password: admin/prom-operator` must b
 
 ## Check up installed services
 
-{{% notice note %}}
-To get the cluster IP (your-host), execute the `kubectl cluster-info` command.
+{{% notice info %}}
+To get the cluster host name (your-host), execute the `kubectl cluster-info` command.
 {{% /notice %}}
 
 - Kubernetes dashboard `http://your-host:30000/dashboard/`

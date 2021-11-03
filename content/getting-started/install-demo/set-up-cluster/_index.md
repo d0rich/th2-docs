@@ -174,6 +174,11 @@ ingress:
 ### prometheus-operator.values.yaml
 #### Define Grafana host name
 Define Grafana host names in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
+
+{{% notice info %}}
+To get the <th2_host_name>, execute the `kubectl cluster-info` command.
+{{% /notice %}}
+
 ```yaml
 grafana:
   ingress:
@@ -217,9 +222,13 @@ infraMgr:
 
 Set _externalRabbitMQHost.host_ value as the host name of your cluster in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
 
+{{% notice info %}}
+To get the <th2_host_name>, execute the `kubectl cluster-info` command.
+{{% /notice %}}
+
 ```yaml
 externalRabbitMQHost:
-  host: 192.168.49.2
+  host: <th2_host_name>
 ```
 
 #### Define cassandra host name
