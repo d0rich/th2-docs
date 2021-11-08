@@ -37,14 +37,14 @@ helm-operator   1/1     1            1           40d
 {{% /spoiler %}}
 
 ### Install NGINX Ingress Controller
-Download and install NGINX Ingress Controller
+Download and install NGINX Ingress Controller:
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f ./ingress.values.yaml
 ```
 
 {{% spoiler "Check if nginx ingress controller is running." %}}
-Get the helm operator deployment:
+Get the `helm operator` deployment:
 ```shell
 kubectl get deployment -n service -l app.kubernetes.io/name=ingress-nginx
 ```
@@ -57,7 +57,7 @@ ingress-ingress-nginx-controller   1/1     1            1           41d
 
 ### Install Prometheus
 
-Download and install Prometheus repository locally
+Download and install `Prometheus` repository locally:
 
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -65,7 +65,7 @@ helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube
 ```
 
 {{% spoiler "Check if dashboard is running." %}}
-Get the dashboard pod:
+Get the `dashboard` pod:
 ```shell
 kubectl get pod -n monitoring -l app=kube-prometheus-stack-operator
 ```
@@ -78,7 +78,7 @@ prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0      
 
 ### Install th2-infra components in the service namespace
 
-Download and install th2-infra
+Download and install `th2-infra`:
 
 {{% notice note %}}
 Replace with the `th2-infra` release version you need, please follow https://github.com/th2-net/th2-infra/releases
@@ -100,7 +100,7 @@ helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -
 ```
 
 {{% spoiler "Check if dashboard is running." %}}
-Get the dashboard pod:
+Get the `dashboard` pod:
 ```shell
 kubectl get pod -n monitoring -l app.kubernetes.io/name=kubernetes-dashboard
 ```
@@ -172,7 +172,7 @@ prometheus-prometheus-prometheus-oper-prometheus-0       3/3     Running   1    
 ```
 #### Access from browser
 
-Check access to Grafana (the default `user/password: admin/prom-operator` must be changed):  
+Check access to `Grafana` (the default `user/password: admin/prom-operator` must be changed):  
 `http://your-host:30000/grafana/login`.
 
 ## Check up installed services
