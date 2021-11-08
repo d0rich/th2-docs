@@ -25,7 +25,7 @@ helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./
 ```
 
 {{% spoiler "Check if helm operator is running." %}}
-Get helm operator deployment:
+Get the `helm operator` deployment:
 ```shell
 kubectl get deployment -n service -l app=helm-operator
 ```
@@ -37,7 +37,7 @@ helm-operator   1/1     1            1           40d
 {{% /spoiler %}}
 
 ### Install NGINX Ingress Controller
-Download and install NGINX Ingress Controller:
+Download and install `NGINX Ingress Controller`:
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f ./ingress.values.yaml
