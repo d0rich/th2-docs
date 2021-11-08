@@ -234,6 +234,16 @@ externalRabbitMQHost:
 #### Define cassandra host name
 
 Set _cassandra.host_ value for cassandra in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
+
+{{% notice info %}}
+You can find cassandra host name by executing `nodetool status`.
+{{% /notice %}}
+
+{{% notice warning %}}
+If you are using minikube, set _cassandra.host_ as `host.minikube.internal`.
+You can find more information [there](https://minikube.sigs.k8s.io/docs/handbook/host-access/).
+{{% /notice %}}
+
 ```yaml
 cassandra:
   internal: false

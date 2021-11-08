@@ -9,7 +9,7 @@ Install required software to the test-box and operator-box.
 During this step you will create next components for final schema:
 1. [Docker](#1-docker-ce-v19)
 2. [Kubernetes cluster](#3-kubernetes-cluster)
-3. Cassandra database cluster
+3. [Cassandra database cluster](#5-cassandra)
 4. [GIT](#1-git)
 5. [Web browser](#4-chrome-75-or-newer)
 
@@ -217,3 +217,13 @@ version.BuildInfo{Version:"v3.6.0", GitCommit:"7f2df6467771a75f5646b7f12afb40859
 Chrome browser is required to access the web interface kubernetes dashboard, grafana, etc.
 
 To install, follow the [instruction](https://www.google.com/chrome).
+
+### 5. Cassandra
+Cassandra database will store all information produced by th2.
+
+To install, follow the [instruction](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html).
+{{% notice warning %}}
+If you are using minikube change `rpc_address`
+in [Cassandra config file](https://cassandra.apache.org/doc/latest/cassandra/getting_started/configuring.html)
+from _localhost_ to _0.0.0.0_.
+{{% /notice %}}
