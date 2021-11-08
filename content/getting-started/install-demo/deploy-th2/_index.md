@@ -4,8 +4,8 @@ weight: 20
 chapter: false
 ---
 
-During this step you will deploy th2 into your kubernetes cluster.
-At the end of this step your environment setup will be as shown below.
+As a result of this step, you will deploy th2 into your Kubernetes cluster.
+Upon its completion, you are expected to have the environment setup as shown on the picture below.
 
 ![](images/Demo-cluster-components-4-install-th2.drawio.png)
 
@@ -17,7 +17,7 @@ Make sure that you are located in the `th2-infra/example-values` directory.
 
 ### Install helm-operator
 
-Download and install helm-operator
+Download and install `helm-operator`:
 
 ```shell
 helm repo add fluxcd https://charts.fluxcd.io
@@ -44,7 +44,7 @@ helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f 
 ```
 
 {{% spoiler "Check if nginx ingress controller is running." %}}
-Get helm operator deployment:
+Get the helm operator deployment:
 ```shell
 kubectl get deployment -n service -l app.kubernetes.io/name=ingress-nginx
 ```
@@ -65,7 +65,7 @@ helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube
 ```
 
 {{% spoiler "Check if dashboard is running." %}}
-Get dashboard pod:
+Get the dashboard pod:
 ```shell
 kubectl get pod -n monitoring -l app=kube-prometheus-stack-operator
 ```
@@ -81,7 +81,7 @@ prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0      
 Download and install th2-infra
 
 {{% notice note %}}
-Replace with the th2-infra release version you need, please follow https://github.com/th2-net/th2-infra/releases
+Replace with the `th2-infra` release version you need, please follow https://github.com/th2-net/th2-infra/releases
 {{% /notice %}}
 
 ```shell
@@ -92,7 +92,7 @@ helm install -n service --version=<version> th2-infra th2/th2 -f ./service.value
 ### Install Kubernetes Dashboard
 
 Download and install 
-[Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
+[Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/):
 
 ```shell
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
@@ -100,7 +100,7 @@ helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -
 ```
 
 {{% spoiler "Check if dashboard is running." %}}
-Get dashboard pod:
+Get the dashboard pod:
 ```shell
 kubectl get pod -n monitoring -l app.kubernetes.io/name=kubernetes-dashboard
 ```
@@ -113,7 +113,7 @@ dashboard-kubernetes-dashboard-567678889f-2snh7   1/1     Running   0          4
 
 ### Install Grafana
 
-Download and install Grafana
+Download and install `Grafana`:
 
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
@@ -121,7 +121,7 @@ helm install --version=0.40.1 loki -n monitoring grafana/loki-stack -f ./loki.va
 ```
 
 {{% spoiler "Check if dashboard is running." %}}
-Get dashboard pod:
+Get the `dashboard` pod:
 ```shell
 kubectl get pod -n monitoring -l app.kubernetes.io/name=grafana
 ```
@@ -151,7 +151,7 @@ ingress-ingress-nginx-controller-b556b7cb5-gfrhl   1/1     Running   0          
 rabbitmq-0                                         1/1     Running   0          21d
 ```
 
-Check if monitoring pods are running
+Check if monitoring pods are running:
 ```shell
 kubectl get pods -n monitoring
 ```
