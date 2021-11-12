@@ -1,16 +1,16 @@
 ---
-title: "infra: Theory of Pins and Links"
+title: "th2 infra: Pins and Links"
 weight: 15
 chapter: true
 ---
 
-# infra: Theory of Pins and Links
+# th2 infra: Pins and Links
 
 ### Pins
 
-Each box will have a number of connectors called pins. The pins are used by the box to send/receive messages or to execute gRPC commands. In the example below, the box has two pins. Each pin has a name (it is used in the links), a connection-type (MQ or gRPC) and attributes.
+Each th2 box will have a number of connectors called "pins". The pins are used by the box to send/receive messages or to execute gRPC commands. In the example config below, the box has two pins. Each pin has a name (it is also used in the configuration files describing corresponding links), a connection type (MQ or gRPC) and attributes.
 
-Attributes describe what message stream goes through this particular pin. They are specific for each box and here, for instance, two pins – `in` and `in_raw` – are defined. They describe the raw and the parsed messages that come into the box from the environment under test. Some attributes are optional while one of them is mandatory.
+Attributes describe the details of the message flow that goes through this particular pin. They are specific for each th2 box. In the example below, two pins – `in` and `in_raw` – are defined. They describe raw and parsed messages, correspondingly, that come into the th2 box from the environment under test. Some attributes are optional while one of them is mandatory.
 
 ```shell
     - name: in
