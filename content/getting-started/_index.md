@@ -7,6 +7,9 @@ chapter: true
 
 
 
-# Install th2 and find out functionalities
+# Getting started
 
-
+## Contents
+1. [About th2](about)
+2. [Technical requirements](requirements)
+3. [Install demo example](install-demo)
