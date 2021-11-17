@@ -1,5 +1,5 @@
 ---
-title: Technical Requirements
+title: Technical requirements
 weight: 10
 chapter: true
 ---
