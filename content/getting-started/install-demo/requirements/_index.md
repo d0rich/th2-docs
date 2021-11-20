@@ -11,7 +11,7 @@ As a result of this step, you will prepare your test and operator boxes and get 
 1. [Docker](#1-docker-ce-v19)
 2. [Kubernetes cluster](#3-kubernetes-cluster)
 3. [Cassandra database cluster](#5-cassandra)
-4. [GIT](#1-git)
+4. [Git](#1-git)
 5. [Web browser](#4-chrome-75-or-newer)
 
 ![](images/Demo-cluster-components-1-install-software.drawio.png)
