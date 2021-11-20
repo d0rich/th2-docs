@@ -3,48 +3,44 @@ title: Publish th2 infra schema
 weight: 10
 chapter: false
 ---
-During this step you will create next components for final schema.
+As a result of this step, you will create the following components for the final th2 schema:
 
 ![](images/Demo-cluster-components-2-infra-schema.drawio.png)
 
 ## th2 infra schema
 
-**th2 infra schema** is repository with description of th2 components and links between them.
+**th2 infra schema** is a repository containing the description of th2 components and links between them.
 
-Some prepared configurations of th2 are available in 
-the [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master)
-repository.
+Some example configurations of th2 are available in the [`th2-infra-schema-demo`](https://github.com/th2-net/th2-infra-schema-demo/tree/master) repository.
 
-See [Theory of pins and links](https://github.com/th2-net/th2-documentation/wiki/infra:-Theory-of-Pins-and-Links) for more information.
+See the [Theory of pins and links](https://github.com/th2-net/th2-documentation/wiki/infra:-Theory-of-Pins-and-Links) section of the th2 GitHub Wiki for more information.
 
 ## Publish infra schema
 
-Fork [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master)
-repository or use it as the template. It can be either **public** or **private**.
+Fork the [`th2-infra-schema-demo`](https://github.com/th2-net/th2-infra-schema-demo/tree/master) repository or use it as a template. It can be either **public** or **private**.
 
 ![](images/clone-th2-infra-schema-demo.png)
 
 {{% notice info %}}
-th2 will sync with th2-infra-schema using ssh.
+th2 will sync with `th2-infra-schema` using `ssh`.
 {{% /notice %}}
 
-## Alternative: publish infra schema to create environment with GUI
+## Alternative: Publish th2 infra schema to create a th2 environment via the GUI
 
 ### Download th2 infra schema
 
-Clone needed branch of [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master)
-(each branch of the git repository contains a version of th2-infra-schema).
-Now [ver-1.5.4-main_scenario](https://github.com/th2-net/th2-infra-schema-demo/tree/ver-1.5.4-main_scenario) is the newest.
+Clone the needed branch of [`th2-infra-schema-demo`](https://github.com/th2-net/th2-infra-schema-demo/tree/master) (each branch of the Git repository contains a version of `th2-infra-schema`). Currently, [`ver-1.5.4-main_scenario`](https://github.com/th2-net/th2-infra-schema-demo/tree/ver-1.5.4-main_scenario) is the newest.
 
 ```shell
 git clone -b <branch_name> --single-branch https://github.com/th2-net/th2-infra-schema-demo.git
 ```
 
-th2-infra-schema contains modules and connections configuration that is customizable.
+<!--- 
+th2-infra-schema or th2-infra-schema-demo???
+-->
+`th2-infra-schema` has a configuration of th2 modules and connections and is customizable. It should be placed into the th2 repository.
 
-th2-infra-schema should be placed in th2 repository.
-
-Open `infra-mgr-config.yml` file. Variable 'spec.k8s-propagation' should be configured 'sync' instead of 'off' to automatically apply all dependencies from th2-infra-schema.
+Open the `infra-mgr-config.yml` file. The `spec.k8s-propagation` variable should be set to 'sync' instead of 'off' in order to automatically inherit all dependencies from `th2-infra-schema`.
 
 ```yml
 kind: SettingsFile
@@ -54,19 +50,19 @@ spec:
   k8s-propagation: sync
 ```
 
-### Publish git repository
+### Publish the Git repository
 
-Reinitialize repository to make downloaded branch main.
+Reinitialize the repository to set the downloaded branch as `main`.
 
 ```shell
 rm -rf .git
 git init
 ```
 
-Publish your repository on github. It can be either **public** or **private**.
+Publish your repository on GitHub as either **public** or **private**.
 
 ## Result
 
-As the result you will have next part of the final schema.
+As a result, you will get the following part of the final th2 schema.
 
 ![](images/Demo-cluster-components-2-final.drawio.png)
