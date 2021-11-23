@@ -4,7 +4,7 @@ weight: 5
 chapter: false
 ---
 
-# Installing required software on the Test and Operator boxes
+# Demo Step 1: Installing required software on the Test and Operator boxes
 
 As a result of this step, you will prepare your test and operator boxes and get the following th2 components as part of the final th2 schema:
 
