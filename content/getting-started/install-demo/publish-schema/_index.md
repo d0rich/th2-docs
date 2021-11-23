@@ -25,7 +25,7 @@ Fork the [`th2-infra-schema-demo`](https://github.com/th2-net/th2-infra-schema-d
 ![](images/clone-th2-infra-schema-demo.png)
 
 {{% notice info %}}
-th2 will sync with this published `th2-infra-schema` using `ssh`. 
+th2 will sync with this published **th2-infra-schema** using `ssh`. 
 In the future, you will provide the link to this repository in a separate th2 configuration (will be discussed in one of the subsequent steps).
 {{% /notice %}}
 
