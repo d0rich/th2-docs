@@ -13,6 +13,3 @@ chapter: true
 1. [About th2](about)
 2. [Technical requirements](requirements)
 3. [Install demo example](install-demo)
-
-
-

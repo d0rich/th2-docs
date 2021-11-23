@@ -1,9 +1,54 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+<style>
+    #total-requirements{
+        margin-top: 2rem;
+        border: 3px solid var(--EXACTPRO-MAIN-TURQUOISE);
+        border-radius: .5rem;
+        padding: 1rem;
+    }
+</style>
 <div id="calc-app">
-    <h2>th2 components requirements</h2>
+    <div id="total-requirements">
+        <h2>Total hardware minimal requirements</h2>
+        <table style="margin-top: 2rem">
+            <thead>
+            <tr>
+                <th>Requirement for node</th>
+                <th>Infra & Core Components</th>
+                <th>Custom & Building blocks components</th>
+                <th>Apache Cassandra node</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Memory (GB)</td>
+                <td>${th2_core.memory / 1000} GB</td>
+                <td>${th2_custom.memory / 1000} GB</td>
+                <td>${cassandra.memory / 1000} GB</td>
+                <td>${(th2_core.memory + th2_custom.memory + cassandra.memory) / 1000} GB</td>
+            </tr>
+            <tr>
+                <td>CPU (cores)</td>
+                <td>${Math.ceil(th2_core.core / 1000)} cores</td>
+                <td>${Math.ceil(th2_custom.core / 1000)} cores</td>
+                <td>${Math.ceil(cassandra.core / 1000)} cores</td>
+                <td>${Math.ceil((th2_core.core + th2_custom.core + cassandra.core) / 1000)} cores</td>
+            </tr>
+            <tr>
+                <td>Disk space (GB)</td>
+                <td>${th2_core.space} GB</td>
+                <td>${th2_custom.space} GB</td>
+                <td>${cassandra.space} GB</td>
+                <td>${th2_core.space + th2_custom.space + cassandra.space} GB</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <h2>th2 components requirements</h2>
     <table>
         <thead>
         <tr>
@@ -11,7 +56,7 @@
             <th>Memory (MB)</th>
             <th>CPU (millicores)</th>
             <th>Comment</th>
-            <th>On node</th>
+            <th>Included to node</th>
         </tr>
         </thead>
         <tbody>
@@ -59,7 +104,7 @@
             <th>Custom &amp; Building blocks components</th>
             <th>Memory (MB)</th>
             <th>CPU (millicores)</th>
-            <th>In node</th>
+            <th>Included to node</th>
         </tr>
         </thead>
         <tbody>
@@ -68,7 +113,7 @@
             <td>200 MB</td>
             <td>200 m</td>
             <td>
-                <input type="number" v-model="numbers.conn">
+                <input type="number" min="0" v-model="numbers.conn">
             </td>
         </tr>
         <tr>
@@ -76,7 +121,7 @@
             <td>200 MB</td>
             <td>200 m</td>
             <td>
-                <input type="number" v-model="numbers.codec_act">
+                <input type="number" min="0" v-model="numbers.codec_act">
             </td>
         </tr>
         <tr>
@@ -84,7 +129,7 @@
             <td>200 MB</td>
             <td>200 m</td>
             <td>
-                <input type="number" v-model="numbers.java_read">
+                <input type="number" min="0" v-model="numbers.java_read">
             </td>
         </tr>
         <tr>
@@ -92,7 +137,7 @@
             <td>200 MB</td>
             <td>200 m</td>
             <td>
-                <input type="number" v-model="numbers.recon">
+                <input type="number" min="0" v-model="numbers.recon">
             </td>
         </tr>
         <tr>
@@ -100,7 +145,7 @@
             <td>800 MB</td>
             <td>200 m</td>
             <td>
-                <input type="number" v-model="numbers.check2">
+                <input type="number" min="0" v-model="numbers.check2">
             </td>
         </tr>
         <tr>
@@ -108,7 +153,7 @@
             <td>300 MB</td>
             <td>400 m</td>
             <td>
-                <input type="number" v-model="numbers.hand">
+                <input type="number" min="0" v-model="numbers.hand">
             </td>
         </tr>
         </tbody>
@@ -124,7 +169,7 @@
             <th>Memory (MB)</th>
             <th>CPU (millicores)</th>
             <th>Disk space (GB)</th>
-            <th>In node</th>
+            <th>Included to node</th>
         </tr>
         </thead>
         <tbody>
@@ -138,42 +183,7 @@
         </tbody>
     </table>
 
-    <h2>Total hardware requirements</h2>
-    <p></p>
-    <table style="margin-top: 2rem">
-        <thead>
-        <tr>
-            <th>Requirement for node</th>
-            <th>Infra & Core Components</th>
-            <th>Custom & Building blocks components</th>
-            <th>Apache Cassandra node</th>
-            <th>Total</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Memory (MB)</td>
-            <td>${th2_core.memory} MB</td>
-            <td>${th2_custom.memory} MB</td>
-            <td>${cassandra.memory} MB</td>
-            <td>${th2_core.memory + th2_custom.memory + cassandra.memory} MB</td>
-        </tr>
-        <tr>
-            <td>CPU (millicores)</td>
-            <td>${th2_core.core} m</td>
-            <td>${th2_custom.core} m</td>
-            <td>${cassandra.core} m</td>
-            <td>${th2_core.core + th2_custom.core + cassandra.core} m</td>
-        </tr>
-        <tr>
-            <td>Disk space (GB)</td>
-            <td>${th2_core.space} GB</td>
-            <td>${th2_custom.space} GB</td>
-            <td>${cassandra.space} GB</td>
-            <td>${th2_core.space + th2_custom.space + cassandra.space} GB</td>
-        </tr>
-        </tbody>
-    </table>
+
 </div>
 <script>
     const app = new Vue({
@@ -181,7 +191,6 @@
         delimiters: ['${', '}'],
         name: "RequirementsCalculator",
         data: {
-            message: 'Hello Vue!',
             memory: {
                 infra: 1000,
                 core: 2500,
