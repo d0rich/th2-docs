@@ -14,7 +14,7 @@ The resulting environment setup is presented on the diagram below.
 
 ## Contents
 1. [Install required software](requirements)
-2. [Publish schema](publish-schema)
+2. [Publish th2-infra-schema](publish-schema)
 3. [Download th2 demo example](get-th2-demo)
 4. [Set up cluster](set-up-cluster)
 5. [Create th2 environment](create-env)
