@@ -6,7 +6,7 @@ chapter: false
 
 # Demo Step 2: Publishing th2-infra-schema
 
-In this step, you will create the following fragment of the final th2 environment:
+In this step, you will create the following fragment of the th2 environment:
 
 ![](images/Demo-cluster-components-2-infra-schema.drawio.png)
 
