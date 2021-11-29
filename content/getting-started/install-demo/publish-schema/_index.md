@@ -10,6 +10,10 @@ In this step, you will create the following fragment of the th2 environment:
 
 ![](images/Demo-cluster-components-2-infra-schema.drawio.png)
 
+As a result of this step and the previous steps, you should have the following part of the th2 framework ready:
+
+![](images/Demo-cluster-components-2-final.drawio.png)
+
 ## th2-infra-schema
 
 **th2-infra-schema** is a repository containing the description of th2 components and links between them.
@@ -20,6 +24,9 @@ See the [Theory of pins and links](https://github.com/th2-net/th2-documentation/
 
 ## Publish th2-infra-schema
 
+[`th2-infra-schema-demo`](https://github.com/th2-net/th2-infra-schema-demo/tree/master) 
+is the template repository with predefined schemas, which you can use.
+
 Fork the [`th2-infra-schema-demo`](https://github.com/th2-net/th2-infra-schema-demo/tree/master) repository or use it as a template. It can be either **public** or **private**.
 
 ![](images/clone-th2-infra-schema-demo.png)
@@ -29,7 +36,9 @@ th2 will sync with this published **th2-infra-schema** using `ssh`.
 In the future, you will provide the link to this repository in a separate th2 configuration (will be discussed in one of the subsequent steps).
 {{% /notice %}}
 
-## Alternative: Publish th2-infra-schema to create a th2 environment via the GUI
+If you have completed main instructions you can go to the [next step](../set-up-cluster).
+
+## **Alternative:** Publish th2-infra-schema to create a th2 environment via the GUI
 
 ### Download th2-infra-schema
 
@@ -60,9 +69,3 @@ git init
 ```
 
 Publish your repository on GitHub as either **public** or **private**.
-
-## Result
-
-As a result of this and the previous steps, you should have the following part of the th2 framework ready:
-
-![](images/Demo-cluster-components-2-final.drawio.png)
