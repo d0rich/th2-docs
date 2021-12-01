@@ -55,12 +55,14 @@ other container runtime is allocated inside `/var` filesystem by default.
 The recommended working disk capacity, CPU, and memory required for th2 installation can be calculated 
 via the following formula (please find the reference table below):
 
-`th2 env` = `Infra` + `Core` + `Monitoring` + `Building blocks` + `Custom` + `Data Storage(Cassandra)`
+th2 environment = **th2 infra** + **th2 core** + **th2 monitoring** + **th2 building blocks** + **th2 custom** + **data storage (Cassandra)**
 
 {{% notice info %}}
-There are tables with different hardware **minimal** requirements below. You can choose options for your node
-and total **minimal** requirements will be calculated in the final table.
+Tables below provide **minimal** hardware requirements for different th2 blocks and components within a node. 
+By ticking the checkboxes, you can select options to use on your machine - as a result, 
+total **minimal** hardware requirements will be displayed in the [corresponding table](#total-requirements).
 {{% /notice %}}
 
-
 {{% requirements-calculator %}}
+
+
