@@ -21,4 +21,4 @@ chapter: true
 - **data-driven approach**: ready for implementation of AI-driven test libraries for machine learning and advanced data analytics, enhanced data capabilities including faster data processing and unified storage of test results
 - **data governance**: unified storage of distributed test data and results in the Cassandra database to enable better access to test evidence and smart analytics for governance and regulatory compliance
 - **performance**: processes multiple data streams in parallel
-- **scalability**: can be distributed between several hardware, additional computing power can be quickly involved in testing process allowing testing close to thresholds and exceeding them
+- **scalability**: can be distributed between several machines, additional computing power can be quickly involved in testing process allowing testing close to thresholds and exceeding them
