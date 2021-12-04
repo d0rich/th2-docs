@@ -3,22 +3,23 @@ title: Set up cluster
 weight: 15
 chapter: false
 ---
+# Demo Step 3: Setting up a th2 cluster
 
-During this step you will prepare kubernetes cluster and configuration maps for 
+During this step, you will prepare a Kubernetes cluster and configuration maps for 
 installing th2.
 
-## Step 1. Get th2 infra values
-Clone [th2-infra](https://github.com/th2-net/th2-infra) repository.
+## 1. Get th2 infra values
+Clone the [`th2-infra`](https://github.com/th2-net/th2-infra) repository.
 
-This repository contains configuration files for starting th2 inside kubernetes.
+This repository contains configuration files for starting th2 inside Kubernetes.
 
 ```shell
 git clone https://github.com/th2-net/th2-infra.git
 ```
 
-## Step 2. Create namespaces
+## 2. Create namespaces
 
-Create namespaces for monitoring and th2 service tools.
+Create namespaces for _`monitoring`_ and _`th2 service`_ tools.
 
 ```shell
 kubectl create namespace monitoring
@@ -31,8 +32,8 @@ namespace/monitoring created
 namespace/service created
 ```
 
-{{% spoiler "Check if required namespaces are existing." %}}
-Get namespaces list:
+{{% spoiler "Check if required namespaces exist." %}}
+Get the namespaces list:
 ```shell
 kubectl get namespaces
 ```
@@ -48,32 +49,37 @@ service           Active   41d
 ```
 {{% /spoiler %}}
 
-## Step 3. Data persistence
+## 3. Data persistence
 
 Data persistence is required for the following components: Grafana, Prometheus,
-Loki, RabbitMQ - and should be set up at this step.
+Loki, RabbitMQ - and should be set up at this point.
 
 {{% notice note %}}
 Examples below use HostPath type of
-[Persistent Volume(PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
+[Persistent Volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
 Please read the documentation to choose an appropriate PV type for your environment.
 {{% /notice %}}
 
 ### Create directories for data persistence
 
-{{% notice info %}}
-If you are using _minikube_, create directories inside it. To do this, connect to the minikube container with
-`minikube ssh` and execute next command.
-{{% /notice %}}
+Create directories on the th2 node (note that the `mkdir` command can require root permissions):
 
-The following command can require root permissions, create directory on th2 node:
 ```shell
 mkdir /opt/grafana /opt/prometheus /opt/loki /opt/rabbitmq
 ```
 
+{{% notice info %}}
+If you are using minikube, create directories inside it. To do this, 
+connect to the minikube filesystem with `minikube ssh` first, then execute the `mkdir` command provided above.
+{{% /notice %}}
+
 ### Edit persistence volume configuration
-Set node name in `pvs.yaml` (replace **\<node-name\>**)  
-`pvs.yaml` example:
+Configurations of persistent volumes are specified in the _pvs.yaml_ config file 
+located in the `th2-infra/example-values` directory. 
+
+To set the node name in _pvs.yaml_, replace the "\<node-name\>" value
+with the name of your node (can be retrieved with the `kubectl get nodes` command).  
+A _pvs.yaml_ example:
 ```yaml
 ---
 apiVersion: v1
@@ -103,21 +109,21 @@ spec:
 ---
 ```
 
-### Create kubernetes entities for data persistence
+### Create Kubernetes entities for data persistence
 
 {{% notice warning %}}
 Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
-Create PVs and PVCs:
+Create the persistent volumes (PVs) and persistent volume claims (PVCs):
 
 ```shell
 kubectl apply -f ./pvs.yaml
 kubectl apply -f ./pvcs.yaml
 ```
 
-{{% spoiler "Check if required pv's and pvc's are existing." %}}
-Get list of pv's:
+{{% spoiler "Check if required PVs and PVCs were successfully created." %}}
+Get the list of PVs:
 ```shell
 kubectl get persistentvolumes
 ```
@@ -131,7 +137,7 @@ storage-prometheus   5Gi        RWO            Retain           Bound      monit
 storage-rabbitmq     10Gi       RWO            Retain           Bound      service/data-rabbitmq-0                                                                                             local-storage            41d
 ```
 
-Get list of pvc's:
+Get the list of PVCs:
 ```shell
 kubectl get persistentvolumeclaims --all-namespaces
 ```
@@ -145,9 +151,11 @@ service      data-rabbitmq-0                                                    
 ```
 {{% /spoiler %}}
 
-## Step 4. Configure th2 infra values
+<!-- Bookmark -->
 
-Once all of the required software is installed on your test-box and operator-box and
+## 4. Configure th2 infra values
+
+Once all the required software is installed on your test box and operator box and
 th2-infra repositories are ready, you can start configuring the cluster.
 
 

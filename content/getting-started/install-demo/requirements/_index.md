@@ -6,7 +6,8 @@ chapter: false
 
 # Demo step 1: installing required software on the Test and Operator boxes
 
-As a result of this step, you will prepare your test and operator boxes and get the following th2 components as part of the final th2 schema:
+As a result of this step, you will prepare your test and operator boxes and get the following 
+th2 components as part of the final th2 schema:
 
 1. [Docker](#1-docker-ce-v19)
 2. [Kubernetes cluster](#3-kubernetes-cluster)
@@ -18,13 +19,18 @@ As a result of this step, you will prepare your test and operator boxes and get 
 
 ## Test box (th2 node)
 
-To get started with th2, you will need a fully operational [Kubernetes](https://kubernetes.io/) cluster installed on your test box/boxes. A quick guide on Kubernetes installation on Centos-7 is available in the [FAQ section](https://github.com/th2-net/th2-documentation/wiki/Centos-7-kubernetes-and-cassandra-installation-guide) of the th2 GitHub repository Wiki.
+To get started with th2, you will need a fully operational [Kubernetes](https://kubernetes.io/) cluster 
+installed on your test box/boxes. A quick guide on Kubernetes installation on Centos-7 is available 
+in the [FAQ section](https://github.com/th2-net/th2-documentation/wiki/Centos-7-kubernetes-and-cassandra-installation-guide) 
+of the th2 GitHub repository Wiki.
 
-Prior to moving to the next steps, make sure that your test box and operator box meet th2 [technical requirements](https://d0rich.github.io/th2-docs/getting-started/requirements/).
+Prior to moving to the next steps, make sure that your test box and operator box 
+meet th2 [technical requirements](https://d0rich.github.io/th2-docs/getting-started/requirements/).
 
 ### 1. Docker CE v19+  
 
-Docker is the most popular open-source application containerization technology. The th2 services will run inside separate Docker containers.
+Docker is the most popular open-source application containerization technology. 
+The th2 services will run inside separate Docker containers.
 
 To install Docker, follow the [official guide](https://docs.docker.com/engine/install/). Upon installation, you will need to [configure Docker](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker) for Kubernetes.
 
