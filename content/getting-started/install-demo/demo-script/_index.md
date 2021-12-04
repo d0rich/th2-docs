@@ -42,7 +42,7 @@ Run Simulator:
 gradle run --args='--namespace <schema-namespace> --boxName sim-demo --contextName $(kubectl config current-context)'
 ```
 
-## 1. Clone the script.
+## 1. Clone the script
 
 Clone needed branch from the [demo script repository](https://github.com/th2-net/th2-demo-script).  
 At the moment of creating guide, actual branch is `ver-1.5.4-main_scenario`
@@ -51,7 +51,7 @@ At the moment of creating guide, actual branch is `ver-1.5.4-main_scenario`
 git clone -b <branch_name> --single-branch https://github.com/th2-net/th2-demo-script.git
 ```
 
-## 2. Get python environment 3.7+ (e.g. conda).
+## 2. Get python environment 3.7+ (e.g. conda)
 
 {{% notice info %}}
 Python already might be installed after step **1.3.1 Install required software**.

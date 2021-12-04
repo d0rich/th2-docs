@@ -31,7 +31,7 @@ th2 node is a device where your th2 system will be executed fully or partially.
 
 Specialist will monitor and control th2 through the operator box.
 
-1. GIT - [Installation guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+1. Git - [Installation guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 2. Kubectl - [Installation guide](https://kubernetes.io/docs/tasks/tools/)
 3. Helm 3+ - [Installation guide](https://helm.sh/docs/intro/install/)
 4. Chrome 75 or newer - [Download](https://www.google.com/chrome)

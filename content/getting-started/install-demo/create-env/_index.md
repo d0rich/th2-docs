@@ -8,7 +8,7 @@ During this step you will add final component to the environment schema.
 This component is **"th2 environment"**.
 ![](images/Demo-cluster-components-5-final.drawio.png)
 
-## Create infra schema with GIT branches
+## Create infra schema with Git branches
 
 {{% notice warning %}}
 Main instructions will work only with repositories published in the main way

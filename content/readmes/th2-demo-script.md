@@ -29,7 +29,7 @@ Python 3.7+ environment required.
 1. Install required packages described in **requirements.txt**
 1. Start **run.py**
 
-## Test Scenario:
+## Test scenario:
 
 1. User1 submit passive buy order with Price=x and Size=30 - **Order1**
 1. User1 receives an Execution Report with ExecType=0

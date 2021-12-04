@@ -173,7 +173,7 @@ Once all of the required software is installed on your test-box and operator-box
 $ kubectl config set-context --current --namespace=service
 ```
 
-### Access for infra-mgr th2 schema git repository:
+### Access for infra-mgr th2 schema Git repository:
 
 `ssh` access with write permissions is required by **th2-infra-mgr** component
 
@@ -195,7 +195,7 @@ infraMgr:
     repository: git@github.com:th2-net/th2-infra-demo-configuration.git
 ```
 
-### Define cassandra host name
+### Define Cassandra host name
 * set `cassandra.host` value for cassandra in the [service.values.yaml](./example-values/service.values.yaml) file.
 ```
 cassandra:
@@ -203,7 +203,7 @@ cassandra:
   host: <cassandra-host>
 ```
 
-### Define th2 ingress hostname
+### Define th2 Ingress hostname
 Add `ingress.hostname` value if required into [service.values.yaml](./example-values/service.values.yaml) file otherwise th2 http services will be available on node IP address
 ```
 ingress:

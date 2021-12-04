@@ -186,7 +186,7 @@ grafana:
       - <th2_host_name>
 ```
 
-### Access for infra-mgr th2 schema git repository:
+### Access for infra-mgr th2 schema Git repository:
 
 `Ssh` access with write permissions is required by th2-infra-mgr component.
 
