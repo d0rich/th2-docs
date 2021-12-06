@@ -74,12 +74,12 @@ connect to the minikube filesystem with `minikube SSH` first, then execute the `
 {{% /notice %}}
 
 ### Edit persistence volume configuration
-Configurations of persistent volumes are specified in the _pvs.yaml_ config file 
+Configurations of persistent volumes are specified in the `pvs.yaml` config file 
 located in the `th2-infra/example-values` directory. 
 
-To set the node name in _pvs.yaml_, replace the "\<node-name\>" value
+To set the node name in `pvs.yaml`, replace the `\<node-name\>` value
 with the name of your node (can be retrieved with the `kubectl get nodes` command).  
-A _pvs.yaml_ example:
+A `pvs.yaml` example:
 ```yaml
 ---
 apiVersion: v1

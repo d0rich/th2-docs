@@ -229,5 +229,5 @@ The Cassandra database is used in th2 setup to store all the data generated or p
 To install Cassandra, follow the [guide](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html).
 {{% notice warning %}}
 If you are using Minikube, change `rpc_address` in the [Cassandra config file](https://cassandra.apache.org/doc/latest/cassandra/getting_started/configuring.html)
-from _localhost_ to _0.0.0.0_.
+from `localhost` to `0.0.0.0`.
 {{% /notice %}}

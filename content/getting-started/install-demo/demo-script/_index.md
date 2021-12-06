@@ -77,7 +77,7 @@ python -m pip install -r requirements.txt
 Set up configs from directory configs (mq.json, rabbit.json, grpc.json) according to your components.
 
 {{% notice note %}}
-Words inside _<value>_ in JSON examples and in dashboard config maps are names of the values, that depends on your cluster.
+Words inside `<value>` in JSON examples and in dashboard config maps are names of the values, that depends on your cluster.
 You must find it by the following instructions.
 {{% /notice %}}
 
@@ -150,14 +150,14 @@ script-entry-point-app-config (same as for [mq.json](#mqjson)).
 
 
 {{% spoiler "Alternative way to find values" %}}
-Alternatively you can find _check1-port_ and _act-port_ by executing following command.
+Alternatively you can find `check1-port` and `act-port` by executing following command.
 
 ```shell
 kubectl get service -n <th2-schema-namespace> 
 ```
 
 Some ports are written in the following style: \<cluster-port\>:\<node-port\>/\<protocol\>.  
-For configuration you will need _node-port_ of appropriate service.
+For configuration you will need `node-port` of appropriate service.
 
 Output example:
 ```shell
@@ -171,7 +171,7 @@ check1                      NodePort    10.111.68.46     <none>        8080:3117
 
 {{% /spoiler %}}
 
-#### Example of **grpc.json**:
+#### Example of `grpc.json`:
 ```json
 {
   "services": {
@@ -212,7 +212,7 @@ Kubernetes Dashboard / Config Maps / rabbit-mq-external-app-config
 
 ![rabbit config](./images/db-rabbitmq.png)
 
-**rabbit.json** example:
+`rabbit.json` example:
 
 ```json
 {
