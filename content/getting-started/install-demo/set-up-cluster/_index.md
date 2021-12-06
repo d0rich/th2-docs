@@ -163,7 +163,7 @@ th2-infra repositories are ready, you can start configuring the cluster.
 Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
-### dashboard.values.yaml
+### `dashboard.values.yaml`
 
 #### Define Dashboard hostname
 
@@ -214,7 +214,7 @@ Create infra-mgr secret from the private key:
 kubectl -n service create secret generic infra-mgr --from-file=infra-mgr=./infra-mgr-rsa.key
 ```
 
-### service.values.yaml
+### `service.values.yaml`
 
 #### Set the repository with schema configuration
 
@@ -264,7 +264,7 @@ If required, add the _ingress.hostname_ value into the
 `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
 Otherwise, th2 http services will be available on node IP address.
 
-### secrets.yaml
+### `secrets.yaml`
 
 #### Create a Kubernetes Secret with th2 credentials
 
