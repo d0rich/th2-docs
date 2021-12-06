@@ -70,7 +70,7 @@ mkdir /opt/grafana /opt/prometheus /opt/loki /opt/rabbitmq
 
 {{% notice info %}}
 If you are using minikube, create directories inside it. To do this, 
-connect to the minikube filesystem with `minikube ssh` first, then execute the `mkdir` command provided above.
+connect to the minikube filesystem with `minikube SSH` first, then execute the `mkdir` command provided above.
 {{% /notice %}}
 
 ### Edit persistence volume configuration
@@ -151,7 +151,7 @@ service      data-rabbitmq-0                                                    
 ```
 {{% /spoiler %}}
 
-<!-- Bookmark -->
+
 
 ## 4. Configure th2 infra values
 
@@ -165,13 +165,14 @@ Make sure that you are located in the `th2-infra/example-values` directory.
 
 ### dashboard.values.yaml
 
-#### Define Dashboard host name
+#### Define Dashboard hostname
 
 {{% notice note %}}
 Host name must be resolved from QA boxes.
 {{% /notice %}}
 
-Define Dashboard host name in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
+Define Dashboard hostname in the `dashboard.values.yaml` 
+([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 
 ```yaml
 ingress:
@@ -179,9 +180,9 @@ ingress:
     - <th2_host_name>
 ```
 
-### prometheus-operator.values.yaml
-#### Define Grafana host name
-Define Grafana host names in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
+### `prometheus-operator.values.yaml`
+#### Define Grafana hostname
+Define Grafana hostnames in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 
 {{% notice info %}}
 To get the <th2_host_name>, execute the `kubectl cluster-info` command.
@@ -217,9 +218,8 @@ kubectl -n service create secret generic infra-mgr --from-file=infra-mgr=./infra
 
 #### Set the repository with schema configuration
 
-Set _infraMgr.git.repository_ value in the
-`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml))
-to ssh link of your schema repository, e.g:
+In your copy of the `service.values.yaml` [GitHub file](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml),
+set the `infraMgr.git.repository` value to the SSH link of your `th2-infra-schema` repository, e.g:
 
 ```yaml
 infraMgr:
@@ -248,8 +248,8 @@ You can find cassandra host name by executing `nodetool status`.
 {{% /notice %}}
 
 {{% notice warning %}}
-If you are using minikube, set _cassandra.host_ as `host.minikube.internal`.
-You can find more information [there](https://minikube.sigs.k8s.io/docs/handbook/host-access/).
+If you are using minikube, set `cassandra.host` value to `host.minikube.internal`.
+You can find more information [here](https://minikube.sigs.k8s.io/docs/handbook/host-access/).
 {{% /notice %}}
 
 ```yaml
@@ -266,7 +266,7 @@ Otherwise, th2 http services will be available on node IP address.
 
 ### secrets.yaml
 
-#### Create secret with th2 credentials
+#### Create a Kubernetes Secret with th2 credentials
 
 Create `secrets.yaml` in the `th2-infra` folder.
 
