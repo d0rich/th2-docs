@@ -12,7 +12,9 @@ Upon its completion, you are expected to have the environment setup as shown on 
 ## Deploy th2
 
 {{% notice warning %}}
+
 Make sure that you are located in the `th2-infra/example-values` directory.
+
 {{% /notice %}}
 
 ### Install helm-operator
@@ -24,16 +26,21 @@ helm repo add fluxcd https://charts.fluxcd.io
 helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./helm-operator.values.yaml
 ```
 
-{{% spoiler "Check if helm operator is running." %}}
-Get the `helm operator` deployment:
+{{% spoiler "Check if helm-operator deployment is running." %}}
+
+Get the `helm-operator` deployment:
+
 ```shell
 kubectl get deployment -n service -l app=helm-operator
 ```
+
 Output example:
+
 ```shell
 NAME            READY   UP-TO-DATE   AVAILABLE   AGE
 helm-operator   1/1     1            1           40d
 ```
+
 {{% /spoiler %}}
 
 ### Install NGINX Ingress Controller
@@ -43,16 +50,21 @@ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f ./ingress.values.yaml
 ```
 
-{{% spoiler "Check if nginx ingress controller is running." %}}
-Get the `helm operator` deployment:
+{{% spoiler "Check if the NGINX Ingress Controller is running." %}}
+
+Get the NGINX Ingress Controller deployment:
+
 ```shell
 kubectl get deployment -n service -l app.kubernetes.io/name=ingress-nginx
 ```
+
 Output example:
+
 ```shell
 NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
 ingress-ingress-nginx-controller   1/1     1            1           41d
 ```
+
 {{% /spoiler %}}
 
 ### Install Prometheus
@@ -64,16 +76,21 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
 ```
 
-{{% spoiler "Check if dashboard is running." %}}
-Get the `dashboard` pod:
+{{% spoiler "Check if Prometheus is running." %}}
+
+Get the Prometheus pod:
+
 ```shell
 kubectl get pod -n monitoring -l app=kube-prometheus-stack-operator
 ```
+
 Output example:
+
 ```shell
 NAME                                                   READY   STATUS    RESTARTS   AGE
 prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0          41d
 ```
+
 {{% /spoiler %}}
 
 ### Install th2-infra components in the service namespace
@@ -81,7 +98,9 @@ prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0      
 Download and install `th2-infra`:
 
 {{% notice note %}}
-Replace with the `th2-infra` release version you need, please follow https://github.com/th2-net/th2-infra/releases
+
+Replace with the `th2-infra` release version you need, please follow the [release notes](https://github.com/th2-net/th2-infra/releases).
+
 {{% /notice %}}
 
 ```shell
