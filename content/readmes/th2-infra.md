@@ -116,7 +116,7 @@ _Note: It's an optional step, but it gets slightly simpler checking the result o
 ```
 $ kubectl config set-context --current --namespace=monitoring
 ```
-* Define Grafana and Dashboard hostnames (the name must be resolved from QA boxes):
+* Define Grafana and Dashboard host names (the name must be resolved from QA boxes):
   * in the [dashboard.values.yaml](./example-values/dashboard.values.yaml) file
     ```
     ingress:

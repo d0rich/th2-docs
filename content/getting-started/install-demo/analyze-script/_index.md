@@ -65,7 +65,7 @@ Each run except 6th has 7 steps inside.
 
 First run will be commented there.
 
-### STEPS 1, 2
+### Steps 1, 2
 
 #### Scenario
 
@@ -117,7 +117,7 @@ Green _"Check messages"_ is an expected output in **step 2**.
 
 ![](images/Demo_script_steps-step2.drawio.png)
 
-### STEPS 3, 4
+### Steps 3, 4
 
 #### Scenario
 
@@ -159,7 +159,7 @@ Green _"Check messages"_ is an expected output in **step 4**.
 
 ![](images/Demo_script_steps-step2.drawio.png)
 
-### STEPS 5, 6, 7
+### Steps 5, 6, 7
 
 #### Scenario
 
@@ -238,7 +238,7 @@ exceptions with the specific instruments from the _script_.
 _INSTR1_, _INSTR2_, _INSTR3_ work normally. Exceptions from other 
 instruments will be described below.
 
-### INSTR4
+### Instr4
 
 As described in the _Demo script steps_ section,
 there should be 3 messages for the seller _DEMO-CONN2_ in the **step 7** of the demo script.
@@ -257,7 +257,7 @@ comment about exception can be found.
 
 ![img.png](images/instr4-step7-extra-m-details.png)
 
-### INSTR5
+### Instr5
 
 Simulator box sends one message with incorrect values at **step 7** within this run.
 
@@ -266,7 +266,7 @@ Simulator box sends one message with incorrect values at **step 7** within this 
 Pay attention, that some expected and actual values are not the same. 
 That is why exception appears.
 
-### INSTR6
+### Instr6
 
 Script sends message with unknown _security ID_ in **step 1** within this run.
 So exception appears for security reasons.

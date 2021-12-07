@@ -3,22 +3,23 @@ title: Set up cluster
 weight: 15
 chapter: false
 ---
+# Demo Step 3: Setting up a th2 cluster
 
-During this step you will prepare kubernetes cluster and configuration maps for 
+During this step, you will prepare a Kubernetes cluster and configuration maps for 
 installing th2.
 
-## Step 1. Get th2 infra values
-Clone [th2-infra](https://github.com/th2-net/th2-infra) repository.
+## 1. Get th2 infra values
+Clone the [`th2-infra`](https://github.com/th2-net/th2-infra) repository.
 
-This repository contains configuration files for starting th2 inside kubernetes.
+This repository contains configuration files for starting th2 inside Kubernetes.
 
 ```shell
 git clone https://github.com/th2-net/th2-infra.git
 ```
 
-## Step 2. Create namespaces
+## 2. Create namespaces
 
-Create namespaces for monitoring and th2 service tools.
+Create namespaces for _`monitoring`_ and _`th2 service`_ tools.
 
 ```shell
 kubectl create namespace monitoring
@@ -31,8 +32,8 @@ namespace/monitoring created
 namespace/service created
 ```
 
-{{% spoiler "Check if required namespaces are existing." %}}
-Get namespaces list:
+{{% spoiler "Check if required namespaces exist." %}}
+Get the namespaces list:
 ```shell
 kubectl get namespaces
 ```
@@ -48,14 +49,14 @@ service           Active   41d
 ```
 {{% /spoiler %}}
 
-## Step 3. Data persistence
+## 3. Data persistence
 
 Data persistence is required for the following components: Grafana, Prometheus,
-Loki, RabbitMQ - and should be set up at this step.
+Loki, RabbitMQ - and should be set up at this point.
 
 {{% notice note %}}
 Examples below use HostPath type of
-[Persistent Volume(PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
+[Persistent Volume (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
 Please read the documentation to choose an appropriate PV type for your environment.
 {{% /notice %}}
 
@@ -66,14 +67,22 @@ If you are using _minikube_, create directories inside it. To do this, connect t
 `minikube ssh` and execute next command.
 {{% /notice %}}
 
-The following command can require root permissions, create directory on th2 node:
 ```shell
 mkdir /opt/grafana /opt/prometheus /opt/loki /opt/rabbitmq
 ```
 
+{{% notice info %}}
+If you are using minikube, create directories inside it. To do this, 
+connect to the minikube filesystem with `minikube SSH` first, then execute the `mkdir` command provided above.
+{{% /notice %}}
+
 ### Edit persistence volume configuration
-Set node name in `pvs.yaml` (replace **\<node-name\>**)  
-`pvs.yaml` example:
+Configurations of persistent volumes are specified in the `pvs.yaml` config file 
+located in the `th2-infra/example-values` directory. 
+
+To set the node name in `pvs.yaml`, replace the `\<node-name\>` value
+with the name of your node (can be retrieved with the `kubectl get nodes` command).  
+A `pvs.yaml` example:
 ```yaml
 ---
 apiVersion: v1
@@ -103,21 +112,21 @@ spec:
 ---
 ```
 
-### Create kubernetes entities for data persistence
+### Create Kubernetes entities for data persistence
 
 {{% notice warning %}}
 Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
-Create PVs and PVCs:
+Create the persistent volumes (PVs) and persistent volume claims (PVCs):
 
 ```shell
 kubectl apply -f ./pvs.yaml
 kubectl apply -f ./pvcs.yaml
 ```
 
-{{% spoiler "Check if required pv's and pvc's are existing." %}}
-Get list of pv's:
+{{% spoiler "Check if required PVs and PVCs were successfully created." %}}
+Get the list of PVs:
 ```shell
 kubectl get persistentvolumes
 ```
@@ -131,7 +140,7 @@ storage-prometheus   5Gi        RWO            Retain           Bound      monit
 storage-rabbitmq     10Gi       RWO            Retain           Bound      service/data-rabbitmq-0                                                                                             local-storage            41d
 ```
 
-Get list of pvc's:
+Get the list of PVCs:
 ```shell
 kubectl get persistentvolumeclaims --all-namespaces
 ```
@@ -145,9 +154,9 @@ service      data-rabbitmq-0                                                    
 ```
 {{% /spoiler %}}
 
-## Step 4. Configure th2 infra values
+## 4. Configure th2 infra values
 
-Once all of the required software is installed on your test-box and operator-box and
+Once all the required software is installed on your test box and operator box and
 th2-infra repositories are ready, you can start configuring the cluster.
 
 
@@ -155,15 +164,16 @@ th2-infra repositories are ready, you can start configuring the cluster.
 Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
-### dashboard.values.yaml
+### `dashboard.values.yaml`
 
 #### Define Dashboard hostname
 
 {{% notice note %}}
-Hostname must be resolved from QA boxes.
+Hostname must be resolved from test boxes.
 {{% /notice %}}
 
-Define Dashboard hostname in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
+Define Dashboard hostname in the `dashboard.values.yaml` 
+([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 
 ```yaml
 ingress:
@@ -171,12 +181,12 @@ ingress:
     - <th2_host_name>
 ```
 
-### prometheus-operator.values.yaml
+### `prometheus-operator.values.yaml`
 #### Define Grafana hostname
 Define Grafana hostnames in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 
 {{% notice info %}}
-To get the <th2_host_name>, execute the `kubectl cluster-info` command.
+To get <th2_host_name>, execute the `kubectl cluster-info` command.
 {{% /notice %}}
 
 ```yaml
@@ -186,44 +196,47 @@ grafana:
       - <th2_host_name>
 ```
 
-### Access for infra-mgr th2 schema git repository:
+### Access to the `th2-infra-schema` Git repository for `th2-infra-mgr`
 
-`Ssh` access with write permissions is required by th2-infra-mgr component.
+The `th2-infra-mgr` component monitors the `th2-infra-schema` repository and updates it 
+according to the user's actions in the `th2-infra-editor` GUI. To make it possible,
+it is required that the `th2-infra-mgr` component is granted SSH access with write permissions.
 
 {{% notice warning %}}
-Be sure you are located in the `th2-infra/example-values` directory.
+Make sure that you are located in the `th2-infra/example-values` directory.
 {{% /notice %}}
 
-Generate keys without passphrase
+Generate SSH keys without a passphrase:
 ```shell
 ssh-keygen -t rsa -m pem -f ./infra-mgr-rsa.key
 ```
 [Add a new SSH key to your GitHub account](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
 
-Create infra-mgr secret from the private key:
+Create a Kubernetes Secret `infra-mgr` from the private SSH key:
 ```shell
 kubectl -n service create secret generic infra-mgr --from-file=infra-mgr=./infra-mgr-rsa.key
 ```
 
-### service.values.yaml
+### `service.values.yaml`
 
-#### Set the repository with schema configuration
+#### Link `th2-infra-mgr` to the `th2-infra-schema` repository 
 
-Set _infraMgr.git.repository_ value in the
-`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml))
-to ssh link of your schema repository, e.g:
+In your copy of the `service.values.yaml` [GitHub file](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml),
+set the `infraMgr.git.repository` value to the SSH link of your `th2-infra-schema` repository, e.g:
 
 ```yaml
 infraMgr:
   git:
     repository: git@github.com:th2-net/th2-infra-demo-configuration.git
 ```
-#### Define rabbitMQ hostname
+#### Define RabbitMQ hostname
 
-Set _externalRabbitMQHost.host_ value as the hostname of your cluster in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
+In your copy of the `service.values.yaml` [GitHub file](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml), 
+set the `externalRabbitMQHost.host` value to the hostname of your cluster.
+
 
 {{% notice info %}}
-To get the <th2_host_name>, execute the `kubectl cluster-info` command.
+To get <th2_host_name>, execute the `kubectl cluster-info` command.
 {{% /notice %}}
 
 ```yaml
@@ -231,17 +244,18 @@ externalRabbitMQHost:
   host: <th2_host_name>
 ```
 
-#### Define cassandra hostname
+#### Define Cassandra hostname
 
-Set _cassandra.host_ value for cassandra in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
+In your copy of the `service.values.yaml` [GitHub file](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml),
+set the `cassandra.host` value to the hostname of the Cassandra cluster.
 
 {{% notice info %}}
-You can find cassandra hostname by executing `nodetool status`.
+You can find the Cassandra cluster's hostname by executing the `nodetool status` command.
 {{% /notice %}}
 
 {{% notice warning %}}
-If you are using minikube, set _cassandra.host_ as `host.minikube.internal`.
-You can find more information [there](https://minikube.sigs.k8s.io/docs/handbook/host-access/).
+If you are using minikube, set `cassandra.host` value to `host.minikube.internal`.
+You can find more information [here](https://minikube.sigs.k8s.io/docs/handbook/host-access/).
 {{% /notice %}}
 
 ```yaml
@@ -250,20 +264,25 @@ cassandra:
   host: <cassandra-host>
 ```
 
-#### Define th2 ingress hostname
+#### Define th2 Ingress hostname
 
-If required, add the _ingress.hostname_ value into the
-`service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
-Otherwise, th2 http services will be available on node IP address.
+If required, add the `ingress.hostname` value into the
+`service.values.yaml` [GitHub file](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml).
+Otherwise, th2 web services will be available via the IP address of the node 
+(e.g. <ip_address>:30000/dashboard/ rather than <ingress.hostname>:30000/dashboard/).
 
-### secrets.yaml
+{{% notice note %}}
+If you don't have the DNS configured for your th2 cluster, we recommend leaving `ingress.hostname` empty.
+{{% /notice %}}
 
-#### Create secret with th2 credentials
+### `secrets.yaml`
 
-Create `secrets.yaml` in the `th2-infra` folder.
+#### Create a Kubernetes Secret with th2 credentials
+
+Create the `secrets.yaml` file in the `th2-infra` folder.
 
 {{% notice warning %}}
-Do not commit `secrets.yaml` into git.
+Do not commit the `secrets.yaml` file into Git to keep its data confidential.
 {{% /notice %}}
 
 Example:

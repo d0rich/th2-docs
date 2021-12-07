@@ -5,10 +5,10 @@ chapter: false
 ---
 
 During this step you will add final component to the environment schema. 
-This component is **"Working infra schema"**.
+This component is **"th2 environment"**.
 ![](images/Demo-cluster-components-5-final.drawio.png)
 
-## Create infra schema with GIT branches
+## Create infra schema with Git branches
 
 {{% notice warning %}}
 Main instructions will work only with repositories published in the main way
@@ -56,8 +56,11 @@ It will have all components defined in schema.
 
 ![New namespace](images/new-namespace.png)
 
+If you have completed main instructions you can go to the [next step](../demo-script).
 
-## Alternative: create infra schema with GUI
+## **Alternative:** create infra schema with GUI
+
+th2 uses Infra Editor as **Graphical User Interface (GUI)** for infra schemas management.
 
 {{% notice warning %}}
 Alternative instructions will work only with repositories published in the alternative way

@@ -4,13 +4,13 @@ weight: 5
 chapter: true
 ---
 
-# Operational System and Network Requirements
+# Operational system and network requirements
 
 ## Kubernetes minimum requirements
 
 Machines that meet Kubernetes minimum requirements for the workers
 
-## Operational System
+## Operational system
 
 |OS|Version|
 |---|---|
