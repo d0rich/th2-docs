@@ -17,14 +17,20 @@ Make sure that you are located in the `th2-infra/example-values` directory.
 
 {{% /notice %}}
 
-### Install helm-operator
+### Install the Helm Operator
 
-Download and install `helm-operator`:
+The Helm Operator is a Kubernetes operator, allowing one to declaratively manage Helm chart releases.
+Using this you can automatically create Kubernetes objects (as **Pods**, **Namespaces**, **Deployments**, **Configmaps**,
+**Secrets**, **Custom Resources**).
+
+Download and install the Helm Operator:
 
 ```shell
 helm repo add fluxcd https://charts.fluxcd.io
 helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./helm-operator.values.yaml
 ```
+
+
 
 {{% spoiler "Check if helm-operator deployment is running." %}}
 
@@ -43,12 +49,19 @@ helm-operator   1/1     1            1           40d
 
 {{% /spoiler %}}
 
-### Install NGINX Ingress Controller
-Download and install `NGINX Ingress Controller`:
+### Install the NGINX Ingress Controller
+
+th2 uses its own implementation of the NGINX Ingress Controller. 
+It provides access to the th2 web services through HTTP.
+
+Download and install the NGINX Ingress Controller:
+
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f ./ingress.values.yaml
 ```
+
+
 
 {{% spoiler "Check if the NGINX Ingress Controller is running." %}}
 
@@ -69,7 +82,11 @@ ingress-ingress-nginx-controller   1/1     1            1           41d
 
 ### Install Prometheus
 
-Download and install `Prometheus` repository locally:
+Prometheus is an open-source systems monitoring and alerting toolkit.
+It will be used by Grafana as data source. 
+And also it contains **Custom Resource Definitions** (CRD) required by the th2 infra.
+
+Download and install Prometheus:
 
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -93,7 +110,13 @@ prometheus-kube-prometheus-operator-584874d66c-td4hc   1/1     Running   0      
 
 {{% /spoiler %}}
 
-### Install th2-infra components in the service namespace
+### Install th2-infra components in the _`service`_ namespace
+
+`th2-infra` helm chart contains description for 4 th2 components:
+1. [_`th2-infra-editor`_](https://github.com/th2-net/th2-infra-editor)
+2. [_`th2-infra-mgr`_](https://github.com/th2-net/th2-infra-mgr)
+3. [_`th2-infra-operator`_](https://github.com/th2-net/th2-infra-operator)
+4. [_`th2-infra-repo`_](https://github.com/th2-net/th2-infra-repo)
 
 Download and install `th2-infra`:
 
@@ -107,6 +130,28 @@ Replace with the `th2-infra` release version you need, please follow the [releas
 helm repo add th2 https://th2-net.github.io
 helm install -n service --version=<version> th2-infra th2/th2 -f ./service.values.yaml -f ./secrets.yaml
 ```
+
+{{% spoiler "Check if `th2-infra` is installed correctly." %}}
+
+Get the `th2-infra` Pods:
+
+```shell
+kubectl -n service get deployments infra-editor infra-mgr infra-operator infra-repo
+```
+
+Output example:
+
+```shell
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+infra-editor     1/1     1            1           35d
+infra-mgr        1/1     1            1           35d
+infra-operator   1/1     1            1           35d
+infra-repo       1/1     1            1           35d
+```
+
+{{% /spoiler %}}
+
+<!-- Bookmark -->
 
 ### Install Kubernetes Dashboard
 
@@ -191,13 +236,13 @@ prometheus-prometheus-prometheus-oper-prometheus-0       3/3     Running   1    
 ```
 #### Access from browser
 
-Check access to `Grafana` (the default `user/password: admin/prom-operator` must be changed):  
+Check access to `Grafana` (the default `user/password: admin/prom-operator` must be changed for information security purposes):  
 `http://your-host:30000/grafana/login`.
 
 ## Check up installed services
 
 {{% notice info %}}
-To get the cluster host name (your-host), execute the `kubectl cluster-info` command.
+To get the cluster hostname (your-host), execute the `kubectl cluster-info` command.
 {{% /notice %}}
 
 - Kubernetes dashboard `http://your-host:30000/dashboard/`

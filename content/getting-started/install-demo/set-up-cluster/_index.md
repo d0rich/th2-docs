@@ -157,13 +157,13 @@ Make sure that you are located in the `th2-infra/example-values` directory.
 
 ### dashboard.values.yaml
 
-#### Define Dashboard host name
+#### Define Dashboard hostname
 
 {{% notice note %}}
-Host name must be resolved from QA boxes.
+Hostname must be resolved from QA boxes.
 {{% /notice %}}
 
-Define Dashboard host name in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
+Define Dashboard hostname in the `dashboard.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 
 ```yaml
 ingress:
@@ -172,8 +172,8 @@ ingress:
 ```
 
 ### prometheus-operator.values.yaml
-#### Define Grafana host name
-Define Grafana host names in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
+#### Define Grafana hostname
+Define Grafana hostnames in the `prometheus-operator.values.yaml` ([file in github](https://github.com/th2-net/th2-infra/blob/master/example-values/prometheus-operator.values.yaml)):
 
 {{% notice info %}}
 To get the <th2_host_name>, execute the `kubectl cluster-info` command.
@@ -218,9 +218,9 @@ infraMgr:
   git:
     repository: git@github.com:th2-net/th2-infra-demo-configuration.git
 ```
-#### Define rabbitMQ host name
+#### Define rabbitMQ hostname
 
-Set _externalRabbitMQHost.host_ value as the host name of your cluster in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
+Set _externalRabbitMQHost.host_ value as the hostname of your cluster in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
 
 {{% notice info %}}
 To get the <th2_host_name>, execute the `kubectl cluster-info` command.
@@ -231,12 +231,12 @@ externalRabbitMQHost:
   host: <th2_host_name>
 ```
 
-#### Define cassandra host name
+#### Define cassandra hostname
 
 Set _cassandra.host_ value for cassandra in the `service.values.yaml` ([file on github](https://github.com/th2-net/th2-infra/blob/master/example-values/service.values.yaml)).
 
 {{% notice info %}}
-You can find cassandra host name by executing `nodetool status`.
+You can find cassandra hostname by executing `nodetool status`.
 {{% /notice %}}
 
 {{% notice warning %}}

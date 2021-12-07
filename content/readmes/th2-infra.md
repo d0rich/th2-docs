@@ -116,7 +116,7 @@ _Note: It's an optional step, but it gets slightly simpler checking the result o
 ```
 $ kubectl config set-context --current --namespace=monitoring
 ```
-* Define Grafana and Dashboard host names (the name must be resolved from QA boxes):
+* Define Grafana and Dashboard hostnames (the name must be resolved from QA boxes):
   * in the [dashboard.values.yaml](./example-values/dashboard.values.yaml) file
     ```
     ingress:
@@ -195,7 +195,7 @@ infraMgr:
     repository: git@github.com:th2-net/th2-infra-demo-configuration.git
 ```
 
-### Define cassandra host name
+### Define cassandra hostname
 * set `cassandra.host` value for cassandra in the [service.values.yaml](./example-values/service.values.yaml) file.
 ```
 cassandra:
