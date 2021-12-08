@@ -8,11 +8,13 @@ During this step you will add final component to the environment schema.
 This component is **"th2 environment"**.
 ![](images/Demo-cluster-components-5-final.drawio.png)
 
-## Create infra schema with Git branches
+## **Default:** Create infra schema with Git branches
 
 {{% notice warning %}}
+
 Main instructions will work only with repositories published in the main way
 described in [Publish th2 infra schema](./publish-schema) point.
+
 {{% /notice %}}
 
 Find [th2-infra-schema-demo](https://github.com/th2-net/th2-infra-schema-demo/tree/master)
@@ -29,8 +31,8 @@ the base configuration.
 
 ![](images/create-branch.png)
 
-In the new branch edit `infra-mgr-config.yml`: variable 'spec.k8s-propagation' should be configured as 'rule' 
-instead of 'off' to automatically apply all dependencies from th2-infra-schema. Commit changes.
+In the new branch edit `infra-mgr-config.yml`: variable `spec.k8s-propagation` should be configured as rule 
+instead of `off` to automatically apply all dependencies from _`th2-infra-schema`_. Commit changes.
 
 ```yml
 kind: SettingsFile
@@ -42,10 +44,11 @@ spec:
 
 ### What changed?
 
-Infra Editor edit infra schema repository linked to the cluster. 
-That is why SSH key is needed. 
-Infra-mgr is monitoring your infra schema repository.
-After described actions it will create th2-<new_branch_name> namespace and install all needed components.
+`th2-infra-editor` edits infra schema repository linked to the cluster with access provided by SSH key. 
+`th2-infra-mgr` is monitoring your infra schema repository.
+After described actions it will create th2-<new_branch_name> namespace and deploy all needed components.
+
+<!-- bookmark -->
 
 In the infra editor new schema is available.
 
@@ -56,15 +59,17 @@ It will have all components defined in schema.
 
 ![New namespace](images/new-namespace.png)
 
-If you have completed main instructions you can go to the [next step](../demo-script).
+If you have completed default instructions you can go to the [next step](../demo-script).
 
 ## **Alternative:** create infra schema with GUI
 
-th2 uses Infra Editor as **Graphical User Interface (GUI)** for infra schemas management.
+th2 uses `th2-infra-editor` as **Graphical User Interface (GUI)** for infra schemas management.
 
 {{% notice warning %}}
+
 Alternative instructions will work only with repositories published in the alternative way
 described in [Publish th2 infra schema](./publish-schema) point.
+
 {{% /notice %}}
 
 In th2, environment is called `infractructure schema` or just `schema`, it's created by the 
@@ -72,8 +77,10 @@ dedicated [infra-mgr](https://github.com/th2-net/th2-infra-mgr)
 component that monitors for changes in the repositories and rolling out schemas from git repository to kubernetes.
 
 {{% notice note %}}
+
 You already configured th2-infra-schema 
 [in the step 4](/th2-docs/getting-started/install-demo/set-up-cluster/services-config/#set-the-repository-with-schema-configuration).
+
 {{% /notice %}}
 
 In demo example all required links between th2 boxes are configured, available 

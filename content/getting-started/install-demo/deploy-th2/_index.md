@@ -1,5 +1,5 @@
 ---
-title: Install th2
+title: Deploy th2
 weight: 20
 chapter: false
 ---
@@ -155,6 +155,9 @@ infra-repo       1/1     1            1           35d
 
 ### Install Kubernetes Dashboard
 
+Dashboard is a web-based Kubernetes user interface. 
+With this tool you can monitor existing Kubernetes Objects and its details.
+
 Download and install 
 [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/):
 
@@ -163,42 +166,55 @@ helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 helm install dashboard -n monitoring kubernetes-dashboard/kubernetes-dashboard -f ./dashboard.values.yaml
 ```
 
-{{% spoiler "Check if dashboard is running." %}}
-Get the `dashboard` pod:
+{{% spoiler "Check if the Dashboard is running" %}}
+Get the Dashboard pod:
 ```shell
 kubectl get pod -n monitoring -l app.kubernetes.io/name=kubernetes-dashboard
 ```
+
 Output example:
+
 ```shell
 NAME                                              READY   STATUS    RESTARTS   AGE
 dashboard-kubernetes-dashboard-567678889f-2snh7   1/1     Running   0          40d
 ```
+
 {{% /spoiler %}}
 
 ### Install Grafana
 
-Download and install `Grafana`:
+Grafana provides dashboard for the CPU, memory, and network usage of th2.
+
+Download and install Grafana:
 
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
 helm install --version=0.40.1 loki -n monitoring grafana/loki-stack -f ./loki.values.yaml
 ```
 
-{{% spoiler "Check if dashboard is running." %}}
-Get the `dashboard` pod:
+{{% spoiler "Check if the Grafana is installed correctly" %}}
+
+Get the Grafana pod:
+
 ```shell
 kubectl get pod -n monitoring -l app.kubernetes.io/name=grafana
 ```
+
 Output example:
+
 ```shell
 NAME                                  READY   STATUS    RESTARTS   AGE
 prometheus-grafana-74ff7fcbd4-h2r8t   2/2     Running   0          41d
 ```
+
 {{% /spoiler %}}
 
 ### Check result
+
 #### Pods
+
 Check if service pods are running:
+
 ```shell
 kubectl get pods -n service
 ```
@@ -216,10 +232,14 @@ rabbitmq-0                                         1/1     Running   0          
 ```
 
 Check if monitoring pods are running:
+
 ```shell
+
 kubectl get pods -n monitoring
 ```
+
 Output example:
+
 ```shell
 NAME                                                     READY   STATUS    RESTARTS   AGE
 ........
@@ -242,7 +262,9 @@ Check access to `Grafana` (the default `user/password: admin/prom-operator` must
 ## Check up installed services
 
 {{% notice info %}}
+
 To get the cluster hostname (your-host), execute the `kubectl cluster-info` command.
+
 {{% /notice %}}
 
 - Kubernetes dashboard `http://your-host:30000/dashboard/`
