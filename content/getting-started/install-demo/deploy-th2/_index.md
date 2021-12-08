@@ -32,7 +32,7 @@ helm install --version=1.2.0 helm-operator -n service fluxcd/helm-operator -f ./
 
 
 
-{{% spoiler "Check if helm-operator deployment is running." %}}
+{{% spoiler "Check if helm-operator deployment is running" %}}
 
 Get the `helm-operator` deployment:
 
@@ -63,7 +63,7 @@ helm install -n service --version=3.31.0 ingress ingress-nginx/ingress-nginx -f 
 
 
 
-{{% spoiler "Check if the NGINX Ingress Controller is running." %}}
+{{% spoiler "Check if the NGINX Ingress Controller is running" %}}
 
 Get the NGINX Ingress Controller deployment:
 
@@ -93,7 +93,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm install --version=15.0.0 prometheus -n monitoring prometheus-community/kube-prometheus-stack -f ./prometheus-operator.values.yaml
 ```
 
-{{% spoiler "Check if Prometheus is running." %}}
+{{% spoiler "Check if Prometheus is running" %}}
 
 Get the Prometheus pod:
 
@@ -122,7 +122,7 @@ Download and install `th2-infra`:
 
 {{% notice note %}}
 
-Replace with the `th2-infra` release version you need, please follow the [release notes](https://github.com/th2-net/th2-infra/releases).
+In the sample command replace `<version>` with the `th2-infra` release version you need, please follow the [release notes](https://github.com/th2-net/th2-infra/releases).
 
 {{% /notice %}}
 
@@ -131,7 +131,7 @@ helm repo add th2 https://th2-net.github.io
 helm install -n service --version=<version> th2-infra th2/th2 -f ./service.values.yaml -f ./secrets.yaml
 ```
 
-{{% spoiler "Check if `th2-infra` is installed correctly." %}}
+{{% spoiler "Check if `th2-infra` is installed correctly" %}}
 
 Get the `th2-infra` Pods:
 
