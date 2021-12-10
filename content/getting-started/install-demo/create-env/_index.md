@@ -6,7 +6,7 @@ chapter: false
 
 During this step you will add the final component to the environment schema. 
 This component is **"th2 environment"**.
-![](images/Demo-cluster-components-5-final.drawio.png)
+![](images/Demo-cluster-components-5-create-env.drawio.png)
 
 ## **Default:** Create infra schema with Git branches
 
