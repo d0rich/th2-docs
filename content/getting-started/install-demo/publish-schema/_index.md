@@ -1,10 +1,9 @@
 ---
-title: Publish th2-infra-schema
+title: "Step 2: Publish th2-infra-schema"
 weight: 10
 chapter: false
 ---
 
-# Demo step 2: publishing th2-infra-schema
 
 As a result of this step and the previous steps, you should have the following part of the th2 
 framework ready:

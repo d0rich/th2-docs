@@ -3,20 +3,24 @@ title: "Home"
 date: 2021-08-18T17:17:39+07:00
 draft: true
 ---
-# Welcome to the th2 documentation
+
+# th2 documentation
 
 ## [Get started](./getting-started)
 
-View what is **th2**, run demo **configuration** and see how **th2 tests exchange systems**.
+Learn about th2, Exactpro's next-generation test automation toolkit, 
+see how th2 can be used to test complex distributed systems, prepare a 
+basic configuration and run a demo script.
 
 ## [Fundamentals](#)
 
-Learn about **key concepts** of **th2** and how to configure **your own cluster**.
+Learn the key concepts of th2 and configure your own cluster from scratch.
 
 ## [Boxes](#)
 
-See ready **th2 components** from Exactpro and community.
+Read the description of th2 components prepared by the Exactpro team as well as those built by the community.
 
 ## [Cookbook](#)
 
-Try out prepared **th2 configurations** or **components combinations**, and **share** your own ones with community.
+Try out the prepared th2 configurations or components combinations, 
+create your own, and share your experience with the community.

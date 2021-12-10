@@ -1,5 +1,5 @@
 ---
-title: Demo script analysis
+title: "Step 7: Demo script analysis"
 weight: 35
 chapter: false
 ---
@@ -17,11 +17,11 @@ chapter: false
 
 ## Boxes in schema
 
-At step 3 th2-infra-schema was installed.  
+At step 3, th2-infra-schema was installed.  
 Boxes created by th2-infra-schema for demo version are described there.
 ![Environment schema](https://github.com/th2-net/th2-infra-schema-demo/blob/master/schema-ver-154.png?raw=true "Environment schema") 
 
-Demo script uses next boxes:
+The demo script uses the following boxes:
 1. **script** - there demo script is running;
 2. **act fix** can initiate FIX message sending;
 3. **check1** is needed for data comparison;
@@ -163,7 +163,7 @@ Green _"Check messages"_ is an expected output in **step 4**.
 
 #### Scenario
 
-In the **step 5** _script_ sends request to create aggressive sell IOC order by user _DEMO-CONN2_.
+In the **step 5** _script_ sends a request to create aggressive sell IOC order by user _DEMO-CONN2_.
 Order has next parameters:
 - Size (_OrderQty_) = 100
 - Price = 54 (_x-1_ | _x_ depends on instrument)
@@ -246,30 +246,30 @@ there should be 3 messages for the seller _DEMO-CONN2_ in the **step 7** of the 
 ![](images/instr4-step7-report.png)
 
 In fact, there are 4 messages. 
-Simulator box sent redundant execution report message to call an exception.
+The Simulator box sent a redundant execution report message to call an exception.
 
 This information is displayed in the check sequence event details.
 
 ![img.png](images/instr4-step7-check-details.png)
 
 In the details of one of filtered messages  
-comment about exception can be found.
+a comment about exception can be found.
 
 ![img.png](images/instr4-step7-extra-m-details.png)
 
 ### Instr5
 
-Simulator box sends one message with incorrect values at **step 7** within this run.
+The Simulator box sends one message with incorrect values at **step 7** within this run.
 
 ![img.png](images/instr5-verification-events.png)
 
-Pay attention, that some expected and actual values are not the same. 
-That is why exception appears.
+Please note that there is a discrepancy between some expected and actual values, 
+which prompts the exception message in the th2 report.
 
 ### Instr6
 
-Script sends message with unknown _security ID_ in **step 1** within this run.
-So exception appears for security reasons.
+In **step 1** within this run, the script sends the message with an unknown _security ID_, which leads to the 
+message being rejected.
 
 Message structure:
 

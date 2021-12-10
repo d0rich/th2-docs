@@ -1,9 +1,8 @@
 ---
-title: Set up cluster
+title: "Step 3: Set up cluster"
 weight: 15
 chapter: false
 ---
-# Demo Step 3: Setting up a th2 cluster
 
 During this step, you will prepare a Kubernetes cluster and configuration maps for 
 installing th2.

@@ -1,5 +1,5 @@
 ---
-title: Deploy th2
+title: "Step 4: Deploy th2"
 weight: 20
 chapter: false
 ---

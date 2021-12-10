@@ -1,9 +1,9 @@
 ---
-title: Get and run demo script
+title: "Step 6: Get and run demo script"
 weight: 30
 chapter: false
 ---
-## 0. Get and run simulator boxes
+
 
 ### Clone simulator boxes
 

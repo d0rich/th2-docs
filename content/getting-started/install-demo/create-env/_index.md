@@ -1,10 +1,10 @@
 ---
-title: Create th2 environment
+title: "Step 5: Create th2 environment"
 weight: 25
 chapter: false
 ---
 
-During this step you will add final component to the environment schema. 
+During this step you will add the final component to the environment schema. 
 This component is **"th2 environment"**.
 ![](images/Demo-cluster-components-5-final.drawio.png)
 
