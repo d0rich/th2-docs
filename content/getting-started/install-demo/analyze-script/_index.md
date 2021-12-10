@@ -22,22 +22,47 @@ Boxes created by th2-infra-schema for demo version are described there.
 ![Environment schema](https://github.com/th2-net/th2-infra-schema-demo/blob/master/schema-ver-154.png?raw=true "Environment schema") 
 
 The demo script uses the following boxes:
-1. **script** - there demo script is running;
-2. **act fix** can initiate FIX message sending;
-3. **check1** is needed for data comparison;
-4. **codec fix** encrypts and decrypts messages on the client side;
-5. **conn client fix** (connectivity client FIX) sends and receives FIX messages on the client side;
-6. **conn server fix** (connectivity server FIX) sends and receives FIX messages on the server side;
-7. **conn server dc** (connectivity server Drop Copy) replicates FIX messages for one or more participants;
-8. **conn dc fix** (connectivity Drop Copy FIX) needed for receiving replicated FIX messages;
-9. **codec sim fix** encrypts and decrypts messages on the server side;
-10. **sim** (simulation) simulate server activity;
-11. **estore** - store for events;
-12. **mstore** - store for messages.
+1. `script` - there demo script is running;
+2. `act-fix` can initiate FIX message sending;
+3. `check1` is needed for data comparison;
+4. `codec-fix` encrypts and decrypts messages on the client side;
+5. `conn-client-fix` (connectivity client FIX) sends and receives FIX messages on the client side;
+6. `conn-server-fix` (connectivity server FIX) sends and receives FIX messages on the server side;
+7. `conn-server-dc` (connectivity server Drop Copy) replicates FIX messages for one or more participants;
+8. `conn-dc-fix` (connectivity Drop Copy FIX) needed for receiving replicated FIX messages;
+9. `codec-sim-fix` encrypts and decrypts messages on the server side;
+10. `sim` (simulation) simulate server activity;
+11. `estore` - store for events;
+12. `mstore` - store for messages.
 
 ## Demo script flow
 
+The script represents the set of sending messages to the system and getting the responses from the system.
+
 In this example, **flow** is the path of the one message sent by the _script_.
+
+When sending the message, script sends a gRPC request to the `act` component with 
+instructions which message in which connector have to be sent. Act 
+transfers the message to the `conn` client component. Then, based on 
+the used gRPC call, it starts to find the message which will be the response 
+from the system on the message we’ve sent.
+
+The `conn` client component gets the th2 message from the `act`, forms the FIX message 
+based on a dictionary and then sends it to the `conn` server on FIX protocol.
+
+The `sim` gets this message from the `conn` server and creates a response on it, simulating remote system behavior.
+
+The response returns on the `conn` server and then transfers to the `conn` client 
+on FIX protocol. Then response goes to the `codec`, where it’s decoded into human-readable 
+th2 format which is also clear to the other components. From the codec all 
+the messages come to the `act`, to the `check1` for verifying on 
+requests from script and to the `recon` for passive verification.
+
+When checking, the script sends a gRPC request to 
+`check1` with instructions on messages verification. These instructions 
+content expected result on each message we want to verify.
+
+Also, component `recon` performs the passive verification during all the env work.
 
 ![Demo script flow animation](https://github.com/th2-net/th2-documentation/raw/master/images/demo-ver154-main/script_flow.gif)
 
